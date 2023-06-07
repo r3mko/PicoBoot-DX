@@ -102,7 +102,7 @@ void main()
         count_of(ipl),
         true // start immediately
     );
-    
+
     // Start PIO state machines
     pio_sm_set_enabled(pio, transfer_start_sm, true);
     pio_sm_set_enabled(pio, clocked_output_sm, true);
