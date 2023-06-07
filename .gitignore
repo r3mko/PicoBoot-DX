@@ -5,8 +5,8 @@ _deps
 
 # Build environment
 src/*
-!src/picoboot.c
-!src/picoboot.pio
+!src/picoboot-dx.c
+!src/picoboot-dx.pio
 CMakeFiles/
 elf2uf2/
 generated/
@@ -15,12 +15,12 @@ pioasm/
 cmake_install.cmake
 CMakeCache.txt
 Makefile
-picoboot.bin
-picoboot.dis
-picoboot.elf
-picoboot.elf.map
-picoboot.hex
-picoboot.uf2
-picoboot.pio.h
+picoboot-dx.bin
+picoboot-dx.dis
+picoboot-dx.elf
+picoboot-dx.elf.map
+picoboot-dx.hex
+picoboot-dx.uf2
+picoboot-dx.pio.h
 ipl.h
 *.dol

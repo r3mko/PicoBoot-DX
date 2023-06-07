@@ -1,5 +1,6 @@
 /**
  * Copyright (c) 2022 Maciej Kobus
+ * Copyright (c) 2023 Remko Kleinjan
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
@@ -10,13 +11,16 @@
 #include "hardware/clocks.h"
 #include "hardware/dma.h"
 #include "hardware/structs/bus_ctrl.h"
-#include "picoboot.pio.h"
+#include "picoboot-dx.pio.h"
 #include "ipl.h"
 
-const uint PIN_LED = 25;                // Status LED
-const uint PIN_DATA_BASE = 6;           // Base pin used for output, 4 consecutive pins are used 
-const uint PIN_CS = 4;                 // U10 chip select
-const uint PIN_CLK = 5;                // EXI bus clock line
+const uint PIN_LED = 25;            // Status LED
+const uint PIN_DATA_BASE = 6;       // Base pin used for output, 4 consecutive pins are used 
+const uint PIN_CS = 4;              // U10 chip select
+const uint PIN_CLK = 5;             // EXI bus clock line
+
+const uint BOOST_CLOCK = 250000;    // Set 250MHz clock to get more cycles. 
+uint BLINK;
 
 void main()
 {
@@ -30,7 +34,7 @@ void main()
     // Set 250MHz clock to get more cycles in between CLK pulses.
     // This is the lowest value I was able to make the code work.
     // Should be still considered safe for most Pico boards.
-    set_sys_clock_khz(250000, true);
+    set_sys_clock_khz(BOOST_CLOCK, true);
 
     // Prioritize DMA engine as it does the most work
     bus_ctrl_hw->priority = BUSCTRL_BUS_PRIORITY_DMA_W_BITS | BUSCTRL_BUS_PRIORITY_DMA_R_BITS;
@@ -98,10 +102,31 @@ void main()
         count_of(ipl),
         true // start immediately
     );
-
+    
     // Start PIO state machines
     pio_sm_set_enabled(pio, transfer_start_sm, true);
     pio_sm_set_enabled(pio, clocked_output_sm, true);
+
+    // Wait for the DMA to finish
+    //dma_channel_wait_for_finish_blocking(chan);
+    // Blink fast while waiting
+    while (dma_channel_is_busy(chan)) {
+        gpio_put(PIN_LED, false);
+        sleep_ms(100);
+        gpio_put(PIN_LED, true);
+        sleep_ms(100);
+    }
+
+    // Reset clock to default
+    set_sys_clock_khz((BOOST_CLOCK/2), true);
+
+    // Blink slow (3 times) when done
+    for (BLINK = 0; BLINK < 3; BLINK++) {
+        gpio_put(PIN_LED, false);
+        sleep_ms(250);
+        gpio_put(PIN_LED, true);
+        sleep_ms(250);
+    }
 
     while (true) {
         tight_loop_contents();
