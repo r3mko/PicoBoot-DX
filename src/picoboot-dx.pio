@@ -40,13 +40,13 @@ on_rising_edge:
     wait 1 gpio CLK_PIN
 
 write_bit:
-    out pins, 4                 ; Output single IPL bit over 4 GPIOs (=4 bits of our payload)
+    out pins, 2                 ; Output single IPL bit over 2 GPIOs (=2 bits of our payload)
     jmp x-- on_rising_edge      ; Jump back to next clock pulse wait routine if there is more data to inject
 
     jmp !osre start             ; If there is more data in OSR, go back to start routine and wait for another transfer
 
-    set pins 0b10000 [3]        ; Output pulse on debug line
-    set pins 0b00000
+    ;set pins 0b10000 [3]        ; Output pulse on debug line
+    ;set pins 0b00000
     
     set pindirs 0b10000         ; Leave data line floating so RTC-DOL can take over and load fonts etc.
 
@@ -87,21 +87,21 @@ disable_chip:
 
         pio_gpio_init(pio, data_pin);
         pio_gpio_init(pio, data_pin + 1);
-        pio_gpio_init(pio, data_pin + 2);
-        pio_gpio_init(pio, data_pin + 3);
-        pio_gpio_init(pio, data_pin + 4);
+        ;pio_gpio_init(pio, data_pin + 2);
+        ;pio_gpio_init(pio, data_pin + 3);
+        ;pio_gpio_init(pio, data_pin + 4);
 
         sm_config_set_jmp_pin(&c, clk_pin);
         sm_config_set_in_pins(&c, cs_pin);
 
         // Out and Set pins have to overlap so we can make line floating (=set it as input)
-        sm_config_set_out_pins(&c, data_pin, 4);
-        sm_config_set_set_pins(&c, data_pin, 5);
+        sm_config_set_out_pins(&c, data_pin, 2);
+        sm_config_set_set_pins(&c, data_pin, 2);
 
         pio_sm_set_consecutive_pindirs(pio, sm, cs_pin, 2, false); // Set CS and CLK as inputs
 
-        pio_sm_set_consecutive_pindirs(pio, sm, data_pin, 4, false);
-        pio_sm_set_consecutive_pindirs(pio, sm, (data_pin + 4), 1, true); // Debug pin used as output
+        pio_sm_set_consecutive_pindirs(pio, sm, data_pin, 2, false);
+        ;pio_sm_set_consecutive_pindirs(pio, sm, (data_pin + 4), 1, true); // Debug pin used as output
 
         // Shift to right, autopull with threshold 32
         sm_config_set_out_shift(&c, false, true, 32);

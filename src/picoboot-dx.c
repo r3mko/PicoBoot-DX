@@ -15,7 +15,7 @@
 #include "ipl.h"
 
 const uint PIN_LED = 25;            // Status LED
-const uint PIN_DATA_BASE = 6;       // Base pin used for output, 4 consecutive pins are used 
+const uint PIN_DATA_BASE = 6;       // Base pin used for output, 1 consecutive pin is used 
 const uint PIN_CS = 4;              // U10 chip select
 const uint PIN_CLK = 5;             // EXI bus clock line
 
@@ -41,13 +41,13 @@ void main()
 
     gpio_set_slew_rate(PIN_DATA_BASE, GPIO_SLEW_RATE_FAST);
     gpio_set_slew_rate(PIN_DATA_BASE + 1, GPIO_SLEW_RATE_FAST);
-    gpio_set_slew_rate(PIN_DATA_BASE + 2, GPIO_SLEW_RATE_FAST);
-    gpio_set_slew_rate(PIN_DATA_BASE + 3, GPIO_SLEW_RATE_FAST);
+    //gpio_set_slew_rate(PIN_DATA_BASE + 2, GPIO_SLEW_RATE_FAST);
+    //gpio_set_slew_rate(PIN_DATA_BASE + 3, GPIO_SLEW_RATE_FAST);
 
     gpio_set_drive_strength(PIN_DATA_BASE, GPIO_DRIVE_STRENGTH_4MA);
     gpio_set_drive_strength(PIN_DATA_BASE + 1, GPIO_DRIVE_STRENGTH_4MA);
-    gpio_set_drive_strength(PIN_DATA_BASE + 2, GPIO_DRIVE_STRENGTH_4MA);
-    gpio_set_drive_strength(PIN_DATA_BASE + 3, GPIO_DRIVE_STRENGTH_4MA);
+    //gpio_set_drive_strength(PIN_DATA_BASE + 2, GPIO_DRIVE_STRENGTH_4MA);
+    //gpio_set_drive_strength(PIN_DATA_BASE + 3, GPIO_DRIVE_STRENGTH_4MA);
 
     PIO pio = pio0;
 

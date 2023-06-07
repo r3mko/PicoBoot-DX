@@ -1,5 +1,11 @@
 <img src="/assets/PicoBoot.png" alt="PicoBoot" align="left"/>
 
+# PicoBoot vs. PicoBoot-DX
+
+* Use LED for system state (Fast blinking = busy/running, 3 slow blinks when done).
+* Reset system clock speed when done.
+* Only transfer data on 2 GPIO pins.
+* Smaller UF2 file (~600K).
 
 # PicoBoot
 

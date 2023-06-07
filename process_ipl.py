@@ -109,16 +109,16 @@ def process_scrambled_ipl(ipl, size):
     """Does additional processing to scrambled IPL payload.
 
     Payload used by PicoBoot has to be preprocessed. 
-    Whole payload has to be aligned to 1K blocks then every bit needs to be duplicated 4 times.
+    Whole payload has to be aligned to 1K blocks then every bit needs to be duplicated 2 times.
     """
     
     out2 = int.from_bytes(ipl, byteorder='big', signed=False)
     out2 = out2 << 1
 
-    binary = ''.join([char * 4 for char in format(out2, 'b')])
+    binary = ''.join([char * 2 for char in format(out2, 'b')])
     binary = int(binary, 2)
 
-    payload = binary.to_bytes(size * 4, 'big')
+    payload = binary.to_bytes(size * 2, 'big')
     
     return payload
     
