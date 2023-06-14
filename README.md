@@ -7,12 +7,7 @@
 * Only transfer data on 2 GPIO pins.
 * Smaller UF2 file (~600K).
 
-
-
-# PicoBoot
-
 This is a long awaited IPL replacement modchip for Nintendo GameCube. It's open source, cheap and easy to install.
-
 
 Join Discord Server to get support and discuss new features:
 
