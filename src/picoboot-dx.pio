@@ -3,8 +3,8 @@
  ;
  ; SPDX-License-Identifier: GPL-2.0-only
 
-.define PUBLIC CLK_PIN     5    ; EXI clock signal
 .define PUBLIC CS_PIN      4    ; U10 chip select
+.define PUBLIC CLK_PIN     5    ; EXI clock signal
 
 .program on_transfer
 
@@ -40,7 +40,7 @@ on_rising_edge:
     wait 1 gpio CLK_PIN
 
 write_bit:
-    out pins, 2                 ; Output single IPL bit over 2 GPIOs (=2 bits of our payload)
+    out pins, 2                 ; Output single IPL bit over 2 GPIOs (2 bits of our payload)
     jmp x-- on_rising_edge      ; Jump back to next clock pulse wait routine if there is more data to inject
 
     jmp !osre start             ; If there is more data in OSR, go back to start routine and wait for another transfer
@@ -55,8 +55,7 @@ disable_chip:
 
 % c-sdk {
 
-    void on_transfer_program_init(PIO pio, uint sm, uint offset, uint clk_pin, uint cs_pin, uint out_pin) 
-    {
+    void on_transfer_program_init(PIO pio, uint sm, uint offset, uint clk_pin, uint cs_pin, uint out_pin) {
         pio_sm_config c = on_transfer_program_get_default_config(offset);
 
         pio_gpio_init(pio, clk_pin);
@@ -78,8 +77,7 @@ disable_chip:
         pio_sm_init(pio, sm, offset, &c);
     }
 
-    void clocked_output_program_init(PIO pio, uint sm, uint offset, uint data_pin, uint clk_pin, uint cs_pin) 
-    {
+    void clocked_output_program_init(PIO pio, uint sm, uint offset, uint data_pin, uint clk_pin, uint cs_pin) {
         pio_sm_config c = clocked_output_program_get_default_config(offset);
 
         pio_gpio_init(pio, clk_pin);
@@ -94,7 +92,7 @@ disable_chip:
         sm_config_set_jmp_pin(&c, clk_pin);
         sm_config_set_in_pins(&c, cs_pin);
 
-        // Out and Set pins have to overlap so we can make line floating (=set it as input)
+        // Out and Set pins have to overlap so we can make line floating (Set it as input)
         sm_config_set_out_pins(&c, data_pin, 2);
         sm_config_set_set_pins(&c, data_pin, 2);
 

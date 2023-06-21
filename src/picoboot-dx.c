@@ -14,16 +14,14 @@
 #include "picoboot-dx.pio.h"
 #include "ipl.h"
 
-const uint PIN_LED = 25;            // Status LED
-const uint PIN_DATA_BASE = 6;       // Base pin used for output, 1 consecutive pin is used 
 const uint PIN_CS = 4;              // U10 chip select
 const uint PIN_CLK = 5;             // EXI bus clock line
+const uint PIN_DATA_BASE = 6;       // Base pin used for output, 1 consecutive pin is used 
+const uint PIN_LED = 25;            // Status LED
 
 const uint BOOST_CLOCK = 250000;    // Set 250MHz clock to get more cycles. 
-uint BLINK;
 
-void main()
-{
+void main() {
     // Initialize and light up builtin LED, it will basically
     // act as a power LED.
     // TODO: Use the LED to signalize system faults?
@@ -118,10 +116,10 @@ void main()
     }
 
     // Reset clock to default
-    set_sys_clock_khz((BOOST_CLOCK/2), true);
+    set_sys_clock_khz((BOOST_CLOCK / 2), true);
 
     // Blink slow (3 times) when done
-    for (BLINK = 0; BLINK < 3; BLINK++) {
+    for (uint BLINK = 0; BLINK < 3; BLINK++) {
         gpio_put(PIN_LED, false);
         sleep_ms(250);
         gpio_put(PIN_LED, true);
