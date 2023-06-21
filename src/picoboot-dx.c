@@ -117,6 +117,10 @@ void main() {
 
     // Reset clock to default
     set_sys_clock_khz((BOOST_CLOCK / 2), true);
+    
+    // Stop PIO state machines
+    pio_sm_set_enabled(pio, transfer_start_sm, false);
+    pio_sm_set_enabled(pio, clocked_output_sm, false);
 
     // Blink slow (3 times) when done
     for (uint BLINK = 0; BLINK < 3; BLINK++) {
