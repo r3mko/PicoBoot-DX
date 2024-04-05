@@ -11,14 +11,14 @@ project(picoboot-dx C CXX ASM)
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-add_executable(picoboot-dx src/picoboot-dx.c)
+add_executable(picoboot-dx src/picoboot-dx.c src/pio.c)
 
 pico_generate_pio_header(picoboot-dx  
         ${CMAKE_CURRENT_LIST_DIR}/src/picoboot-dx.pio
 )
 
 pico_set_program_name(picoboot-dx "picoboot-dx")
-pico_set_program_version(picoboot-dx "0.1")
+pico_set_program_version(picoboot-dx "0.2")
 pico_set_binary_type(picoboot-dx copy_to_ram)
 
 pico_enable_stdio_uart(picoboot-dx 0)

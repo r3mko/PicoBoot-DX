@@ -11,6 +11,7 @@
 #include "hardware/clocks.h"
 #include "hardware/dma.h"
 #include "hardware/structs/bus_ctrl.h"
+#include "pio.h"
 #include "picoboot-dx.pio.h"
 #include "ipl.h"
 
