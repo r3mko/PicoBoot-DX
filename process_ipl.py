@@ -128,7 +128,7 @@ def main():
         return -1
 
     if entry != 0x81300000 or load != 0x01300000:
-        print("Invalid entry point and base address (must be 0x81300000)")
+        print("Invalid entry point and base address ({0}:{1})".format(hex(entry), hex(load)))
         return -1
 
     payload = bytearray(0x700) + bytearray(payload_padding)+ img

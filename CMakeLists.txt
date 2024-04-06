@@ -18,7 +18,7 @@ pico_generate_pio_header(picoboot-dx
 )
 
 pico_set_program_name(picoboot-dx "picoboot-dx")
-pico_set_program_version(picoboot-dx "0.2")
+pico_set_program_version(picoboot-dx "0.3")
 pico_set_binary_type(picoboot-dx copy_to_ram)
 
 pico_enable_stdio_uart(picoboot-dx 0)
