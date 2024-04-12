@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2022 Maciej Kobus
+ * Copyright (c) 2023 Remko Kleinjan
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
+
 #include "pio.h"
 #include "picoboot-dx.pio.h"
 
