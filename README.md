@@ -5,7 +5,7 @@
 * Use LED for system state (Fast blinking = busy/running, 3 slow blinks when done).
 * Reset system clock speed when done.
 * Only transfer data on 1 GPIO pin.
-* Smaller UF2 file (~145K).
+* Smaller UF2 file (~140K).
 
 This is a long awaited IPL replacement modchip for Nintendo GameCube. It's open source, cheap and easy to install.
 
