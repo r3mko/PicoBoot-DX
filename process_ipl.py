@@ -27,8 +27,8 @@ def scramble(data):
     v = 0x3FF1
 
     x = 1
-
     it = 0
+
     while it < len(data):
         t0 = t & 1
         t1 = (t >> 1) & 1
@@ -65,14 +65,20 @@ def scramble(data):
 
 def flatten_dol(data):
     header = struct.unpack(">64I", data[:256])
+    offsets = header[:18]
+    addresses = header[18:36]
+    sizes = header[36:54]
+    bss_address = header[54]
+    bss_size = header[55]
+    entry = header[56]
 
-    dol_min = min(a for a in header[18:36] if a)
-    dol_max = max(a + s for a, s in zip(header[18:36], header[36:54]))
+    dol_min = min(a for a in addresses if a)
+    dol_max = max(a + s for a, s in zip(addresses, sizes))
 
     img = bytearray(dol_max - dol_min)
 
-    for offset, address, length in zip(header[:18], header[18:36], header[36:54]):
-        img[address - dol_min:address + length - dol_min] = data[offset:offset + length]
+    for offset, address, size in zip(offsets, addresses, sizes):
+        img[address - dol_min:address + size - dol_min] = data[offset:offset + size]
 
     # Entry point, load address, memory image
     return header[56], dol_min, img
@@ -110,10 +116,13 @@ def main():
         print(f"Usage: {sys.argv[0]} <executable> <output>")
         return -1
 
-    with open(sys.argv[1], "rb") as f:
+    executable = sys.argv[1]
+    output = sys.argv[2]
+
+    with open(executable, "rb") as f:
         exe = bytearray(f.read())
 
-    if sys.argv[1].endswith(".dol"):
+    if executable.endswith(".dol"):
         entry, load, img = flatten_dol(exe)
         entry &= 0x017FFFFF
         entry |= 0x80000000
@@ -148,10 +157,10 @@ def main():
 
     byte_groups = bytes_to_c_array(scrambled_payload)
 
-    output = generate_header_file(byte_groups, sys.argv[0], sys.argv[1], sys.argv[2], size)
+    out = generate_header_file(byte_groups, sys.argv[0], executable, output, size)
 
-    with open(sys.argv[2], "w") as f:
-        f.write(output)
+    with open(output, "w") as f:
+        f.write(out)
 
 if __name__ == "__main__":
     sys.exit(main())
