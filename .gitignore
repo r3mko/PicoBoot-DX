@@ -28,4 +28,3 @@ picoboot-dx.hex
 picoboot-dx.uf2
 picoboot-dx.pio.h
 ipl.h
-*.dol

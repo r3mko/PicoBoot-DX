@@ -1,0 +1,78 @@
+name: Build PicoBoot-DX [Release]
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        board: [pico, pico_w, pico2, pico2_w]
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            cmake \
+            gcc-arm-none-eabi \
+            libnewlib-arm-none-eabi \
+            python3 \
+            git
+
+      - name: Clone Pico SDK (v2.1.1)
+        run: |
+          git clone --depth 1 --branch 2.1.1 https://github.com/raspberrypi/pico-sdk.git pico-sdk
+          cd pico-sdk && git submodule update --init --depth 1
+
+      - name: Clone PicoTool
+        run: git clone https://github.com/raspberrypi/picotool.git picotool
+
+      - name: Build & install PicoTool
+        run: |
+          mkdir -p picotool/build
+          cd picotool/build
+          cmake \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=$HOME/picotool-bin \
+            -DPICO_SDK_PATH=${{ github.workspace }}/pico-sdk \
+          ..
+          cmake --build . --parallel
+          cmake --install .
+
+      - name: Configure for ${{ matrix.board }}
+        env:
+          PICO_SDK_PATH: ${{ github.workspace }}/pico-sdk
+          PICOTOOL_PATH: $HOME/picotool-bin/bin/picotool
+        run: |
+          cmake -S . -B build-${{ matrix.board }} \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DPICO_BOARD=${{ matrix.board }}
+
+      - name: Generate ipl.h for ${{ matrix.board }}
+        run: python3 tools/process_ipl.py assets/ipl/iplboot.dol src/ipl.h
+
+      - name: Build ${{ matrix.board }}
+        run: cmake --build build-${{ matrix.board }} --parallel
+
+      - name: Upload UF2 for ${{ matrix.board }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: picoboot-dx-uf2-${{ matrix.board }}
+          path: build-${{ matrix.board }}/*.uf2
+
+      - name: Rename UF2
+        run: |
+          mv build-${{ matrix.board }}/picoboot-dx.uf2 build-${{ matrix.board }}/picoboot-dx-${{ matrix.board }}.uf2
+
+      - name: Release UF2 asset
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build-${{ matrix.board }}/picoboot-dx-${{ matrix.board }}.uf2
