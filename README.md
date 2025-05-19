@@ -1,4 +1,4 @@
-<img src="/assets/PicoBoot.png" alt="PicoBoot" align="left"/>
+<img src="/assets/images/PicoBoot.png" alt="PicoBoot" align="left"/>
 
 # PicoBoot-DX vs. PicoBoot
 

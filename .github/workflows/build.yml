@@ -63,5 +63,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: picoboot-dx-uf2-${{ matrix.board }}
-          path: build-${{ matrix.board }}/*.uf2
+          path: build-${{ matrix.board }}/picoboot-dx.uf2
 
