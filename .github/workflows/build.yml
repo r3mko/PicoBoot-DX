@@ -38,7 +38,7 @@ jobs:
           cd picotool/build
           cmake \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_INSTALL_PREFIX=$HOME/picotool-bin \
+            -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/picotool-bin \
             -DPICO_SDK_PATH=${{ github.workspace }}/pico-sdk \
           ..
           cmake --build . --parallel
@@ -47,7 +47,7 @@ jobs:
       - name: Configure for ${{ matrix.board }}
         env:
           PICO_SDK_PATH: ${{ github.workspace }}/pico-sdk
-          PICOTOOL_PATH: $HOME/picotool-bin/bin/picotool
+          PICOTOOL_FETCH_FROM_GIT_PATH: ${{ github.workspace }}/picotool-bin
         run: |
           cmake -S . -B build-${{ matrix.board }} \
             -DCMAKE_BUILD_TYPE=Release \
