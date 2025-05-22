@@ -16,16 +16,10 @@
 #include "ipl.h"
 
 #ifdef CYW43_WL_GPIO_LED_PIN
-# pragma message("⭑ CYW43_SUPPORTED is ON — using WL GPIO LED")
-#else
-# pragma message("⭑ CYW43_SUPPORTED is OFF — using RP2040 GPIO 25")
-#endif
-
-#if PICO_CYW43_SUPPORTED
 #include "pico/cyw43_arch.h"
 #define PIN_LED CYW43_WL_GPIO_LED_PIN // WL chip’s LED on Pico W / Pico 2 W
 #else
-#define PIN_LED 25                    // GPIO25 on Pico / Pico 2
+#define PIN_LED PICO_DEFAULT_LED_PIN  // GPIO25 on Pico / Pico 2
 #endif
 
 const uint PIN_CS = 4;              // U10 chip select
@@ -37,7 +31,7 @@ const uint BOOST_CLOCK = 250000;    // Set 250MHz clock to get more cycles.
 void main() {
     // Initialize and light up builtin LED, it will basically
     // act as a power LED.
-#if PICO_CYW43_SUPPORTED
+#ifdef CYW43_WL_GPIO_LED_PIN
     // init Wi-Fi chip so we can drive its LED pin
     cyw43_arch_init();
     cyw43_arch_gpio_put(PIN_LED, true);
@@ -121,7 +115,7 @@ void main() {
     //dma_channel_wait_for_finish_blocking(chan);
     // Blink fast while waiting
     while (dma_channel_is_busy(chan)) {
-    #if PICO_CYW43_SUPPORTED
+    #ifdef CYW43_WL_GPIO_LED_PIN
         cyw43_arch_gpio_put(PIN_LED, false);
         sleep_ms(100);
         cyw43_arch_gpio_put(PIN_LED, true);
@@ -143,7 +137,7 @@ void main() {
 
     // Blink slow (3 times) when done
     for (uint BLINK = 0; BLINK < 3; BLINK++) {
-    #if PICO_CYW43_SUPPORTED
+    #ifdef CYW43_WL_GPIO_LED_PIN
         cyw43_arch_gpio_put(PIN_LED, false);
         sleep_ms(100);
         cyw43_arch_gpio_put(PIN_LED, true);
