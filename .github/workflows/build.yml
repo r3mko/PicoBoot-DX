@@ -67,4 +67,3 @@ jobs:
         with:
           name: picoboot-dx-uf2-${{ matrix.board }}
           path: build-${{ matrix.board }}/picoboot-dx.uf2
-

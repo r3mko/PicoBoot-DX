@@ -15,6 +15,8 @@
 #include "picoboot-dx.pio.h"
 #include "ipl.h"
 
+#include "ota.h"
+
 const uint PIN_CS = 4;              // U10 chip select
 const uint PIN_CLK = 5;             // EXI bus clock line
 const uint PIN_DATA = 6;            // Data pin used for output 
@@ -124,7 +126,10 @@ void main() {
         sleep_ms(250);
     }
 
+    ota_init();
+
     while (true) {
+        ota_poll();
         tight_loop_contents();
     }
 }
