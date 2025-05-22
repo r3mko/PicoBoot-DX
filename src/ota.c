@@ -1,12 +1,13 @@
 #include "ota.h"
 
-#ifdef ENABLE_OTA
+#if ENABLE_OTA
 
 #include <string.h>
 #include "pico/stdlib.h"
 #include "hardware/flash.h"
 #include "hardware/sync.h"
-#include "cyw43_arch.h"
+#include "cyw43_arch.h"          // only pulled in when ENABLE_OTA=1
+#include "cyw43_arch_lwip.h"
 #include "lwip/apps/httpd.h"
 #include "lwip/err.h"
 #include "lwip/pbuf.h"
