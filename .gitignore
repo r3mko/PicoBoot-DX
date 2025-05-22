@@ -9,6 +9,8 @@ src/*
 !src/picoboot-dx.pio
 !src/pio.c
 !src/pio.h
+!/src/led.c
+!/src/led.h
 CMakeFiles/
 elf2uf2/
 generated/

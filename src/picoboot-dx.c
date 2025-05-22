@@ -14,13 +14,7 @@
 #include "pio.h"
 #include "picoboot-dx.pio.h"
 #include "ipl.h"
-
-#ifdef CYW43_WL_GPIO_LED_PIN
-#include "pico/cyw43_arch.h"
-#define PIN_LED CYW43_WL_GPIO_LED_PIN // WL chip’s LED on Pico W / Pico 2 W
-#else
-#define PIN_LED PICO_DEFAULT_LED_PIN  // GPIO25 on Pico / Pico 2
-#endif
+#include "led.h"
 
 const uint PIN_CS = 4;              // U10 chip select
 const uint PIN_CLK = 5;             // EXI bus clock line
@@ -28,18 +22,16 @@ const uint PIN_DATA = 6;            // Data pin used for output
 
 const uint BOOST_CLOCK = 250000;    // Set 250MHz clock to get more cycles. 
 
+bool dma_busy(void) {
+    // wrap the Pico SDK call so we can pass it to led_blink_while()
+    extern int chan;
+    return dma_channel_is_busy(chan);
+}
+
 void main() {
     // Initialize and light up builtin LED, it will basically
     // act as a power LED.
-#ifdef CYW43_WL_GPIO_LED_PIN
-    // init Wi-Fi chip so we can drive its LED pin
-    cyw43_arch_init();
-    cyw43_arch_gpio_put(PIN_LED, true);
-#else
-    gpio_init(PIN_LED);
-    gpio_set_dir(PIN_LED, GPIO_OUT);
-    gpio_put(PIN_LED, true);
-#endif
+    led_init();
 
     // Set 250MHz clock to get more cycles in between CLK pulses.
     // This is the lowest value I was able to make the code work.
@@ -50,7 +42,6 @@ void main() {
     bus_ctrl_hw->priority = BUSCTRL_BUS_PRIORITY_DMA_W_BITS | BUSCTRL_BUS_PRIORITY_DMA_R_BITS;
 
     gpio_set_slew_rate(PIN_DATA, GPIO_SLEW_RATE_FAST);
-
     gpio_set_drive_strength(PIN_DATA, GPIO_DRIVE_STRENGTH_8MA);
 
     PIO pio = pio0;
@@ -114,19 +105,7 @@ void main() {
     // Wait for the DMA to finish
     //dma_channel_wait_for_finish_blocking(chan);
     // Blink fast while waiting
-    while (dma_channel_is_busy(chan)) {
-    #ifdef CYW43_WL_GPIO_LED_PIN
-        cyw43_arch_gpio_put(PIN_LED, false);
-        sleep_ms(100);
-        cyw43_arch_gpio_put(PIN_LED, true);
-        sleep_ms(100);
-    #else
-        gpio_put(PIN_LED, false);
-        sleep_ms(100);
-        gpio_put(PIN_LED, true);
-        sleep_ms(100);
-    #endif
-    }
+    led_blink_while(dma_busy, 100, 100);
 
     // Reset clock to default
     set_sys_clock_khz((BOOST_CLOCK / 2), true);
@@ -136,20 +115,9 @@ void main() {
     pio_sm_set_enabled(pio, clocked_output_sm, false);
 
     // Blink slow (3 times) when done
-    for (uint BLINK = 0; BLINK < 3; BLINK++) {
-    #ifdef CYW43_WL_GPIO_LED_PIN
-        cyw43_arch_gpio_put(PIN_LED, false);
-        sleep_ms(100);
-        cyw43_arch_gpio_put(PIN_LED, true);
-        sleep_ms(100);
-    #else
-        gpio_put(PIN_LED, false);
-        sleep_ms(250);
-        gpio_put(PIN_LED, true);
-        sleep_ms(250);
-    #endif
-    }
+    led_blink(3, 250, 250);
 
+    // Idle
     while (true) {
         tight_loop_contents();
     }
