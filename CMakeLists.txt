@@ -44,7 +44,7 @@ pico_enable_stdio_usb(picoboot-dx 1)
 target_include_directories(picoboot-dx PRIVATE
     src
     ${PICO_SDK_PATH}/lib/lwip/src/include
-    ${PICO_SDK_PATH}/src/rp2_common/pico_lwip
+    ${PICO_SDK_PATH}/src/rp2_common/pico_lwip/include
 )
 
 # —————————————————————————————————————
