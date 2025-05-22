@@ -1,12 +1,17 @@
 #pragma once
 
-#ifdef ENABLE_OTA
-// initialize Wi-Fi AP and HTTP upload server
+#include <stdint.h>
+
+#if ENABLE_OTA
+
+// Real declarations only when ENABLE_OTA==1
 void ota_init(void);
-// call periodically from your main loop to service network
 void ota_poll(void);
+
 #else
-// stubs expand to nothing when OTA is disabled
+
+// Stub inlines when ENABLE_OTA==0
 static inline void ota_init(void) {}
 static inline void ota_poll(void) {}
-#endif
+
+#endif  // ENABLE_OTA
