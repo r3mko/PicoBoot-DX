@@ -19,7 +19,12 @@ pico_set_program_name(picoboot-dx "picoboot-dx")
 pico_set_program_description(picoboot-dx "RP2040/RP2350 based modchip for the Nintendo GameCube")
 pico_set_program_version(picoboot-dx "0.6")
 pico_set_program_url(picoboot-dx "https://github.com/r3mko/PicoBoot-DX")
-pico_set_binary_type(picoboot-dx copy_to_ram)
+
+if(PICO_CYW43_SUPPORTED)
+    pico_set_binary_type(picoboot-dx copy_to_flash)
+else()
+    pico_set_binary_type(picoboot-dx copy_to_ram)
+endif()
 
 pico_enable_stdio_uart(picoboot-dx 0)
 pico_enable_stdio_usb(picoboot-dx 1)
