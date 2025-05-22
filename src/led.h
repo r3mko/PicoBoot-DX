@@ -2,6 +2,7 @@
 #define LED_H
 
 #include <stdbool.h>
+#include "pico/stdlib.h"
 
 // Initialize the onboard LED (and Wi-Fi LED on Pico W)
 void led_init(void);
