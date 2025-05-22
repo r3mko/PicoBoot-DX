@@ -16,6 +16,12 @@
 #include "ipl.h"
 
 #if PICO_CYW43_SUPPORTED
+# pragma message("⭑ CYW43_SUPPORTED is ON — using WL GPIO LED")
+#else
+# pragma message("⭑ CYW43_SUPPORTED is OFF — using RP2040 GPIO 25")
+#endif
+
+#if PICO_CYW43_SUPPORTED
 #include "pico/cyw43_arch.h"
 #define PIN_LED CYW43_WL_GPIO_LED_PIN // WL chip’s LED on Pico W / Pico 2 W
 #else
