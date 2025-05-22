@@ -44,6 +44,4 @@
 /* ---------- Debugging options ---------- */
 #define LWIP_NOASSERT                   1
 
-#include "pico_lwipopts.h"  /* pull in any SDK tweaks */
-
 #endif /* LWIPOPTS_H */
