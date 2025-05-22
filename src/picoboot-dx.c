@@ -19,7 +19,7 @@
 #include "pico/cyw43_arch.h"
 #define PIN_LED CYW43_WL_GPIO_LED_PIN // WL chip’s LED on Pico W / Pico 2 W
 #else
-#define PIN_LED PICO_DEFAULT_LED_PIN  // GPIO25 on Pico / Pico 2
+#define PIN_LED 25                    // GPIO25 on Pico / Pico 2
 #endif
 
 const uint PIN_CS = 4;              // U10 chip select
