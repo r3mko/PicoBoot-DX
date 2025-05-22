@@ -39,7 +39,13 @@ pico_set_binary_type(picoboot-dx copy_to_ram)
 pico_enable_stdio_uart(picoboot-dx 0)
 pico_enable_stdio_usb(picoboot-dx 1)
 
-target_include_directories(picoboot-dx PRIVATE src)
+#target_include_directories(picoboot-dx PRIVATE src)
+
+target_include_directories(picoboot-dx PRIVATE
+    src
+    ${PICO_SDK_PATH}/lib/lwip/src/include
+    ${PICO_SDK_PATH}/src/rp2_common/pico_lwip
+)
 
 # —————————————————————————————————————
 #    Global compile-time flag for OTA
