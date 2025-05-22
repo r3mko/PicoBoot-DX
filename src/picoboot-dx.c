@@ -15,6 +15,10 @@
 #include "picoboot-dx.pio.h"
 #include "ipl.h"
 
+#if PICO_CYW43_SUPPORTED
+#include "pico/cyw43_arch.h"
+#endif
+
 const uint PIN_CS = 4;              // U10 chip select
 const uint PIN_CLK = 5;             // EXI bus clock line
 const uint PIN_DATA = 6;            // Data pin used for output 
@@ -25,9 +29,15 @@ const uint BOOST_CLOCK = 250000;    // Set 250MHz clock to get more cycles.
 void main() {
     // Initialize and light up builtin LED, it will basically
     // act as a power LED.
+#if PICO_CYW43_SUPPORTED
+    // init Wi-Fi chip so we can drive its LED pin
+    cyw43_arch_init();
+    cyw43_arch_gpio_put(LED_PIN, true);
+#else
     gpio_init(PIN_LED);
     gpio_set_dir(PIN_LED, GPIO_OUT);
     gpio_put(PIN_LED, true);
+#endif
 
     // Set 250MHz clock to get more cycles in between CLK pulses.
     // This is the lowest value I was able to make the code work.
@@ -103,10 +113,17 @@ void main() {
     //dma_channel_wait_for_finish_blocking(chan);
     // Blink fast while waiting
     while (dma_channel_is_busy(chan)) {
+    #if PICO_CYW43_SUPPORTED
+        cyw43_arch_gpio_put(LED_PIN, false);
+        sleep_ms(100);
+        cyw43_arch_gpio_put(LED_PIN, true);
+        sleep_ms(100);
+    #else
         gpio_put(PIN_LED, false);
         sleep_ms(100);
         gpio_put(PIN_LED, true);
         sleep_ms(100);
+    #endif
     }
 
     // Reset clock to default
@@ -118,10 +135,17 @@ void main() {
 
     // Blink slow (3 times) when done
     for (uint BLINK = 0; BLINK < 3; BLINK++) {
+    #if PICO_CYW43_SUPPORTED
+        cyw43_arch_gpio_put(LED_PIN, false);
+        sleep_ms(100);
+        cyw43_arch_gpio_put(LED_PIN, true);
+        sleep_ms(100);
+    #else
         gpio_put(PIN_LED, false);
         sleep_ms(250);
         gpio_put(PIN_LED, true);
         sleep_ms(250);
+    #endif
     }
 
     while (true) {
