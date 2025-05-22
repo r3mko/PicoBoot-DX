@@ -45,6 +45,7 @@ target_include_directories(picoboot-dx PRIVATE
     src
     ${PICO_SDK_PATH}/lib/lwip/src/include
     ${CMAKE_CURRENT_BINARY_DIR}/pico-sdk/src/rp2_common/pico_lwip/include
+    ${CMAKE_CURRENT_BINARY_DIR}/pico-sdk/src/rp2_common/pico_lwip/arch
 )
 
 # —————————————————————————————————————
