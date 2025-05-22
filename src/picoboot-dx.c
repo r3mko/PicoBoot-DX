@@ -22,9 +22,10 @@ const uint PIN_DATA = 6;            // Data pin used for output
 
 const uint BOOST_CLOCK = 250000;    // Set 250MHz clock to get more cycles. 
 
+int chan;
+
 bool dma_busy(void) {
     // wrap the Pico SDK call so we can pass it to led_blink_while()
-    extern int chan;
     return dma_channel_is_busy(chan);
 }
 
@@ -81,7 +82,7 @@ void main() {
     pio_sm_exec(pio, clocked_output_sm, pio_encode_out(pio_null, 32));
 
     // Set up DMA for reading IPL to PIO FIFO
-    int chan = dma_claim_unused_channel(true);
+    chan = dma_claim_unused_channel(true);
 
     dma_channel_config c = dma_channel_get_default_config(chan);
     channel_config_set_transfer_data_size(&c, DMA_SIZE_32);
