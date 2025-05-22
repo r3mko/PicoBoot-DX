@@ -4,11 +4,6 @@ _deps
 .DS_Store
 
 # Build environment
-src/*
-!src/picoboot-dx.c
-!src/picoboot-dx.pio
-!src/pio.c
-!src/pio.h
 CMakeFiles/
 elf2uf2/
 generated/
