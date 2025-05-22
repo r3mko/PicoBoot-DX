@@ -30,7 +30,7 @@ target_link_libraries(picoboot-dx PRIVATE pico_stdlib hardware_pio hardware_dma)
 
 # Only link in the CYW43-LED driver on Pico W / Pico 2 W builds
 if(PICO_CYW43_SUPPORTED)
-    target_link_libraries(picoboot-dx PRIVATE pico_cyw43_arch_poll)
+    target_link_libraries(picoboot-dx PRIVATE pico_cyw43_arch_none)
 endif()
 
 pico_add_extra_outputs(picoboot-dx)
