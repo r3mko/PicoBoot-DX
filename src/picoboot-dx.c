@@ -15,7 +15,7 @@
 #include "picoboot-dx.pio.h"
 #include "ipl.h"
 
-#ifdef PICO_CYW43_SUPPORTED
+#ifdef CYW43_WL_GPIO_LED_PIN
 # pragma message("⭑ CYW43_SUPPORTED is ON — using WL GPIO LED")
 #else
 # pragma message("⭑ CYW43_SUPPORTED is OFF — using RP2040 GPIO 25")
