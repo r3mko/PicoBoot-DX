@@ -1,11 +1,12 @@
 <img src="/assets/images/PicoBoot.png" alt="PicoBoot" align="left"/>
 
-# PicoBoot-DX vs. PicoBoot
+# PicoBoot-DX
 
-* Use LED for system state (Fast blinking = busy/running, 3 slow blinks when done).
-* Reset system clock speed when done.
-* Only transfer data on 1 GPIO pin.
-* Smaller UF2 file (~140K).
+* Supports all Pico boards: Pico, Pico W, Pico 2, and Pico 2 W
+* CI now automatically builds on push, prerelease, and full release events
+* Smaller UF2 file (~140K) for Pico and Pico 2.
+
+# Original README:
 
 This is a long awaited IPL replacement modchip for Nintendo GameCube. It's open source, cheap and easy to install.
 

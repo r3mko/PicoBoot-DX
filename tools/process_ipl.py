@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Based on dol2ipl.py from https://github.com/redolution/iplboot
+# Based on dol2ipl.py from https://github.com/redolution/gekkoboot
 #
 # Original source by 9ary, bootrom descrambler reversed by segher
 #

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2025 Remko Kleinjan
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
+
 #include "led.h"
 #include "pico/stdlib.h"
 
@@ -10,7 +16,6 @@
 
 void led_init(void) {
 #ifdef CYW43_WL_GPIO_LED_PIN
-    // init Wi-Fi chip so we can drive its LED pin
     cyw43_arch_init();
     cyw43_arch_gpio_put(LED_PIN, true);
 #else

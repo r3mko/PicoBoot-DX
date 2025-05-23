@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2022 Maciej Kobus
- * Copyright (c) 2023 Remko Kleinjan
+ * Copyright (c) 2025 Remko Kleinjan
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
@@ -25,15 +25,11 @@ const uint BOOST_CLOCK = 250000;    // Set 250MHz clock to get more cycles.
 int chan;
 
 bool dma_busy(void) {
-    // wrap the Pico SDK call so we can pass it to led_blink_while()
+    // Wrap the Pico SDK call so we can pass it to led_blink_while()
     return dma_channel_is_busy(chan);
 }
 
 void main() {
-    // Initialize and light up builtin LED, it will basically
-    // act as a power LED.
-    led_init();
-
     // Set 250MHz clock to get more cycles in between CLK pulses.
     // This is the lowest value I was able to make the code work.
     // Should be still considered safe for most Pico boards.
@@ -103,8 +99,9 @@ void main() {
     pio_sm_set_enabled(pio, transfer_start_sm, true);
     pio_sm_set_enabled(pio, clocked_output_sm, true);
 
-    // Wait for the DMA to finish
-    //dma_channel_wait_for_finish_blocking(chan);
+    // Initialize and light up builtin LED
+    led_init();
+
     // Blink fast while waiting
     led_blink_while(dma_busy, 100, 100);
 

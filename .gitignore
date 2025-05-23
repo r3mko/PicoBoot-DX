@@ -1,32 +1,43 @@
-.idea
-.vscode
-_deps
-.DS_Store
+# ==== IDE & Editor ====
+.vscode/
 
-# Build environment
-src/*
-!src/picoboot-dx.c
-!src/picoboot-dx.pio
-!src/pio.c
-!src/pio.h
-!/src/led.c
-!/src/led.h
+# ==== OS files ====
+.DS_Store
+Thumbs.db
+
+# ==== Editor swap/backups ====
+*~
+*.swp
+
+# ==== Dependencies ====
+/_deps/
+
+# ==== CMake outputs ====
 CMakeFiles/
-elf2uf2/
-generated/
-pico-sdk/
-pico_flash_region.ld
-pioasm/
 cmake_install.cmake
 CMakeCache.txt
-CMakeDoxyfile.in
-CMakeDoxygenDefaults.cmake
 Makefile
-picoboot-dx.bin
-picoboot-dx.dis
-picoboot-dx.elf
-picoboot-dx.elf.map
-picoboot-dx.hex
-picoboot-dx.uf2
-picoboot-dx.pio.h
-ipl.h
+
+# ==== Generated tools & code ====
+elf2uf2/
+generated/
+pioasm/
+pico_flash_region.ld
+
+# ==== Firmware & binary artifacts ====
+*.bin
+*.hex
+*.uf2
+*.elf
+*.dis
+*.map
+*.pio.h
+
+# ==== Source: ignore everything except these tracked files ====
+/src/*
+!/src/picoboot-dx.c
+!/src/picoboot-dx.pio
+!/src/pio.c
+!/src/pio.h
+!/src/led.c
+!/src/led.h

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2025 Remko Kleinjan
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
+
 #pragma once
 #include "hardware/pio.h"
 
