@@ -30,7 +30,7 @@ void pio_load_and_start(PIO pio, uint sm, uint32_t count, uint dest) {
     // Pull it into OSR...
     pio_sm_exec(pio, sm, pio_encode_pull(true, true));
     // ...then move from OSR into register X or Y
-    pio_sm_exec(pio, sm, pio_encode_mov((pio_src_dest)dest, pio_osr));
+    pio_sm_exec(pio, sm, pio_encode_mov(dest, pio_osr));
     // Kick off the shift-out
     pio_sm_exec(pio, sm, pio_encode_out(pio_null, 32));
 }
