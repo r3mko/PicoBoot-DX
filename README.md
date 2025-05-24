@@ -8,32 +8,32 @@
 
 # Original README:
 
-This is a long awaited IPL replacement modchip for Nintendo GameCube. It's open source, cheap and easy to install.
+This is long awaited IPL replacement modchip for Nintendo GameCube.<br />
+It's open source, cheap and easy to install.
 
 Join Discord Server to get support and discuss new features:
 
 [![](https://dcbadge.vercel.app/api/server/fEhyWRPCmb)](https://click.webhdx.dev/discord)
 
 ## Features
-* it's open source
+* open source
 * uses $4 Raspberry Pi Pico board
-* very easy installation, only 5 wires to solder
-* programmable via USB cable, without any drivers and programs
-* automatically boots any DOL app of your choice
-* uses "IPL injection" approach superior to mods like XenoGC
+* very easy installation, only 5 wires to solder or a flex cable
+* upgradable via USB cable, without any drivers and programs
+* automatically boots any homebrew app of your choice
+* similar experience to ODEs like FlippyDrive or GC Loader
 
-## Video guides and features overview
+## Installation
 
-- [PicoBoot Modchip Will Unleash The POWER of Your Nintendo GAMECUBE! | Installation Guide and Overview](https://www.youtube.com/watch?v=qwL4ZSa0xMo) by [MachoNachoProductions](https://www.youtube.com/c/MachoNachoProductions)
-- [This new Gamecube Modchip is a GAMECHANGER - PicoBoot](https://www.youtube.com/watch?v=lfMTLEM0yeQ) by [RockerGaming](https://www.youtube.com/c/RockerGaming)
-- [$5 Gamecube IPL Modchip?! Picoboot Dol-001 + Dol-101 Installation / Setup / Showcase](https://www.youtube.com/watch?v=W_9-mSBMBJ4) by [ModzvilleUSA!](https://www.youtube.com/c/ModzvilleUSA)
-- [PicoBoot GameCube custom mod chip - make and install your own chip with a Raspberry Pi Pico](https://youtu.be/rDrosSd-nDc) by [Joe Bleeps](https://www.youtube.com/@JoeBleeps)
+> [!NOTE]
+> Prior to PicoBoot v0.4, wiring was slightly different and most videos available online cover the old wiring method. You no longer need to bridge pins GP6 and GP7. If you are making fresh PicoBoot installation please follow new wiring diagram. If you are updating from older firmware, you don't have to change the wiring at all as new firmware is backwards compatible.
 
-## Installation guide
+> [!TIP]
+> Documentation covering [Installation](https://support.webhdx.dev/gc/picoboot/installation-guide) and [Troubleshooting](https://support.webhdx.dev/gc/picoboot/troubleshooting) is hosted at [support.webhdx.dev](https://support.webhdx.dev/gc/picoboot).
 
-Head over to [the wiki](https://github.com/webhdx/PicoBoot/wiki) for [Installation guide](../../wiki/Installation-guide) and [Troubleshooting tips](../../wiki/Troubleshooting-tips).
+![Wiring diagram](assets/images/Wiring%20diagram%202.jpg)
 
-## I appreciate your work. Can I support you in any way?
+## Support the project
 
 This project is free and available for everyone. If you want to support it anyway, consider using [:heart: Sponsor](https://github.com/sponsors/webhdx) button.
 
@@ -42,7 +42,7 @@ This project is free and available for everyone. If you want to support it anywa
 I'd like to thank people who helped making PicoBoot possible:
 * #gc-forever crew: [Extrems](https://github.com/Extrems), [novenary](https://github.com/9ary), [emu_kidid](https://github.com/emukidid) and others 
 * [tmbinc](https://github.com/tmbinc) - he started it all 🙏 
-* happy_bunny - I started my research with his great writeup on [Shuriken Attack](https://www.retro-system.com/shuriken_attack.htm)
+* Steven Taffs aka happy_bunny - his Shuriken Attack modchip and documentation heavily inspired PicoBoot
 * beta testers: [seewood](https://github.com/seewood), [MethodOrMadness](https://github.com/MethodOrMadness), [renanbianchi](https://github.com/renanbianchi)
 * content creators: [MachoNachoProductions](https://www.youtube.com/c/MachoNachoProductions), [RockerGaming](https://www.youtube.com/c/RockerGaming), [ModzvilleUSA!](https://www.youtube.com/c/ModzvilleUSA)
 * people who sponsored this project
@@ -50,5 +50,5 @@ I'd like to thank people who helped making PicoBoot possible:
 
 ## Acknowledgements
 
-Some parts of this project use GPL-2.0 licensed code from:
- * https://github.com/redolution/iplboot
+This project uses GPL-2.0 licensed code from:
+ * https://github.com/redolution/gekkoboot
