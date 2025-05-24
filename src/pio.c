@@ -60,3 +60,14 @@ void clocked_output_program_init(PIO pio, uint sm, uint offset, uint data_pin, u
     // Load configuration and jump to start of the program
     pio_sm_init(pio, sm, offset, &c);
 }
+
+void pio_load_and_start(PIO pio, uint sm, uint32_t count, uint dest) {
+    // Push the count into the SM’s TX FIFO
+    pio_sm_put(pio, sm, count);
+    // Pull it into OSR...
+    pio_sm_exec(pio, sm, pio_encode_pull(true, true));
+    // ...then move from OSR into register X or Y
+    pio_sm_exec(pio, sm, pio_encode_mov(dest, pio_osr));
+    // Kick off the shift-out
+    pio_sm_exec(pio, sm, pio_encode_out(pio_null, 32));
+}
