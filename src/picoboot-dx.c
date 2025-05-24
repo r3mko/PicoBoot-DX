@@ -24,6 +24,17 @@ const uint BOOST_CLOCK = 250000;    // Set 250MHz clock to get more cycles.
 
 int chan;
 
+static inline void pio_load_and_start(PIO pio, uint sm, uint32_t count, pio_src_dest dest) {
+    // Push the count into the SM’s TX FIFO
+    pio_sm_put(pio, sm, count);
+    // Pull it into OSR...
+    pio_sm_exec(pio, sm, pio_encode_pull(true, true));
+    // ...then move from OSR into register X or Y
+    pio_sm_exec(pio, sm, pio_encode_mov(dest, pio_osr));
+    // Kick off the shift-out
+    pio_sm_exec(pio, sm, pio_encode_out(pio_null, 32));
+}
+
 bool dma_busy(void) {
     // Wrap the Pico SDK call so we can pass it to led_blink_while()
     return dma_channel_is_busy(chan);
