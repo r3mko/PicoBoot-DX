@@ -6,28 +6,18 @@
 .define PUBLIC CS_PIN      4    ; U10 chip select
 .define PUBLIC CLK_PIN     5    ; EXI clock signal
 
-; Wait for one full CS pulse
-.macro WAIT_CS pin
-    wait 1 gpio \pin        ; CS HIGH
-    wait 0 gpio \pin        ; CS LOW
-.endmacro
-
-; Wait for a CLK rising edge
-.macro WAIT_RISING_EDGE pin
-    wait 0 gpio \pin        ; CLK low
-    wait 1 gpio \pin        ; CLK high
-.endmacro
-
 .program on_transfer
 
 start:
-    WAIT_CS CS_PIN              ; Wait for CS
+    wait 1 gpio CS_PIN          ; Wait for CS to go HIGH
+    wait 0 gpio CS_PIN          ; Wait for CS to go LOW
     jmp x-- start
     irq set 0                   ; Set IRQ flag to start injecting payload
 
 next_transfer:
 .wrap_target
-    WAIT_CS CS_PIN              ; Wait for CS
+    wait 1 gpio CS_PIN          ; Wait for CS to go HIGH
+    wait 0 gpio CS_PIN          ; Wait for CS to go LOW
     irq set 0                   ; Let other SM inject the payload
     wait 1 gpio CLK_PIN         ; Hold until CLK goes HIGH
 .wrap
@@ -39,7 +29,8 @@ start:
     wait 1 irq 0                ; Hold until SM0 tells us to start injecting
 
 wait_bit:
-    WAIT_RISING_EDGE CLK_PIN    ; Sample until rising edge on CLK line 
+    wait 0 gpio CLK_PIN         ; Seems to be slighty faster than "wait 0 pin 1"?
+    wait 1 gpio CLK_PIN
     jmp x-- wait_bit            ; Skip past address bytes
     mov x, y                    ; Copy y value to x, it represents number of bits in the transfer
     set pindirs 1               ; Set data line as output
@@ -47,7 +38,8 @@ wait_bit:
     jmp x-- on_rising_edge      ; Jump back to next clock pulse wait routine
 
 on_rising_edge:
-    WAIT_RISING_EDGE CLK_PIN    ; Sample until rising edge on CLK line 
+    wait 0 gpio CLK_PIN         ; Sample until rising edge on CLK line
+    wait 1 gpio CLK_PIN
 
 write_bit:
     out pins, 1                 ; Output single IPL bit

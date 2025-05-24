@@ -69,7 +69,7 @@ void main() {
     uint clocked_output_offset = pio_add_program(pio, &clocked_output_program);
 
     clocked_output_program_init(pio, clocked_output_sm, clocked_output_offset, PIN_DATA, PIN_CLK, PIN_CS);
-    // Set up the clocked‐output SM to shift out 8192 bits (1024 bytes)
+    // Set up the clocked‐output SM to shift out 8192 bits (1024 bytes),
     // using 8191 here because the PIO countdown is zero-based
     pio_load_and_start(pio, clocked_output_sm, 8191, pio_y);
 
