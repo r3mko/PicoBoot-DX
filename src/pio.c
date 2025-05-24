@@ -61,7 +61,7 @@ void clocked_output_program_init(PIO pio, uint sm, uint offset, uint data_pin, u
     pio_sm_init(pio, sm, offset, &c);
 }
 
-void pio_load_and_start(PIO pio, uint sm, uint32_t count, uint dest) {
+void pio_prepare_transfer(PIO pio, uint sm, uint32_t count, uint dest) {
     // Push the count into the SM’s TX FIFO
     pio_sm_put(pio, sm, count);
     // Pull it into OSR...
