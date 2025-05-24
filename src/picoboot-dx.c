@@ -5,12 +5,13 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
-#include <stdio.h>
 #include "pico/stdlib.h"
+#include "hardware/gpio.h"
 #include "hardware/pio.h"
 #include "hardware/clocks.h"
 #include "hardware/dma.h"
 #include "hardware/structs/bus_ctrl.h"
+
 #include "pio.h"
 #include "picoboot-dx.pio.h"
 #include "ipl.h"

@@ -5,12 +5,13 @@
  */
 
 #include "led.h"
-#include "pico/stdlib.h"
+#include "pico/sleep.h"
 
 #ifdef CYW43_WL_GPIO_LED_PIN
 #include "pico/cyw43_arch.h"
 #define LED_PIN CYW43_WL_GPIO_LED_PIN // WL chip’s LED on Pico W / Pico 2 W
 #else
+#include "hardware/gpio.h"
 #define LED_PIN PICO_DEFAULT_LED_PIN  // GPIO25 on Pico / Pico 2
 #endif
 
