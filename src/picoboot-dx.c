@@ -54,11 +54,9 @@ void main() {
     uint transfer_start_offset = pio_add_program(pio, &on_transfer_program);
 
     on_transfer_program_init(pio, transfer_start_sm, transfer_start_offset, PIN_CLK, PIN_CS, PIN_DATA);
-
-    pio_sm_put(pio, transfer_start_sm, (uint32_t) 224); // CS pulses
-    pio_sm_exec(pio, transfer_start_sm, pio_encode_pull(true, true));
-    pio_sm_exec(pio, transfer_start_sm, pio_encode_mov(pio_x, pio_osr));
-    pio_sm_exec(pio, transfer_start_sm, pio_encode_out(pio_null, 32));
+    // Wait for 224 CS pulses before firing the IRQ
+    // this marks the boundary where the first 1 kB (1024 bytes) transfer is about to start
+    pio_load_and_start(pio, transfer_start_sm, 224, pio_x); 
 
     //
     // State Machine: Clocked Output
@@ -71,11 +69,9 @@ void main() {
     uint clocked_output_offset = pio_add_program(pio, &clocked_output_program);
 
     clocked_output_program_init(pio, clocked_output_sm, clocked_output_offset, PIN_DATA, PIN_CLK, PIN_CS);
-
-    pio_sm_put(pio, clocked_output_sm, 8191); // 8192 bits, 1024 bytes, minus 1 because counting starts from 0 
-    pio_sm_exec(pio, clocked_output_sm, pio_encode_pull(true, true));
-    pio_sm_exec(pio, clocked_output_sm, pio_encode_mov(pio_y, pio_osr));
-    pio_sm_exec(pio, clocked_output_sm, pio_encode_out(pio_null, 32));
+    // Set up the clocked‐output SM to shift out 8192 bits (1024 bytes),
+    // using 8191 here because the PIO countdown is zero-based
+    pio_load_and_start(pio, clocked_output_sm, 8191, pio_y);
 
     // Set up DMA for reading IPL to PIO FIFO
     chan = dma_claim_unused_channel(true);
