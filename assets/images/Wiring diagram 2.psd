@@ -104,20 +104,20 @@
 <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/notifications-subscriptions-menu.e5e6e593370c808590a5.module.css" />
 
 
-  <title>PicoBoot/assets/Wiring diagram.psd at main · webhdx/PicoBoot · GitHub</title>
+  <title>PicoBoot/assets/Wiring diagram.psd at c4b2c29783d4c25820926488f9b635355bb1b0a3 · webhdx/PicoBoot · GitHub</title>
 
 
 
   <meta name="route-pattern" content="/:user_id/:repository/blob/*name(/*path)" data-turbo-transient>
   <meta name="route-controller" content="blob" data-turbo-transient>
   <meta name="route-action" content="show" data-turbo-transient>
-  <meta name="fetch-nonce" content="v2:4f9ebdcd-d047-1b4b-3397-c799d0a7f63f">
+  <meta name="fetch-nonce" content="v2:1086ee8a-87c6-15ee-a1ba-fe3bbfdc642b">
 
     
   <meta name="current-catalog-service-hash" content="f3abb0cc802f3d7b95fc8762b94bdcb13bf39634c40c357301c4aa1d67a256fb">
 
 
-  <meta name="request-id" content="E135:3E0B03:146FD09:1506F72:6831CF94" data-pjax-transient="true"/><meta name="html-safe-nonce" content="21da402270c0d49b2fa2f24ad1f8c592e10b772f81488ac5f5249472e8304933" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiJFMTM1OjNFMEIwMzoxNDZGRDA5OjE1MDZGNzI6NjgzMUNGOTQiLCJ2aXNpdG9yX2lkIjoiOTI1NjIxMDAwODQ4MTM0MDM2IiwicmVnaW9uX2VkZ2UiOiJmcmEiLCJyZWdpb25fcmVuZGVyIjoiZnJhIn0=" data-pjax-transient="true"/><meta name="visitor-hmac" content="75de362850afba52315c2b7f22827ec305a8d412e0f4edfc62e81a3f13cae721" data-pjax-transient="true"/>
+  <meta name="request-id" content="E201:27700:1480324:151BADD:6831D1A0" data-pjax-transient="true"/><meta name="html-safe-nonce" content="d97ac80fa2f3a70d0449e02e28327affaec544bbc7f72ee94a7346e0e5fbdd7b" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiJFMjAxOjI3NzAwOjE0ODAzMjQ6MTUxQkFERDo2ODMxRDFBMCIsInZpc2l0b3JfaWQiOiIyMTAwNDM3MzA4MTMyMTUxNzEyIiwicmVnaW9uX2VkZ2UiOiJmcmEiLCJyZWdpb25fcmVuZGVyIjoiZnJhIn0=" data-pjax-transient="true"/><meta name="visitor-hmac" content="d8a462748909c391c578cf0c07cd1d0ae19fb59ff4eb2d640bcd29abffd6ebd8" data-pjax-transient="true"/>
 
 
     <meta name="hovercard-subject-tag" content="repository:476035218" data-turbo-transient>
@@ -148,16 +148,16 @@
 
     
 
-      <meta name="description" content="Raspberry Pi Pico (RP2040) based IPL replacement modchip for GameCube - PicoBoot/assets/Wiring diagram.psd at main · webhdx/PicoBoot">
+      <meta name="description" content="Raspberry Pi Pico (RP2040) based IPL replacement modchip for GameCube - PicoBoot/assets/Wiring diagram.psd at c4b2c29783d4c25820926488f9b635355bb1b0a3 · webhdx/PicoBoot">
 
       <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
 
     <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
     <meta property="fb:app_id" content="1401488693436528">
-    <meta name="apple-itunes-app" content="app-id=1477376905, app-argument=https://github.com/webhdx/PicoBoot/blob/main/assets/Wiring%20diagram.psd" />
+    <meta name="apple-itunes-app" content="app-id=1477376905, app-argument=https://github.com/webhdx/PicoBoot/blob/c4b2c29783d4c25820926488f9b635355bb1b0a3/assets/Wiring%20diagram.psd" />
 
-      <meta name="twitter:image" content="https://opengraph.githubassets.com/0e3001a117bd2b26f1d57894b085a4e6934e1e4d1a626eea2729dee72bd512a0/webhdx/PicoBoot" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="PicoBoot/assets/Wiring diagram.psd at main · webhdx/PicoBoot" /><meta name="twitter:description" content="Raspberry Pi Pico (RP2040) based IPL replacement modchip for GameCube - webhdx/PicoBoot" />
-  <meta property="og:image" content="https://opengraph.githubassets.com/0e3001a117bd2b26f1d57894b085a4e6934e1e4d1a626eea2729dee72bd512a0/webhdx/PicoBoot" /><meta property="og:image:alt" content="Raspberry Pi Pico (RP2040) based IPL replacement modchip for GameCube - webhdx/PicoBoot" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="600" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="PicoBoot/assets/Wiring diagram.psd at main · webhdx/PicoBoot" /><meta property="og:url" content="https://github.com/webhdx/PicoBoot/blob/main/assets/Wiring%20diagram.psd" /><meta property="og:description" content="Raspberry Pi Pico (RP2040) based IPL replacement modchip for GameCube - webhdx/PicoBoot" />
+      <meta name="twitter:image" content="https://opengraph.githubassets.com/0e3001a117bd2b26f1d57894b085a4e6934e1e4d1a626eea2729dee72bd512a0/webhdx/PicoBoot" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="PicoBoot/assets/Wiring diagram.psd at c4b2c29783d4c25820926488f9b635355bb1b0a3 · webhdx/PicoBoot" /><meta name="twitter:description" content="Raspberry Pi Pico (RP2040) based IPL replacement modchip for GameCube - webhdx/PicoBoot" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/0e3001a117bd2b26f1d57894b085a4e6934e1e4d1a626eea2729dee72bd512a0/webhdx/PicoBoot" /><meta property="og:image:alt" content="Raspberry Pi Pico (RP2040) based IPL replacement modchip for GameCube - webhdx/PicoBoot" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="600" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="PicoBoot/assets/Wiring diagram.psd at c4b2c29783d4c25820926488f9b635355bb1b0a3 · webhdx/PicoBoot" /><meta property="og:url" content="https://github.com/webhdx/PicoBoot/blob/c4b2c29783d4c25820926488f9b635355bb1b0a3/assets/Wiring%20diagram.psd" /><meta property="og:description" content="Raspberry Pi Pico (RP2040) based IPL replacement modchip for GameCube - webhdx/PicoBoot" />
   
 
 
@@ -276,19 +276,19 @@
 
       <div class="d-flex flex-1 flex-order-2 text-right d-lg-none gap-2 flex-justify-end">
           <a
-            href="/login?return_to=https%3A%2F%2Fgithub.com%2Fwebhdx%2FPicoBoot%2Fblob%2Fmain%2Fassets%2FWiring%2520diagram.psd"
+            href="/login?return_to=https%3A%2F%2Fgithub.com%2Fwebhdx%2FPicoBoot%2Fblob%2Fc4b2c29783d4c25820926488f9b635355bb1b0a3%2Fassets%2FWiring%2520diagram.psd"
             class="HeaderMenu-link HeaderMenu-button d-inline-flex f5 no-underline border color-border-default rounded-2 px-2 py-1 color-fg-inherit js-prevent-focus-on-mobile-nav"
-            data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/webhdx/PicoBoot/blob/main/assets/Wiring%20diagram.psd&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="871cdb271dbe591560a484ac0a8426e17983522a22ebfda2ef6660f5c35905ef"
+            data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/webhdx/PicoBoot/blob/c4b2c29783d4c25820926488f9b635355bb1b0a3/assets/Wiring%20diagram.psd&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="e421f46b4dce25c56c8338b2a46aef5118552308a4cabafeb7aa3d39fafdba85"
             data-analytics-event="{&quot;category&quot;:&quot;Marketing nav&quot;,&quot;action&quot;:&quot;click to Sign in&quot;,&quot;label&quot;:&quot;ref_page:Marketing;ref_cta:Sign in;ref_loc:Header&quot;}"
           >
             Sign in
           </a>
               <div class="AppHeader-appearanceSettings">
     <react-partial-anchor>
-      <button data-target="react-partial-anchor.anchor" id="icon-button-a38c62e2-ff6a-497e-bdaa-fd1f57fdcf52" aria-labelledby="tooltip-880f81d0-5f82-44d7-b9e6-b0b2b94e1cc9" type="button" disabled="disabled" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium AppHeader-button HeaderMenu-link border cursor-wait">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-sliders Button-visual">
+      <button data-target="react-partial-anchor.anchor" id="icon-button-8972c1c8-3849-43cd-b72e-68087e0f6559" aria-labelledby="tooltip-054c918e-241c-4bf9-88c0-103a254fc792" type="button" disabled="disabled" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium AppHeader-button HeaderMenu-link border cursor-wait">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-sliders Button-visual">
     <path d="M15 2.75a.75.75 0 0 1-.75.75h-4a.75.75 0 0 1 0-1.5h4a.75.75 0 0 1 .75.75Zm-8.5.75v1.25a.75.75 0 0 0 1.5 0v-4a.75.75 0 0 0-1.5 0V2H1.75a.75.75 0 0 0 0 1.5H6.5Zm1.25 5.25a.75.75 0 0 0 0-1.5h-6a.75.75 0 0 0 0 1.5h6ZM15 8a.75.75 0 0 1-.75.75H11.5V10a.75.75 0 1 1-1.5 0V6a.75.75 0 0 1 1.5 0v1.25h2.75A.75.75 0 0 1 15 8Zm-9 5.25v-2a.75.75 0 0 0-1.5 0v1.25H1.75a.75.75 0 0 0 0 1.5H4.5v1.25a.75.75 0 0 0 1.5 0v-2Zm9 0a.75.75 0 0 1-.75.75h-6a.75.75 0 0 1 0-1.5h6a.75.75 0 0 1 .75.75Z"></path>
 </svg>
-</button><tool-tip id="tooltip-880f81d0-5f82-44d7-b9e6-b0b2b94e1cc9" for="icon-button-a38c62e2-ff6a-497e-bdaa-fd1f57fdcf52" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Appearance settings</tool-tip>
+</button><tool-tip id="tooltip-054c918e-241c-4bf9-88c0-103a254fc792" for="icon-button-8972c1c8-3849-43cd-b72e-68087e0f6559" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Appearance settings</tool-tip>
 
       <template data-target="react-partial-anchor.template">
         <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/ui_packages_document-metadata_document-metadata_ts-ui_packages_promise-with-resolvers-polyfil-40d47c-83bb4d2a9499.js"></script>
@@ -959,7 +959,7 @@
                 
 
 
-<qbsearch-input class="search-input" data-scope="repo:webhdx/PicoBoot" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="BAwoFDVT5_PWuwJpEfvCIw6nt5bU91B3bgiKduqZZSKoe-Ezhzuu63zvwCXtxtsxDcStWBp9KpD60ImpgHxcBw" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="webhdx/PicoBoot" data-current-org="" data-current-owner="webhdx" data-logged-in="false" data-copilot-chat-enabled="false" data-nl-search-enabled="false" data-retain-scroll-position="true">
+<qbsearch-input class="search-input" data-scope="repo:webhdx/PicoBoot" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="IRXuezL0cie4EU4Dk7FL2YIspZpnJ9cF-feGH9KLVVutyfnvODBa4J2jU96wmsj-DXHagE1nk7yXZXrbyfijqw" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="webhdx/PicoBoot" data-current-org="" data-current-owner="webhdx" data-logged-in="false" data-copilot-chat-enabled="false" data-nl-search-enabled="false" data-retain-scroll-position="true">
   <div
     class="search-input-container search-with-dialog position-relative d-flex flex-row flex-items-center mr-4 rounded"
     data-action="click:qbsearch-input#searchInputContainerClicked"
@@ -1024,7 +1024,7 @@
           ></div>
           <div class="QueryBuilder-InputWrapper">
             <div aria-hidden="true" class="QueryBuilder-Sizer" data-target="query-builder.sizer"></div>
-            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-a1b8a622-3ff9-449f-9c41-e6639bc7d1c5" data-target="query-builder.input" data-action="
+            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-fea5eee7-a9c6-4781-bb33-4d6702de34af" data-target="query-builder.input" data-action="
           input:query-builder#inputChange
           blur:query-builder#inputBlur
           keydown:query-builder#inputKeydown
@@ -1261,7 +1261,7 @@
                   id="query-builder-test-results"
                 ></ul>
         </div>
-      <div class="FormControl-inlineValidation" id="validation-a1b8a622-3ff9-449f-9c41-e6639bc7d1c5" hidden="hidden">
+      <div class="FormControl-inlineValidation" id="validation-fea5eee7-a9c6-4781-bb33-4d6702de34af" hidden="hidden">
         <span class="FormControl-inlineValidation--visual">
           <svg aria-hidden="true" height="12" viewBox="0 0 12 12" version="1.1" width="12" data-view-component="true" class="octicon octicon-alert-fill">
     <path d="M4.855.708c.5-.896 1.79-.896 2.29 0l4.675 8.351a1.312 1.312 0 0 1-1.146 1.954H1.33A1.313 1.313 0 0 1 .183 9.058ZM7 7V3H5v4Zm-1 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path>
@@ -1302,7 +1302,7 @@
   
 </div>
       <scrollable-region data-labelled-by="feedback-dialog-title">
-        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="C9sIvIL232c5lZerfGsGsLXg2yrwrTgT1tBkVLCSje9Mz5CHjUsY7T5KGwidvTcwl/OftnXM09p3qeN7eSHtIw==" />
+        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="WS0Rti7o+lK5Qvt+wMA0G0nf3x69XSw88dpxO7tXd4JeUTB+KkN3njMRudl6emY6tKNRytGYZ4giSGkJU6cNlw==" />
           <p>We read every piece of feedback, and take your input very seriously.</p>
           <textarea name="feedback" class="form-control width-full mb-2" style="height: 120px" id="feedback"></textarea>
           <input name="include_email" id="include_email" aria-label="Include my email address so I can be contacted" class="form-control mr-2" type="checkbox">
@@ -1340,7 +1340,7 @@
         <div data-view-component="true" class="Overlay-body">        <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
         <div hidden class="create-custom-scope-form" data-target="custom-scopes.createCustomScopeForm">
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="oNP8sJBEzO4tgTt/I4zCZdhBmbkXeDa+AsbRnFdqFshNkNlgObftJYJSae5Ty4NuthmHF8RX4ux3l1cn33B4bA==" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="b866bHSaM01UpBj44sSJ9yKU2I9nnYlXiSSg7Ncu5Bo2SVOQjnKMiC6EPcvm67n8jP3zx1T3lXytQUpHN/DNSw==" />
           <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
           <input type="hidden" id="custom_scope_id" name="custom_scope_id" data-target="custom-scopes.customScopesIdField">
@@ -1358,7 +1358,7 @@
                 placeholder="github-ruby"
                 required
                 maxlength="50">
-              <input type="hidden" data-csrf="true" value="TkCjs0wmrLso/G+n8l9J4DORGcweniRB3GaOCxjL+gzTL/A6XfUudYPZICLaZgxJyYEkFothdNzIRnOZhVA1sw==" />
+              <input type="hidden" data-csrf="true" value="Jd+EPJXm2ZBd5GF23TwDaeNrOzQLeXu1NJ2mNTk51RSjewZIwmUcpXgRmnESzkxBN6UctZfGmiGc1nK74YwobA==" />
             </auto-check>
           </div>
 
@@ -1400,10 +1400,10 @@
 
             <div class="position-relative HeaderMenu-link-wrap d-lg-inline-block">
               <a
-                href="/login?return_to=https%3A%2F%2Fgithub.com%2Fwebhdx%2FPicoBoot%2Fblob%2Fmain%2Fassets%2FWiring%2520diagram.psd"
+                href="/login?return_to=https%3A%2F%2Fgithub.com%2Fwebhdx%2FPicoBoot%2Fblob%2Fc4b2c29783d4c25820926488f9b635355bb1b0a3%2Fassets%2FWiring%2520diagram.psd"
                 class="HeaderMenu-link HeaderMenu-link--sign-in HeaderMenu-button flex-shrink-0 no-underline d-none d-lg-inline-flex border border-lg-0 rounded rounded-lg-0 px-2 py-1"
                 style="margin-left: 12px;"
-                data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/webhdx/PicoBoot/blob/main/assets/Wiring%20diagram.psd&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="871cdb271dbe591560a484ac0a8426e17983522a22ebfda2ef6660f5c35905ef"
+                data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/webhdx/PicoBoot/blob/c4b2c29783d4c25820926488f9b635355bb1b0a3/assets/Wiring%20diagram.psd&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="e421f46b4dce25c56c8338b2a46aef5118552308a4cabafeb7aa3d39fafdba85"
                 data-analytics-event="{&quot;category&quot;:&quot;Marketing nav&quot;,&quot;action&quot;:&quot;click to go to homepage&quot;,&quot;label&quot;:&quot;ref_page:Marketing;ref_cta:Sign in;ref_loc:Header&quot;}"
               >
                 Sign in
@@ -1412,7 +1412,7 @@
 
               <a href="/signup?ref_cta=Sign+up&amp;ref_loc=header+logged+out&amp;ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Fblob%2Fshow&amp;source=header-repo&amp;source_repo=webhdx%2FPicoBoot"
                 class="HeaderMenu-link HeaderMenu-link--sign-up HeaderMenu-button flex-shrink-0 d-flex d-lg-inline-flex no-underline border color-border-default rounded px-2 py-1"
-                data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/webhdx/PicoBoot/blob/main/assets/Wiring%20diagram.psd&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="871cdb271dbe591560a484ac0a8426e17983522a22ebfda2ef6660f5c35905ef"
+                data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/webhdx/PicoBoot/blob/c4b2c29783d4c25820926488f9b635355bb1b0a3/assets/Wiring%20diagram.psd&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="e421f46b4dce25c56c8338b2a46aef5118552308a4cabafeb7aa3d39fafdba85"
                 data-analytics-event="{&quot;category&quot;:&quot;Sign up&quot;,&quot;action&quot;:&quot;click to sign up for account&quot;,&quot;label&quot;:&quot;ref_page:/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show;ref_cta:Sign up;ref_loc:header logged out&quot;}"
               >
                 Sign up
@@ -1420,10 +1420,10 @@
 
                 <div class="AppHeader-appearanceSettings">
     <react-partial-anchor>
-      <button data-target="react-partial-anchor.anchor" id="icon-button-5ed52260-9ff5-4755-8ebf-e5555a7bb7f4" aria-labelledby="tooltip-e4ba4d99-48fe-42c7-9cf3-8a9d5b013dce" type="button" disabled="disabled" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium AppHeader-button HeaderMenu-link border cursor-wait">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-sliders Button-visual">
+      <button data-target="react-partial-anchor.anchor" id="icon-button-7a99b62a-4d2f-4747-ae75-7159b54f7a77" aria-labelledby="tooltip-f27a1267-c9a8-461b-95f2-f237dbcc8de1" type="button" disabled="disabled" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium AppHeader-button HeaderMenu-link border cursor-wait">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-sliders Button-visual">
     <path d="M15 2.75a.75.75 0 0 1-.75.75h-4a.75.75 0 0 1 0-1.5h4a.75.75 0 0 1 .75.75Zm-8.5.75v1.25a.75.75 0 0 0 1.5 0v-4a.75.75 0 0 0-1.5 0V2H1.75a.75.75 0 0 0 0 1.5H6.5Zm1.25 5.25a.75.75 0 0 0 0-1.5h-6a.75.75 0 0 0 0 1.5h6ZM15 8a.75.75 0 0 1-.75.75H11.5V10a.75.75 0 1 1-1.5 0V6a.75.75 0 0 1 1.5 0v1.25h2.75A.75.75 0 0 1 15 8Zm-9 5.25v-2a.75.75 0 0 0-1.5 0v1.25H1.75a.75.75 0 0 0 0 1.5H4.5v1.25a.75.75 0 0 0 1.5 0v-2Zm9 0a.75.75 0 0 1-.75.75h-6a.75.75 0 0 1 0-1.5h6a.75.75 0 0 1 .75.75Z"></path>
 </svg>
-</button><tool-tip id="tooltip-e4ba4d99-48fe-42c7-9cf3-8a9d5b013dce" for="icon-button-5ed52260-9ff5-4755-8ebf-e5555a7bb7f4" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Appearance settings</tool-tip>
+</button><tool-tip id="tooltip-f27a1267-c9a8-461b-95f2-f237dbcc8de1" for="icon-button-7a99b62a-4d2f-4747-ae75-7159b54f7a77" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Appearance settings</tool-tip>
 
       <template data-target="react-partial-anchor.template">
         <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-react.19291721a114332ad118.module.css" />
@@ -1459,10 +1459,10 @@
         <span class="js-stale-session-flash-signed-out" hidden>You signed out in another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
         <span class="js-stale-session-flash-switched" hidden>You switched accounts on another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
 
-    <button id="icon-button-a6b65f0d-0698-4b10-9e14-e68776705232" aria-labelledby="tooltip-6a2ced71-df4a-4254-8c8f-79f9d29c47a6" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
+    <button id="icon-button-c82eb490-791c-4f2d-ab6e-81fe46a7675d" aria-labelledby="tooltip-0e2d1cdd-68a0-44a6-9434-1ba7d720a789" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
     <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
 </svg>
-</button><tool-tip id="tooltip-6a2ced71-df4a-4254-8c8f-79f9d29c47a6" for="icon-button-a6b65f0d-0698-4b10-9e14-e68776705232" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
+</button><tool-tip id="tooltip-0e2d1cdd-68a0-44a6-9434-1ba7d720a789" for="icon-button-c82eb490-791c-4f2d-ab6e-81fe46a7675d" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
 
 
   
@@ -1558,7 +1558,7 @@
             <ul class="pagehead-actions flex-shrink-0 d-none d-md-inline" style="padding: 2px 0;">
     
         <li>
-          <include-fragment src="/webhdx/PicoBoot/sponsor_button" data-nonce="v2:4f9ebdcd-d047-1b4b-3397-c799d0a7f63f" data-view-component="true">
+          <include-fragment src="/webhdx/PicoBoot/sponsor_button" data-nonce="v2:1086ee8a-87c6-15ee-a1ba-fe3bbfdc642b" data-view-component="true">
   
   <div data-show-on-forbidden-error hidden>
     <div class="Box">
@@ -1579,15 +1579,15 @@
       
 
   <li>
-            <a href="/login?return_to=%2Fwebhdx%2FPicoBoot" rel="nofollow" id="repository-details-watch-button" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;notification subscription menu watch&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/webhdx/PicoBoot/blob/main/assets/Wiring%20diagram.psd&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="d4b0e966eebb8c57ca010bbfac5fe44cc6bc3ff13074dc1e6cbc54524c666b84" aria-label="You must be signed in to change notification settings" data-view-component="true" class="btn-sm btn">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-bell mr-2">
+            <a href="/login?return_to=%2Fwebhdx%2FPicoBoot" rel="nofollow" id="repository-details-watch-button" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;notification subscription menu watch&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/webhdx/PicoBoot/blob/c4b2c29783d4c25820926488f9b635355bb1b0a3/assets/Wiring%20diagram.psd&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="0e1ded6397689b53fd53c9c2461944af8919280db002aed4e33161ae2d8b6d91" aria-label="You must be signed in to change notification settings" data-view-component="true" class="btn-sm btn">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-bell mr-2">
     <path d="M8 16a2 2 0 0 0 1.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 0 0 8 16ZM3 5a5 5 0 0 1 10 0v2.947c0 .05.015.098.042.139l1.703 2.555A1.519 1.519 0 0 1 13.482 13H2.518a1.516 1.516 0 0 1-1.263-2.36l1.703-2.554A.255.255 0 0 0 3 7.947Zm5-3.5A3.5 3.5 0 0 0 4.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556a.017.017 0 0 0-.003.01l.001.006c0 .002.002.004.004.006l.006.004.007.001h10.964l.007-.001.006-.004.004-.006.001-.007a.017.017 0 0 0-.003-.01l-1.703-2.554a1.745 1.745 0 0 1-.294-.97V5A3.5 3.5 0 0 0 8 1.5Z"></path>
 </svg>Notifications
-</a>    <tool-tip id="tooltip-d0fa8bde-c314-42e0-9475-07bc16011502" for="repository-details-watch-button" popover="manual" data-direction="s" data-type="description" data-view-component="true" class="sr-only position-absolute">You must be signed in to change notification settings</tool-tip>
+</a>    <tool-tip id="tooltip-babf7e9c-1db1-41cf-a9d0-891dda9adaef" for="repository-details-watch-button" popover="manual" data-direction="s" data-type="description" data-view-component="true" class="sr-only position-absolute">You must be signed in to change notification settings</tool-tip>
 
   </li>
 
   <li>
-          <a icon="repo-forked" id="fork-button" href="/login?return_to=%2Fwebhdx%2FPicoBoot" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;repo details fork button&quot;,&quot;repository_id&quot;:476035218,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/webhdx/PicoBoot/blob/main/assets/Wiring%20diagram.psd&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="b45644b234d09bda01317d35fae4ab74b27c59d0434ac464e9d59d25dfffc981" data-view-component="true" class="btn-sm btn">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked mr-2">
+          <a icon="repo-forked" id="fork-button" href="/login?return_to=%2Fwebhdx%2FPicoBoot" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;repo details fork button&quot;,&quot;repository_id&quot;:476035218,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/webhdx/PicoBoot/blob/c4b2c29783d4c25820926488f9b635355bb1b0a3/assets/Wiring%20diagram.psd&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="40b37ddae2ffcb14d02f4466078cd87dff821db6fa4959587fadc4eeaade52c5" data-view-component="true" class="btn-sm btn">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked mr-2">
     <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
 </svg>Fork
     <span id="repo-network-counter" data-pjax-replace="true" data-turbo-replace="true" title="97" data-view-component="true" class="Counter">97</span>
@@ -1596,7 +1596,7 @@
 
   <li>
         <div data-view-component="true" class="BtnGroup d-flex">
-        <a href="/login?return_to=%2Fwebhdx%2FPicoBoot" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;star button&quot;,&quot;repository_id&quot;:476035218,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/webhdx/PicoBoot/blob/main/assets/Wiring%20diagram.psd&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="9633d1d057c700c0ca01f1e1e01836c711674aa4a19b19ad157d0ef1c535564c" aria-label="You must be signed in to star a repository" data-view-component="true" class="tooltipped tooltipped-sw btn-sm btn">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star v-align-text-bottom d-inline-block mr-2">
+        <a href="/login?return_to=%2Fwebhdx%2FPicoBoot" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;star button&quot;,&quot;repository_id&quot;:476035218,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/webhdx/PicoBoot/blob/c4b2c29783d4c25820926488f9b635355bb1b0a3/assets/Wiring%20diagram.psd&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="1b0828245e95e0752a80b6098f361bcec3a37ba799877da957441ca02a82e1b8" aria-label="You must be signed in to star a repository" data-view-component="true" class="tooltipped tooltipped-sw btn-sm btn">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star v-align-text-bottom d-inline-block mr-2">
     <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
 </svg><span data-view-component="true" class="d-inline">
           Star
@@ -1683,7 +1683,7 @@
     <path d="M7.467.133a1.748 1.748 0 0 1 1.066 0l5.25 1.68A1.75 1.75 0 0 1 15 3.48V7c0 1.566-.32 3.182-1.303 4.682-.983 1.498-2.585 2.813-5.032 3.855a1.697 1.697 0 0 1-1.33 0c-2.447-1.042-4.049-2.357-5.032-3.855C1.32 10.182 1 8.566 1 7V3.48a1.75 1.75 0 0 1 1.217-1.667Zm.61 1.429a.25.25 0 0 0-.153 0l-5.25 1.68a.25.25 0 0 0-.174.238V7c0 1.358.275 2.666 1.057 3.86.784 1.194 2.121 2.34 4.366 3.297a.196.196 0 0 0 .154 0c2.245-.956 3.582-2.104 4.366-3.298C13.225 9.666 13.5 8.36 13.5 7V3.48a.251.251 0 0 0-.174-.237l-5.25-1.68ZM8.75 4.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 1.5 0ZM9 10.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
 </svg>
         <span data-content="Security">Security</span>
-          <include-fragment src="/webhdx/PicoBoot/security/overall-count" accept="text/fragment+html" data-nonce="v2:4f9ebdcd-d047-1b4b-3397-c799d0a7f63f" data-view-component="true">
+          <include-fragment src="/webhdx/PicoBoot/security/overall-count" accept="text/fragment+html" data-nonce="v2:1086ee8a-87c6-15ee-a1ba-fe3bbfdc642b" data-view-component="true">
   
   <div data-show-on-forbidden-error hidden>
     <div class="Box">
@@ -1717,22 +1717,22 @@
 </ul>
     <div style="visibility:hidden;" data-view-component="true" class="UnderlineNav-actions js-responsive-underlinenav-overflow position-absolute pr-3 pr-md-4 pr-lg-5 right-0">      <action-menu data-select-variant="none" data-view-component="true">
   <focus-group direction="vertical" mnemonics retain>
-    <button id="action-menu-6060123e-b265-49fe-8709-7b53e722032f-button" popovertarget="action-menu-6060123e-b265-49fe-8709-7b53e722032f-overlay" aria-controls="action-menu-6060123e-b265-49fe-8709-7b53e722032f-list" aria-haspopup="true" aria-labelledby="tooltip-ebe23d88-2f61-44d0-8afb-4edc2900baf5" type="button" data-view-component="true" class="Button Button--iconOnly Button--secondary Button--medium UnderlineNav-item">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal Button-visual">
+    <button id="action-menu-e9019291-83b5-40e4-b1e7-99a8f97967da-button" popovertarget="action-menu-e9019291-83b5-40e4-b1e7-99a8f97967da-overlay" aria-controls="action-menu-e9019291-83b5-40e4-b1e7-99a8f97967da-list" aria-haspopup="true" aria-labelledby="tooltip-756d2d5d-dc8b-4b90-8ddd-2e6a77f2aba8" type="button" data-view-component="true" class="Button Button--iconOnly Button--secondary Button--medium UnderlineNav-item">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal Button-visual">
     <path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
 </svg>
-</button><tool-tip id="tooltip-ebe23d88-2f61-44d0-8afb-4edc2900baf5" for="action-menu-6060123e-b265-49fe-8709-7b53e722032f-button" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Additional navigation options</tool-tip>
+</button><tool-tip id="tooltip-756d2d5d-dc8b-4b90-8ddd-2e6a77f2aba8" for="action-menu-e9019291-83b5-40e4-b1e7-99a8f97967da-button" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Additional navigation options</tool-tip>
 
 
-<anchored-position data-target="action-menu.overlay" id="action-menu-6060123e-b265-49fe-8709-7b53e722032f-overlay" anchor="action-menu-6060123e-b265-49fe-8709-7b53e722032f-button" align="start" side="outside-bottom" anchor-offset="normal" popover="auto" data-view-component="true">
+<anchored-position data-target="action-menu.overlay" id="action-menu-e9019291-83b5-40e4-b1e7-99a8f97967da-overlay" anchor="action-menu-e9019291-83b5-40e4-b1e7-99a8f97967da-button" align="start" side="outside-bottom" anchor-offset="normal" popover="auto" data-view-component="true">
   <div data-view-component="true" class="Overlay Overlay--size-auto">
     
       <div data-view-component="true" class="Overlay-body Overlay-body--paddingNone">          <action-list>
   <div data-view-component="true">
-    <ul aria-labelledby="action-menu-6060123e-b265-49fe-8709-7b53e722032f-button" id="action-menu-6060123e-b265-49fe-8709-7b53e722032f-list" role="menu" data-view-component="true" class="ActionListWrap--inset ActionListWrap">
+    <ul aria-labelledby="action-menu-e9019291-83b5-40e4-b1e7-99a8f97967da-button" id="action-menu-e9019291-83b5-40e4-b1e7-99a8f97967da-list" role="menu" data-view-component="true" class="ActionListWrap--inset ActionListWrap">
         <li hidden="hidden" data-menu-item="i0code-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-a21b89df-cb1b-4f94-86aa-64060d0dcdf0" href="/webhdx/PicoBoot" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-ff671a0a-d47f-4013-b216-232040fa4b2a" href="/webhdx/PicoBoot" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-code">
     <path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path>
@@ -1748,7 +1748,7 @@
         <li hidden="hidden" data-menu-item="i1issues-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-9671d802-471b-4992-befd-4fa0ab422de5" href="/webhdx/PicoBoot/issues" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-49a956af-f094-40fa-b36d-f01de424e8dd" href="/webhdx/PicoBoot/issues" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened">
     <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
@@ -1764,7 +1764,7 @@
         <li hidden="hidden" data-menu-item="i2pull-requests-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-43fe6522-3fb4-4517-82b1-9cf765f05b21" href="/webhdx/PicoBoot/pulls" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-decd11bf-85c3-41fa-a9aa-67f099dc2610" href="/webhdx/PicoBoot/pulls" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-pull-request">
     <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
@@ -1780,7 +1780,7 @@
         <li hidden="hidden" data-menu-item="i3actions-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-54764c18-1358-4ffd-88b0-401b29ebf851" href="/webhdx/PicoBoot/actions" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-165887ae-edf7-4a19-aaaa-ac8073f009c5" href="/webhdx/PicoBoot/actions" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-play">
     <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"></path>
@@ -1796,7 +1796,7 @@
         <li hidden="hidden" data-menu-item="i4wiki-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-6d1ada32-b190-4cc1-9015-15c1eb66a619" href="/webhdx/PicoBoot/wiki" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-57936c1c-25fd-4a16-aec7-74ae3ecb2003" href="/webhdx/PicoBoot/wiki" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-book">
     <path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"></path>
@@ -1812,7 +1812,7 @@
         <li hidden="hidden" data-menu-item="i5security-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-002077b6-d79c-4e3a-ab12-90d5e7d8b11f" href="/webhdx/PicoBoot/security" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-8b560aaf-1195-4fe3-a85a-59bb953ad98a" href="/webhdx/PicoBoot/security" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-shield">
     <path d="M7.467.133a1.748 1.748 0 0 1 1.066 0l5.25 1.68A1.75 1.75 0 0 1 15 3.48V7c0 1.566-.32 3.182-1.303 4.682-.983 1.498-2.585 2.813-5.032 3.855a1.697 1.697 0 0 1-1.33 0c-2.447-1.042-4.049-2.357-5.032-3.855C1.32 10.182 1 8.566 1 7V3.48a1.75 1.75 0 0 1 1.217-1.667Zm.61 1.429a.25.25 0 0 0-.153 0l-5.25 1.68a.25.25 0 0 0-.174.238V7c0 1.358.275 2.666 1.057 3.86.784 1.194 2.121 2.34 4.366 3.297a.196.196 0 0 0 .154 0c2.245-.956 3.582-2.104 4.366-3.298C13.225 9.666 13.5 8.36 13.5 7V3.48a.251.251 0 0 0-.174-.237l-5.25-1.68ZM8.75 4.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 1.5 0ZM9 10.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
@@ -1828,7 +1828,7 @@
         <li hidden="hidden" data-menu-item="i6insights-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-9a8e1ee0-ff96-4b25-891f-f920ccf082d6" href="/webhdx/PicoBoot/pulse" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-63bb1262-fba9-4875-a862-fd81f12e1a30" href="/webhdx/PicoBoot/pulse" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-graph">
     <path d="M1.5 1.75V13.5h13.75a.75.75 0 0 1 0 1.5H.75a.75.75 0 0 1-.75-.75V1.75a.75.75 0 0 1 1.5 0Zm14.28 2.53-5.25 5.25a.75.75 0 0 1-1.06 0L7 7.06 4.28 9.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.25-3.25a.75.75 0 0 1 1.06 0L10 7.94l4.72-4.72a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Z"></path>
@@ -1876,7 +1876,7 @@
 
 <react-app
   app-name="react-code-view"
-  initial-path="/webhdx/PicoBoot/blob/main/assets/Wiring%20diagram.psd"
+  initial-path="/webhdx/PicoBoot/blob/c4b2c29783d4c25820926488f9b635355bb1b0a3/assets/Wiring%20diagram.psd"
     style="display: block; min-height: calc(100vh - 64px);"
   data-attempted-ssr="false"
   data-ssr="false"
@@ -1885,7 +1885,7 @@
   data-data-router-enabled="false"
 >
   
-  <script type="application/json" data-target="react-app.embeddedData">{"payload":{"allShortcutsEnabled":false,"fileTree":{"assets":{"items":[{"name":"PicoBoot.png","path":"assets/PicoBoot.png","contentType":"file"},{"name":"Wiring diagram.jpg","path":"assets/Wiring diagram.jpg","contentType":"file"},{"name":"Wiring diagram.psd","path":"assets/Wiring diagram.psd","contentType":"file"}],"totalCount":3},"":{"items":[{"name":".devcontainer","path":".devcontainer","contentType":"directory"},{"name":".github","path":".github","contentType":"directory"},{"name":"assets","path":"assets","contentType":"directory"},{"name":"cmake","path":"cmake","contentType":"directory"},{"name":"src","path":"src","contentType":"directory"},{"name":"tools","path":"tools","contentType":"directory"},{"name":".gitignore","path":".gitignore","contentType":"file"},{"name":"CMakeLists.txt","path":"CMakeLists.txt","contentType":"file"},{"name":"LICENSE","path":"LICENSE","contentType":"file"},{"name":"README.md","path":"README.md","contentType":"file"},{"name":"memmap_picoboot.ld","path":"memmap_picoboot.ld","contentType":"file"},{"name":"pico_sdk_import.cmake","path":"pico_sdk_import.cmake","contentType":"file"}],"totalCount":12}},"fileTreeProcessingTime":6.320677,"foldersToFetch":[],"incompleteFileTree":false,"repo":{"id":476035218,"defaultBranch":"main","name":"PicoBoot","ownerLogin":"webhdx","currentUserCanPush":false,"isFork":false,"isEmpty":false,"createdAt":"2022-03-30T20:08:23.000Z","ownerAvatar":"https://avatars.githubusercontent.com/u/10212760?v=4","public":true,"private":false,"isOrgOwned":false},"codeLineWrapEnabled":false,"symbolsExpanded":false,"treeExpanded":true,"refInfo":{"name":"main","listCacheKey":"v0:1747597369.0","canEdit":false,"refType":"branch","currentOid":"c4b2c29783d4c25820926488f9b635355bb1b0a3"},"path":"assets/Wiring diagram.psd","currentUser":null,"blob":{"rawLines":null,"stylingDirectives":null,"colorizedLines":null,"csv":null,"csvError":null,"dependabotInfo":{"showConfigurationBanner":false,"configFilePath":null,"networkDependabotPath":"/webhdx/PicoBoot/network/updates","dismissConfigurationNoticePath":"/settings/dismiss-notice/dependabot_configuration_notice","configurationNoticeDismissed":null},"displayName":"Wiring diagram.psd","displayUrl":"https://viewscreen.githubusercontent.com/view/psd?browser=unknown_browser\u0026bypass_fastly=true\u0026color_mode=auto\u0026commit=c4b2c29783d4c25820926488f9b635355bb1b0a3\u0026device=unknown_device\u0026docs_host=https%3A%2F%2Fdocs.github.com\u0026enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f7765626864782f5069636f426f6f742f633462326332393738336434633235383230393236343838663962363335333535626231623061332f6173736574732f576972696e672532306469616772616d2e707364\u0026logged_in=false\u0026nwo=webhdx%2FPicoBoot\u0026path=assets%2FWiring+diagram.psd\u0026platform=unknown_platform\u0026repository_id=476035218\u0026repository_type=Repository\u0026version=0","headerInfo":{"blobSize":"21.9 MB","deleteTooltip":"You must be signed in to make or propose changes","editTooltip":"You must be signed in to make or propose changes","ghDesktopPath":"https://desktop.github.com","isGitLfs":false,"onBranch":true,"shortPath":"da2bfd4","siteNavLoginPath":"/login?return_to=https%3A%2F%2Fgithub.com%2Fwebhdx%2FPicoBoot%2Fblob%2Fmain%2Fassets%2FWiring%2520diagram.psd","isCSV":false,"isRichtext":false,"toc":null,"lineInfo":{"truncatedLoc":null,"truncatedSloc":null},"mode":"file"},"image":false,"isCodeownersFile":null,"isPlain":false,"isValidLegacyIssueTemplate":false,"issueTemplate":null,"discussionTemplate":null,"language":null,"languageID":null,"large":true,"planSupportInfo":{"repoIsFork":null,"repoOwnedByCurrentUser":null,"requestFullPath":"/webhdx/PicoBoot/blob/main/assets/Wiring%20diagram.psd","showFreeOrgGatedFeatureMessage":null,"showPlanSupportBanner":null,"upgradeDataAttributes":null,"upgradePath":null},"publishBannersInfo":{"dismissActionNoticePath":"/settings/dismiss-notice/publish_action_from_dockerfile","releasePath":"/webhdx/PicoBoot/releases/new?marketplace=true","showPublishActionBanner":false},"rawBlobUrl":"https://github.com/webhdx/PicoBoot/raw/refs/heads/main/assets/Wiring%20diagram.psd","renderImageOrRaw":true,"richText":null,"renderedFileInfo":{"identityUUID":"4d925eaf-748a-454f-bb17-ac6f3c43be80","renderFileType":"psd","size":22992483},"shortPath":null,"symbolsEnabled":true,"tabSize":8,"topBannersInfo":{"overridingGlobalFundingFile":false,"globalPreferredFundingPath":null,"showInvalidCitationWarning":false,"citationHelpUrl":"https://docs.github.com/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/about-citation-files","actionsOnboardingTip":null},"truncated":true,"viewable":false,"workflowRedirectUrl":null,"symbols":null},"copilotInfo":null,"copilotAccessAllowed":false,"modelsAccessAllowed":false,"modelsRepoIntegrationEnabled":false,"csrf_tokens":{"/webhdx/PicoBoot/branches":{"post":"Pio5jmxelw7o8C1VbcfAv7M728zy2Krtcp9APHvxmkyT2-7-Lbqo2K22fAxiXWoW6MnvzwRMuQU87lc4geiYUA"},"/repos/preferences":{"post":"ThLPlFopm9pjcMY6peXgkdFhbqQahtmo6q27PRvZ6PaH4YfQxSoUvjKG97ZyDlwvKvFYYn17hXJOWKbXWP9Row"}}},"title":"PicoBoot/assets/Wiring diagram.psd at main · webhdx/PicoBoot","appPayload":{"helpUrl":"https://docs.github.com","findFileWorkerPath":"/assets-cdn/worker/find-file-worker-7d7eb7c71814.js","findInFileWorkerPath":"/assets-cdn/worker/find-in-file-worker-1ae9fa256942.js","githubDevUrl":null,"enabled_features":{"code_nav_ui_events":false,"react_blob_overlay":false,"accessible_code_button":true,"github_models_repo_integration":false}}}</script>
+  <script type="application/json" data-target="react-app.embeddedData">{"payload":{"allShortcutsEnabled":false,"fileTree":{"assets":{"items":[{"name":"PicoBoot.png","path":"assets/PicoBoot.png","contentType":"file"},{"name":"Wiring diagram.jpg","path":"assets/Wiring diagram.jpg","contentType":"file"},{"name":"Wiring diagram.psd","path":"assets/Wiring diagram.psd","contentType":"file"}],"totalCount":3},"":{"items":[{"name":".devcontainer","path":".devcontainer","contentType":"directory"},{"name":".github","path":".github","contentType":"directory"},{"name":"assets","path":"assets","contentType":"directory"},{"name":"cmake","path":"cmake","contentType":"directory"},{"name":"src","path":"src","contentType":"directory"},{"name":"tools","path":"tools","contentType":"directory"},{"name":".gitignore","path":".gitignore","contentType":"file"},{"name":"CMakeLists.txt","path":"CMakeLists.txt","contentType":"file"},{"name":"LICENSE","path":"LICENSE","contentType":"file"},{"name":"README.md","path":"README.md","contentType":"file"},{"name":"memmap_picoboot.ld","path":"memmap_picoboot.ld","contentType":"file"},{"name":"pico_sdk_import.cmake","path":"pico_sdk_import.cmake","contentType":"file"}],"totalCount":12}},"fileTreeProcessingTime":4.1131400000000005,"foldersToFetch":[],"incompleteFileTree":false,"repo":{"id":476035218,"defaultBranch":"main","name":"PicoBoot","ownerLogin":"webhdx","currentUserCanPush":false,"isFork":false,"isEmpty":false,"createdAt":"2022-03-30T20:08:23.000Z","ownerAvatar":"https://avatars.githubusercontent.com/u/10212760?v=4","public":true,"private":false,"isOrgOwned":false},"codeLineWrapEnabled":false,"symbolsExpanded":false,"treeExpanded":true,"refInfo":{"name":"c4b2c29783d4c25820926488f9b635355bb1b0a3","listCacheKey":"v0:1747597369.0","canEdit":false,"refType":"tree","currentOid":"c4b2c29783d4c25820926488f9b635355bb1b0a3"},"path":"assets/Wiring diagram.psd","currentUser":null,"blob":{"rawLines":null,"stylingDirectives":null,"colorizedLines":null,"csv":null,"csvError":null,"dependabotInfo":{"showConfigurationBanner":false,"configFilePath":null,"networkDependabotPath":"/webhdx/PicoBoot/network/updates","dismissConfigurationNoticePath":"/settings/dismiss-notice/dependabot_configuration_notice","configurationNoticeDismissed":null},"displayName":"Wiring diagram.psd","displayUrl":"https://viewscreen.githubusercontent.com/view/psd?browser=unknown_browser\u0026bypass_fastly=true\u0026color_mode=auto\u0026commit=c4b2c29783d4c25820926488f9b635355bb1b0a3\u0026device=unknown_device\u0026docs_host=https%3A%2F%2Fdocs.github.com\u0026enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f7765626864782f5069636f426f6f742f633462326332393738336434633235383230393236343838663962363335333535626231623061332f6173736574732f576972696e672532306469616772616d2e707364\u0026logged_in=false\u0026nwo=webhdx%2FPicoBoot\u0026path=assets%2FWiring+diagram.psd\u0026platform=unknown_platform\u0026repository_id=476035218\u0026repository_type=Repository\u0026version=0","headerInfo":{"blobSize":"21.9 MB","deleteTooltip":"You must be signed in to make or propose changes","editTooltip":"You must be signed in to make or propose changes","ghDesktopPath":null,"isGitLfs":false,"onBranch":false,"shortPath":"da2bfd4","siteNavLoginPath":"/login?return_to=https%3A%2F%2Fgithub.com%2Fwebhdx%2FPicoBoot%2Fblob%2Fc4b2c29783d4c25820926488f9b635355bb1b0a3%2Fassets%2FWiring%2520diagram.psd","isCSV":false,"isRichtext":false,"toc":null,"lineInfo":{"truncatedLoc":null,"truncatedSloc":null},"mode":"file"},"image":false,"isCodeownersFile":null,"isPlain":false,"isValidLegacyIssueTemplate":false,"issueTemplate":null,"discussionTemplate":null,"language":null,"languageID":null,"large":true,"planSupportInfo":{"repoIsFork":null,"repoOwnedByCurrentUser":null,"requestFullPath":"/webhdx/PicoBoot/blob/c4b2c29783d4c25820926488f9b635355bb1b0a3/assets/Wiring%20diagram.psd","showFreeOrgGatedFeatureMessage":null,"showPlanSupportBanner":null,"upgradeDataAttributes":null,"upgradePath":null},"publishBannersInfo":{"dismissActionNoticePath":"/settings/dismiss-notice/publish_action_from_dockerfile","releasePath":"/webhdx/PicoBoot/releases/new?marketplace=true","showPublishActionBanner":false},"rawBlobUrl":"https://github.com/webhdx/PicoBoot/raw/c4b2c29783d4c25820926488f9b635355bb1b0a3/assets/Wiring%20diagram.psd","renderImageOrRaw":true,"richText":null,"renderedFileInfo":{"identityUUID":"5132869d-59da-4494-bbed-e967e1135e44","renderFileType":"psd","size":22992483},"shortPath":null,"symbolsEnabled":true,"tabSize":8,"topBannersInfo":{"overridingGlobalFundingFile":false,"globalPreferredFundingPath":null,"showInvalidCitationWarning":false,"citationHelpUrl":"https://docs.github.com/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/about-citation-files","actionsOnboardingTip":null},"truncated":true,"viewable":false,"workflowRedirectUrl":null,"symbols":null},"copilotInfo":null,"copilotAccessAllowed":false,"modelsAccessAllowed":false,"modelsRepoIntegrationEnabled":false,"csrf_tokens":{"/webhdx/PicoBoot/branches":{"post":"sgCvZ2BAUu4917UbNr8i_jrwrHYcsYC70_TbVfI3hk5kzFuioiqUWny9Zq3gOAQrrPJkdlLH5EZmPLvAVm9HwA"},"/repos/preferences":{"post":"mudwiQk4gjXn7ddC7r6q7RKDXPo4vvk0LGwpRbzAV0k8wGsepZ3PJcZOu0sDMk5JMPY_n6bfShA3pyNBp83kAA"}}},"title":"PicoBoot/assets/Wiring diagram.psd at c4b2c29783d4c25820926488f9b635355bb1b0a3 · webhdx/PicoBoot","appPayload":{"helpUrl":"https://docs.github.com","findFileWorkerPath":"/assets-cdn/worker/find-file-worker-7d7eb7c71814.js","findInFileWorkerPath":"/assets-cdn/worker/find-in-file-worker-1ae9fa256942.js","githubDevUrl":null,"enabled_features":{"code_nav_ui_events":false,"react_blob_overlay":false,"accessible_code_button":true,"github_models_repo_integration":false}}}</script>
   <div data-target="react-app.reactRoot"></div>
 </react-app>
 </turbo-frame>
