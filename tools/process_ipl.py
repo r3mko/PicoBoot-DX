@@ -71,7 +71,6 @@ def scramble(data):
 
     return data
 
-
 def flatten_dol(data):
     """
     Parse a .dol executable image and flatten it into a single contiguous memory image.
@@ -102,7 +101,6 @@ def flatten_dol(data):
     # Return entry, base address, and flattened image
     return header[56], dol_min, img
 
-
 def bytes_to_c_array(data):
     """
     Convert bytes into a list of formatted 32-bit big-endian hex literals
@@ -110,7 +108,6 @@ def bytes_to_c_array(data):
     """
     p_list = [data[i:i + 4] for i in range(0, len(data), 4)]
     return ["0x%08x" % int.from_bytes(b, byteorder='big', signed=False) for b in p_list]
-
 
 def generate_header_file(elements, executable, input_file, output_file, size):
     """
@@ -137,7 +134,6 @@ def generate_header_file(elements, executable, input_file, output_file, size):
 
     output += '\n};\n'
     return output
-
 
 def main():
     """

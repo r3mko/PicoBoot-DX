@@ -88,12 +88,12 @@ void main() {
     channel_config_set_dreq(&c, pio_get_dreq(pio, clocked_output_sm, true));
 
     dma_channel_configure(
-        chan,
-        &c,
-        &pio->txf[clocked_output_sm],
-        ipl,
-        count_of(ipl),
-        true // start immediately
+        chan,                           // DMA channel
+        &c,                             // Config
+        &pio->txf[clocked_output_sm],   // Dest: PIO TX FIFO
+        ipl,                            // Source: ipl array
+        count_of(ipl),                  // Number of words
+        true                            // Start immediately
     );
 
     // Start PIO state machines
