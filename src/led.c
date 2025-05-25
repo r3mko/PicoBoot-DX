@@ -28,11 +28,11 @@ void led_init(void) {
 #endif
 }
 
-void led_set(bool on) {
+void led_set(bool state) {
 #ifdef CYW43_WL_GPIO_LED_PIN
-    cyw43_arch_gpio_put(LED_PIN, on);
+    cyw43_arch_gpio_put(LED_PIN, state);
 #else
-    gpio_put(LED_PIN, on);
+    gpio_put(LED_PIN, state);
 #endif
 }
 

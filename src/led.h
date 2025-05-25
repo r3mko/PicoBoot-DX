@@ -12,7 +12,7 @@
 void led_init(void);
 
 // Turn the LED on or off
-void led_set(bool on);
+void led_set(bool state);
 
 // Blink the LED `count` times with on/off delays in ms
 void led_blink(uint count, uint on_ms, uint off_ms);
