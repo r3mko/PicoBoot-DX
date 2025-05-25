@@ -13,10 +13,12 @@ void on_transfer_program_init(PIO pio, uint sm, uint offset, uint clk_pin, uint 
     pio_gpio_init(pio, clk_pin);
     pio_gpio_init(pio, cs_pin);
 
+    // Set CS for SM JMP
     sm_config_set_jmp_pin(&c, cs_pin);
+    // Set CS to feed into SM ISR
     sm_config_set_in_pins(&c, cs_pin);
     
-    // Set CS pin as input
+    // Set CS as input
     pio_sm_set_consecutive_pindirs(pio, sm, cs_pin, 1, false);
 
     // Shift to right, autopull with threshold 32
@@ -37,7 +39,9 @@ void clocked_output_program_init(PIO pio, uint sm, uint offset, uint data_pin, u
 
     pio_gpio_init(pio, data_pin);
 
+    // Set CLK for SM JMP
     sm_config_set_jmp_pin(&c, clk_pin);
+    // Set CS to feed into SM ISR
     sm_config_set_in_pins(&c, cs_pin);
 
     // Out and Set pins have to overlap so we can make line floating (Set it as input)
@@ -48,6 +52,7 @@ void clocked_output_program_init(PIO pio, uint sm, uint offset, uint data_pin, u
     pio_sm_set_consecutive_pindirs(pio, sm, clk_pin, 1, false);
     pio_sm_set_consecutive_pindirs(pio, sm, cs_pin, 1, false);
 
+    // Set DATA as input
     pio_sm_set_consecutive_pindirs(pio, sm, data_pin, 1, false);
 
     // Shift to right, autopull with threshold 32
@@ -68,6 +73,6 @@ void pio_prepare_transfer(PIO pio, uint sm, uint32_t count, uint dest) {
     pio_sm_exec(pio, sm, pio_encode_pull(true, true));
     // ...then move from OSR into register X or Y
     pio_sm_exec(pio, sm, pio_encode_mov(dest, pio_osr));
-    // Kick off the shift-out
+    // Drain the 32-bit count from OSR (to null) and prime OSR for autopull of the payload
     pio_sm_exec(pio, sm, pio_encode_out(pio_null, 32));
 }

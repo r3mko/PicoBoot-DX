@@ -17,7 +17,9 @@
 
 void led_init(void) {
 #ifdef CYW43_WL_GPIO_LED_PIN
-    cyw43_arch_init();
+    if (cyw43_arch_init()) {
+        panic("cyw43_arch_init() failed");
+    }
     cyw43_arch_gpio_put(LED_PIN, true);
 #else
     gpio_init(LED_PIN);

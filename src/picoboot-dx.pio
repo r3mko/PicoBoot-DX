@@ -11,7 +11,7 @@
 start:
     wait 1 gpio CS_PIN          ; Wait for CS to go HIGH
     wait 0 gpio CS_PIN          ; Wait for CS to go LOW
-    jmp x-- start
+    jmp x-- start               ; Wait for 224 CS pulses
     irq set 0                   ; Set IRQ flag to start injecting payload
 
 next_transfer:
@@ -44,9 +44,7 @@ on_rising_edge:
 write_bit:
     out pins, 1                 ; Output single IPL bit
     jmp x-- on_rising_edge      ; Jump back to next clock pulse wait routine if there is more data to inject
-
     jmp !osre start             ; If there is more data in OSR, go back to start routine and wait for another transfer
-
     set pindirs 0               ; Leave data line floating so RTC-DOL can take over and load fonts etc.
 
 disable_chip:
