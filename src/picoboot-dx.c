@@ -57,7 +57,7 @@ void main() {
     on_transfer_program_init(pio, transfer_start_sm, transfer_start_offset, PIN_CLK, PIN_CS, PIN_DATA);
     // Wait for 224 CS pulses before firing the IRQ
     // this marks the boundary where the first 1 kB (1024 bytes) transfer is about to start
-    pio_prepare_transfer(pio, transfer_start_sm, 224, pio_x); 
+    pio_prepare_transfer(pio, transfer_start_sm, 224, pio_x);
 
     //
     // State Machine: Clocked Output
@@ -74,13 +74,17 @@ void main() {
     // using 8191 here because the PIO countdown is zero-based
     pio_prepare_transfer(pio, clocked_output_sm, 8191, pio_y);
 
-    // Set up DMA for reading IPL to PIO FIFO
+    // Set up DMA for reading IPL to PIO TX FIFO
     chan = dma_claim_unused_channel(true);
 
     dma_channel_config c = dma_channel_get_default_config(chan);
+    // Set transfer size to 32 bits
     channel_config_set_transfer_data_size(&c, DMA_SIZE_32);
+    // Read address increments (for array)
     channel_config_set_read_increment(&c, true);
+    // Write address fixed (TX FIFO register)
     channel_config_set_write_increment(&c, false);
+    // Use PIO TX FIFO as DMA trigger
     channel_config_set_dreq(&c, pio_get_dreq(pio, clocked_output_sm, true));
 
     dma_channel_configure(
@@ -100,7 +104,7 @@ void main() {
     led_init();
 
     // Blink fast while waiting
-    led_blink_while(dma_busy, 100, 100);
+    led_blink_while(dma_busy, 20, 20);
 
     // Reset clock to default
     set_sys_clock_khz((BOOST_CLOCK / 2), true);

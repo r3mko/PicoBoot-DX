@@ -36,7 +36,6 @@ void clocked_output_program_init(PIO pio, uint sm, uint offset, uint data_pin, u
 
     pio_gpio_init(pio, clk_pin);
     pio_gpio_init(pio, cs_pin);
-
     pio_gpio_init(pio, data_pin);
 
     // Set CLK for SM JMP
@@ -57,6 +56,7 @@ void clocked_output_program_init(PIO pio, uint sm, uint offset, uint data_pin, u
 
     // Shift to right, autopull with threshold 32
     sm_config_set_out_shift(&c, false, true, 32);
+    // Join the TX and RX FIFOs into a single 8-word TX FIFO, disabling RX
     sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX);
 
     // Run at full system clock
