@@ -31,7 +31,7 @@ void on_transfer_program_init(PIO pio, uint sm, uint offset, uint clk_pin, uint 
     pio_sm_init(pio, sm, offset, &c);
 }
 
-void clocked_output_program_init(PIO pio, uint sm, uint offset, uint data_pin, uint clk_pin, uint cs_pin) {
+void clocked_output_program_init(PIO pio, uint sm, uint offset, uint clk_pin, uint cs_pin, uint data_pin) {
     pio_sm_config c = clocked_output_program_get_default_config(offset);
 
     pio_gpio_init(pio, clk_pin);
