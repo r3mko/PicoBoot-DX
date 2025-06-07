@@ -3,8 +3,8 @@
  ;
  ; SPDX-License-Identifier: GPL-2.0-only
 
-.define PUBLIC CS_PIN      4    ; U10 chip select
-.define PUBLIC CLK_PIN     5    ; EXI clock signal
+.define PUBLIC CS_PIN 4         ; U10 chip select
+.define PUBLIC CLK_PIN 5        ; EXI clock signal
 
 .program on_transfer
 

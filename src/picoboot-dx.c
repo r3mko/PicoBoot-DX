@@ -17,11 +17,11 @@
 #include "ipl.h"
 #include "led.h"
 
-const uint PIN_CS = 4;              // U10 chip select
-const uint PIN_CLK = 5;             // EXI bus clock line
-const uint PIN_DATA = 6;            // Data pin used for output 
+const uint PIN_CS = 4;             // U10 chip select
+const uint PIN_CLK = 5;            // EXI bus clock line
+const uint PIN_DATA = 6;           // Data pin used for output 
 
-const uint BOOST_CLOCK = 250000;    // Set 250MHz clock to get more cycles. 
+const uint BOOST_CLOCK = 250000;   // Set 250MHz clock to get more cycles. 
 
 int chan;
 
@@ -74,13 +74,18 @@ void main() {
     // using 8191 here because the PIO countdown is zero-based
     pio_prepare_transfer(pio, clocked_output_sm, 8191, pio_y);
 
+    //
+    // Direct Memory Access: Channel Setup
+    //
     // Set up DMA for reading IPL to PIO TX FIFO
+    //
+
     chan = dma_claim_unused_channel(true);
 
     dma_channel_config c = dma_channel_get_default_config(chan);
     // Set transfer size to 32 bits
     channel_config_set_transfer_data_size(&c, DMA_SIZE_32);
-    // Read address increments (for array)
+    // Read address increments (for IPL array)
     channel_config_set_read_increment(&c, true);
     // Write address fixed (TX FIFO register)
     channel_config_set_write_increment(&c, false);
@@ -91,7 +96,7 @@ void main() {
         chan,                           // DMA channel
         &c,                             // Config
         &pio->txf[clocked_output_sm],   // Dest: PIO TX FIFO
-        ipl,                            // Source: ipl array
+        ipl,                            // Source: IPL array
         count_of(ipl),                  // Number of words
         true                            // Start immediately
     );
