@@ -6,7 +6,7 @@
 * CI now automatically builds on push, prerelease, and full release events
 * Smaller UF2 file (~140K) for Pico and Pico 2.
 
-
+# 
 # Original README:
 
 This is long awaited IPL replacement modchip for Nintendo GameCube.<br />

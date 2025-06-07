@@ -7,7 +7,7 @@
 #include "pio.h"
 #include "picoboot-dx.pio.h"
 
-void on_transfer_program_init(PIO pio, uint sm, uint offset, uint clk_pin, uint cs_pin, uint out_pin) {
+void on_transfer_program_init(PIO pio, uint sm, uint offset, uint clk_pin, uint cs_pin) {
     pio_sm_config c = on_transfer_program_get_default_config(offset);
 
     pio_gpio_init(pio, clk_pin);

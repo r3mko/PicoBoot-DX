@@ -54,7 +54,7 @@ void main() {
     uint transfer_start_sm = pio_claim_unused_sm(pio, true);
     uint transfer_start_offset = pio_add_program(pio, &on_transfer_program);
 
-    on_transfer_program_init(pio, transfer_start_sm, transfer_start_offset, PIN_CLK, PIN_CS, PIN_DATA);
+    on_transfer_program_init(pio, transfer_start_sm, transfer_start_offset, PIN_CLK, PIN_CS);
     // Wait for 224 CS pulses before firing the IRQ
     // this marks the boundary where the first 1 kB (1024 bytes) transfer is about to start
     pio_prepare_transfer(pio, transfer_start_sm, 224, pio_x);
