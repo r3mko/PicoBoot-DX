@@ -8,14 +8,6 @@ import math
 import struct
 import sys
 
-# Padding bytes added after the 0x700-byte header to align the payload
-payload_padding = [
-    0x81, 0x4a, 0xe6, 0xc8, 0x00, 0x04, 0xc5, 0x77, 
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-]
-
 def scramble(data):
     """
     Apply GameCube bootrom scrambling algorithm to the payload data.
@@ -99,7 +91,7 @@ def flatten_dol(data):
             img[start:start + size] = data[offset:offset + size]
 
     # Return entry, base address, and flattened image
-    return header[56], dol_min, img
+    return entry, dol_min, img
 
 def bytes_to_c_array(data):
     """
@@ -170,23 +162,22 @@ def main():
         print(f"Invalid entry point and base address ({hex(entry)}:{hex(load)})")
         return -1
 
-    # Build payload: 0x700-byte header + fixed padding + image
-    payload = bytearray(0x700) + bytearray(payload_padding) + img
-    payload_size = size + 0x20  # include DOL header (32 bytes)
+    # Build payload: 0x720-byte header + image
+    payload = bytearray(0x720) + img
+    img_size = size
 
     # Align payload size to the next 1K boundary if needed
-    if payload_size % 1024 != 0:
-        new_size_k = math.ceil(payload_size / 1024)
+    if img_size % 1024 != 0:
+        new_size_k = math.ceil(img_size / 1024)
         new_size = new_size_k * 1024
         print(f"Payload needs to be aligned to {new_size_k}K")
-        payload += bytearray(new_size - payload_size)
-        payload_size = new_size
+        payload += bytearray(new_size - img_size)
+        img_size = new_size
 
-    print(f"Output binary size: {payload_size} bytes ({payload_size // 1024}K)")
+    print(f"Output binary size: {img_size} bytes ({img_size // 1024}K)")
 
-    # Scramble payload, skipping the first 0x700 bytes (header/padding)
-    scrambled_payload = scramble(payload)[0x700:]
-    payload_size = len(scrambled_payload)
+    # Scramble payload, skipping the first 0x720 bytes (header)
+    scrambled_payload = scramble(payload)[0x720:]
 
     # Convert scrambled bytes into C array literals
     byte_groups = bytes_to_c_array(scrambled_payload)
