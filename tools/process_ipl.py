@@ -3,9 +3,8 @@
 # Based on dol2ipl.py from https://github.com/redolution/gekkoboot
 # Original source by 9ary, bootrom descrambler reversed by segher
 
-import math
-import struct
-import sys
+import math, struct, sys
+from typing import List
 
 def scramble(data):
     """
@@ -97,8 +96,22 @@ def bytes_to_c_array(data):
     Convert bytes into a list of formatted 32-bit big-endian hex literals
     for inclusion in a C source array.
     """
-    p_list = [data[i:i + 4] for i in range(0, len(data), 4)]
-    return ["0x%08x" % int.from_bytes(b, byteorder='big', signed=False) for b in p_list]
+    hex_values: List[str] = []
+
+    for offset in range(0, len(data), 4):
+        # Grab up to 4 bytes from the data
+        word_bytes = data[offset:offset + 4]
+        # Convert to unsigned int, big-endian
+        word_int = int.from_bytes(
+            word_bytes,
+            byteorder='big',
+            signed=False
+        )
+        # Format as hex digits
+        hex_literal = f"0x{word_int:08x}"
+        hex_values.append(hex_literal)
+
+    return hex_values
 
 def generate_header_file(byte_groups, executable, size):
     """
