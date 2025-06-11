@@ -138,12 +138,12 @@ def main():
     executable = sys.argv[1]
     output = sys.argv[2]
 
-    # Read the input executable into memory
-    with open(executable, "rb") as f:
-        exe = bytearray(f.read())
-
     if executable.endswith(".dol"):
-        entry, load, img = flatten_dol(exe)
+        # Read the input executable into memory
+        with open(executable, "rb") as f:
+            dol = bytearray(f.read())
+
+        entry, load, img = flatten_dol(dol)
         # Mask and set proper bits for entry and load addresses
         entry &= 0x017FFFFF
         entry |= 0x80000000
