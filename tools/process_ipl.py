@@ -3,7 +3,6 @@
 # Based on dol2ipl.py from https://github.com/redolution/gekkoboot
 # Original source by 9ary, bootrom descrambler reversed by segher
 
-from datetime import datetime
 import math
 import struct
 import sys
@@ -101,27 +100,23 @@ def bytes_to_c_array(data):
     p_list = [data[i:i + 4] for i in range(0, len(data), 4)]
     return ["0x%08x" % int.from_bytes(b, byteorder='big', signed=False) for b in p_list]
 
-def generate_header_file(elements, executable, input_file, output_file, size):
+def generate_header_file(byte_groups, executable, size):
     """
     Build a C header file string containing the scrambled payload as a uint32_t array.
-    Includes metadata comments (command, file, size, timestamp).
+    Includes metadata comments (file, size).
     """
     output = '#include <stdio.h>\n\n'
     output += '//\n'
-    output += f'// Command: {executable} {input_file} {output_file}\n'
-    output += '//\n'
-    output += f'// File: {input_file}, size: {size} bytes\n'
-    output += '//\n'
-    output += f'// File generated on {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}\n'
+    output += f'// File: {executable}, size: {size} bytes\n'
     output += '//\n\n'
     output += 'uint32_t __in_flash("ipl_data") ipl[]  = {\n\t'
 
     # Write array elements, 4 per line
-    for num, elem in enumerate(elements):
+    for num, elem in enumerate(byte_groups):
         if num > 0 and num % 4 == 0:
             output += '\n\t'
         output += elem
-        if num != len(elements) - 1:
+        if num != len(byte_groups) - 1:
             output += ', '
 
     output += '\n};\n'
@@ -182,11 +177,11 @@ def main():
     byte_groups = bytes_to_c_array(scrambled_img)
 
     # Generate full header file content
-    out = generate_header_file(byte_groups, sys.argv[0], executable, output, size)
+    h_file = generate_header_file(byte_groups, executable, size)
 
     # Write generated header to the output path
     with open(output, "w") as f:
-        f.write(out)
+        f.write(h_file)
 
 if __name__ == "__main__":
     sys.exit(main())
