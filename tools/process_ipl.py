@@ -162,26 +162,26 @@ def main():
         print(f"Invalid entry point and base address ({hex(entry)}:{hex(load)})")
         return -1
 
-    # Build payload: 0x720-byte header + image
-    payload = bytearray(0x720) + img
+    # Create: 0x720-byte header + image
+    hdr_img = bytearray(0x720) + img
     img_size = size
 
-    # Align payload size to the next 4-byte boundary if needed
+    # Align: image size to the next 4-byte boundary if needed
     align_size = 4    # bytes
     if img_size % align_size != 0:
         chunks = math.ceil(img_size / align_size)
         new_size = chunks * align_size
-        print(f"Payload needs to be aligned to {new_size} bytes ({chunks}×{align_size}B)")
-        payload += bytearray(new_size - img_size)
-        img_size = len(payload)
+        print(f"Image needs to be aligned to {new_size} bytes ({chunks}×{align_size}B)")
+        hdr_img += bytearray(new_size - img_size)
+        img_size = new_size
 
     print(f"Output binary size: {img_size} bytes ({img_size // 1024}K)")
 
-    # Scramble payload, skipping the first 0x720 bytes (header)
-    scrambled_payload = scramble(payload)[0x720:]
+    # Scramble: remove the first 0x720 bytes (header) after
+    scrambled_image = scramble(hdr_img)[0x720:]
 
     # Convert scrambled bytes into C array literals
-    byte_groups = bytes_to_c_array(scrambled_payload)
+    byte_groups = bytes_to_c_array(scrambled_image)
 
     # Generate full header file content
     out = generate_header_file(byte_groups, sys.argv[0], executable, output, size)
