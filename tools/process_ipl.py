@@ -164,24 +164,22 @@ def main():
 
     # Create: 0x720-byte header + image
     hdr_img = bytearray(0x720) + img
-    img_size = size
 
     # Align: image size to the next 4-byte boundary if needed
-    align_size = 4    # bytes
-    if img_size % align_size != 0:
-        chunks = math.ceil(img_size / align_size)
+    align_size = 4 # bytes
+    if size % align_size != 0:
+        chunks = math.ceil(size / align_size)
         new_size = chunks * align_size
         print(f"Image needs to be aligned to {new_size} bytes ({chunks}×{align_size}B)")
-        hdr_img += bytearray(new_size - img_size)
-        img_size = new_size
+        hdr_img += bytearray(new_size - size)
 
     # Scramble: remove the first 0x720 bytes (header) after
-    scrambled_image = scramble(hdr_img)[0x720:]
+    scrambled_img = scramble(hdr_img)[0x720:]
 
-    print(f"Output (scrambled) binary size: {len(scrambled_image)} bytes ({len(scrambled_image) // 1024}K)")
+    print(f"Output (scrambled) binary size: {len(scrambled_img)} bytes ({len(scrambled_img) // 1024}K)")
 
     # Convert scrambled bytes into C array literals
-    byte_groups = bytes_to_c_array(scrambled_image)
+    byte_groups = bytes_to_c_array(scrambled_img)
 
     # Generate full header file content
     out = generate_header_file(byte_groups, sys.argv[0], executable, output, size)
