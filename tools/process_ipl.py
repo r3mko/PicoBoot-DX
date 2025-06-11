@@ -175,10 +175,10 @@ def main():
         hdr_img += bytearray(new_size - img_size)
         img_size = new_size
 
-    print(f"Output binary size: {img_size} bytes ({img_size // 1024}K)")
-
     # Scramble: remove the first 0x720 bytes (header) after
     scrambled_image = scramble(hdr_img)[0x720:]
+
+    print(f"Output (scrambled) binary size: {len(scrambled_image)} bytes ({len(scrambled_image) // 1024}K)")
 
     # Convert scrambled bytes into C array literals
     byte_groups = bytes_to_c_array(scrambled_image)
