@@ -166,13 +166,14 @@ def main():
     payload = bytearray(0x720) + img
     img_size = size
 
-    # Align payload size to the next 1K boundary if needed
-    if img_size % 1024 != 0:
-        new_size_k = math.ceil(img_size / 1024)
-        new_size = new_size_k * 1024
-        print(f"Payload needs to be aligned to {new_size_k}K")
+    # Align payload size to the next 4-byte boundary if needed
+    align_size = 4    # bytes
+    if img_size % align_size != 0:
+        chunks = math.ceil(img_size / align_size)
+        new_size = chunks * align_size
+        print(f"Payload needs to be aligned to {new_size} bytes ({chunks}×{align_size}B)")
         payload += bytearray(new_size - img_size)
-        img_size = new_size
+        img_size = len(payload)
 
     print(f"Output binary size: {img_size} bytes ({img_size // 1024}K)")
 
