@@ -3,7 +3,7 @@
 # Based on dol2ipl.py from https://github.com/redolution/gekkoboot
 # Original source by 9ary, bootrom descrambler reversed by segher
 
-import math, struct, sys
+import math, struct, sys, argparse
 from typing import List
 
 def scramble(data):
@@ -68,6 +68,7 @@ def flatten_dol(data):
     """
     # DOL header consists of 64 big-endian 32-bit words
     header = struct.unpack(">64I", data[:256])
+
     offsets = header[:18]        # file offsets for each section
     addresses = header[18:36]    # load addresses for each section
     sizes = header[36:54]        # sizes for each section
@@ -122,7 +123,7 @@ def generate_header_file(byte_groups, executable, size):
     output += '//\n'
     output += f'// File: {executable}, size: {size} bytes\n'
     output += '//\n\n'
-    output += 'uint32_t __in_flash("ipl_data") ipl[]  = {\n\t'
+    output += 'uint32_t __in_flash("ipl_data") ipl[] = {\n\t'
 
     # Write array elements, 4 per line
     for num, elem in enumerate(byte_groups):
@@ -139,12 +140,10 @@ def main():
     """
     Main entry point: process .dol file, scramble payload, and output C header.
     """
-    if len(sys.argv) != 3:
-        print(f"Usage: {sys.argv[0]} <executable> <output>")
-        return -1
+    args = parse_args()
 
-    executable = sys.argv[1]
-    output = sys.argv[2]
+    executable = args.input
+    output = args.output
 
     if executable.endswith(".dol"):
         # Read the input executable into memory
@@ -195,6 +194,16 @@ def main():
     # Write generated header to the output path
     with open(output, "w") as f:
         f.write(h_file)
+
+def parse_args():
+    p = argparse.ArgumentParser(
+        description = "Convert a .dol executable into a scrambled C header file."
+    )
+
+    p.add_argument("input", help = "Path to the .dol executable")
+    p.add_argument("output", help = "Path to write the header (.h) file")
+
+    return p.parse_args()
 
 if __name__ == "__main__":
     sys.exit(main())
