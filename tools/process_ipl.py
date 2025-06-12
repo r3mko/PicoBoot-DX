@@ -120,11 +120,12 @@ def generate_header_file(byte_groups, executable, size):
     Includes metadata comments (file, size).
     """
     output = '#include <stdio.h>\n\n'
+    
     output += '//\n'
     output += f'// File: {executable}, size: {size} bytes\n'
     output += '//\n\n'
-    output += 'uint32_t __in_flash("ipl_data") ipl[] = {\n\t'
 
+    output += 'uint32_t __in_flash("ipl_data") ipl[] = {\n\t'
     # Write array elements, 4 per line
     for num, elem in enumerate(byte_groups):
         if num > 0 and num % 4 == 0:
@@ -132,8 +133,8 @@ def generate_header_file(byte_groups, executable, size):
         output += elem
         if num != len(byte_groups) - 1:
             output += ', '
-
     output += '\n};\n'
+
     return output
 
 def main():
