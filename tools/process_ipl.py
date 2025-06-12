@@ -77,8 +77,8 @@ def flatten_dol(data):
     entry = header[56]           # program entry point
 
     # Determine the address range that contains actual data
-    dol_min = min(a for a in addresses if a)
-    dol_max = max(a + s for a, s in zip(addresses, sizes))
+    dol_min = min(addr for addr in addresses if addr)
+    dol_max = max(addr + size for addr, size in zip(addresses, sizes))
 
     # Allocate a bytearray for the in-memory image
     img = bytearray(dol_max - dol_min)
@@ -105,7 +105,7 @@ def bytes_to_c_array(data):
         # Convert to unsigned int, big-endian
         word_int = int.from_bytes(
             word_bytes,
-            byteorder='big',
+            byteorder="big",
             signed=False
         )
         # Format as hex digits
@@ -119,21 +119,21 @@ def generate_header_file(byte_groups, executable, size):
     Build a C header file string containing the scrambled payload as a uint32_t array.
     Includes metadata comments (file, size).
     """
-    output = '#include <stdio.h>\n\n'
+    output = "#include <stdio.h>\n\n"
     
-    output += '//\n'
-    output += f'// File: {executable}, size: {size} bytes\n'
-    output += '//\n\n'
+    output += "//\n"
+    output += f"// File: {executable}, size: {size} bytes\n"
+    output += "//\n\n"
 
-    output += 'uint32_t __in_flash("ipl_data") ipl[] = {\n\t'
+    output += "uint32_t __in_flash(\"ipl_data\") ipl[] = {\n\t"
     # Write array elements, 4 per line
     for num, elem in enumerate(byte_groups):
         if num > 0 and num % 4 == 0:
-            output += '\n\t'
+            output += "\n\t"
         output += elem
         if num != len(byte_groups) - 1:
-            output += ', '
-    output += '\n};\n'
+            output += ", "
+    output += "\n};\n"
 
     return output
 
@@ -160,7 +160,7 @@ def main():
 
         print(f"Entry point:   0x{entry:08X}")
         print(f"Load address:  0x{load:08X}")
-        print(f"Image size:    {size} bytes ({size // 1024}K)")
+        print(f"Image size:    {size} bytes ({size // 1024}K)\n")
     else:
         print("Unknown input format")
         return -1
