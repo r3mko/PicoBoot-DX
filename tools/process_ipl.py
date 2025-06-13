@@ -170,21 +170,20 @@ def main():
         print(f"Invalid entry point and base address ({hex(entry)}:{hex(load)})")
         return -1
 
-    # Create: 0x3C-byte header + image
-    # (224 CS pulses ÷ 8 bits) + 32 pipeline bytes = 28 + 32 = 60
-    # = 0x3C
-    hdr_img = bytearray(0x3C) + img
+    # Create: 0x20-byte header + image
+    # 32 pipeline bytes = 0x20
+    hdr_img = bytearray(0x20) + img
 
     # Align: image size to the next 4-byte boundary if needed
     align_size = 4 # bytes
     if size % align_size != 0:
         chunks = math.ceil(size / align_size)
         new_size = chunks * align_size
-        print(f"Image needs to be aligned to {new_size} bytes ({chunks}×{align_size}B)")
+        print(f"Image needs to be aligned to {new_size} bytes ({chunks}x{align_size}B)")
         hdr_img += bytearray(new_size - size)
 
     # Scramble: remove the first 0x3C bytes (header) after
-    scrambled_img = scramble(hdr_img)[0x3C:]
+    scrambled_img = scramble(hdr_img)[0x20:]
 
     print(f"Output (scrambled) binary size: {len(scrambled_img)} bytes ({len(scrambled_img) // 1024}K)")
 
