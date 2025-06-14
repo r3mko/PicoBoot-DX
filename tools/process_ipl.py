@@ -181,7 +181,7 @@ def main():
     hdr_img = bytearray(0x700) + header + img
 
     # Align: image size to the next 4-byte boundary if needed
-    align_size = 4 # bytes
+    align_size = 1024 # bytes
     if size % align_size != 0:
         chunks = math.ceil(size / align_size)
         new_size = chunks * align_size
