@@ -185,7 +185,7 @@ def main():
         hdr_img += bytearray(new_size - size)
 
     # Scramble: remove the first 0x700 bytes (224 CS) after, but keep 0x20 bytes (pipeline flush)
-    scrambled_img = scramble(hdr_img)[0x720:]
+    scrambled_img = scramble(hdr_img)[0x700:]
 
     print(f"Output (scrambled) binary size: {len(scrambled_img)} bytes ({len(scrambled_img) // 1024}K)")
 
