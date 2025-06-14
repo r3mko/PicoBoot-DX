@@ -173,7 +173,8 @@ def main():
     # Create: 0x720-byte header + image
     # 224 CS pulses * 8 = 1792 = 0x700
     # 32 pipeline bytes = 0x20
-    hdr_img = bytearray(0x720) + img
+    #hdr_img = bytearray(0x720) + img
+    hdr_img = bytearray(0x20) + img
 
     # Align: image size to the next 4-byte boundary if needed
     align_size = 4 # bytes
@@ -184,7 +185,8 @@ def main():
         hdr_img += bytearray(new_size - size)
 
     # Scramble: remove the first 0x720 bytes (header) after
-    scrambled_img = scramble(hdr_img)[0x700:]
+    #scrambled_img = scramble(hdr_img)[0x700:]
+    scrambled_img = scramble(hdr_img)
 
     print(f"Output (scrambled) binary size: {len(scrambled_img)} bytes ({len(scrambled_img) // 1024}K)")
 
