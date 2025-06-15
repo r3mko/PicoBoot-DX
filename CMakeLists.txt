@@ -25,7 +25,7 @@ pico_generate_pio_header(picoboot-dx
 
 pico_set_program_name(picoboot-dx "picoboot-dx")
 pico_set_program_description(picoboot-dx "RP2040/RP2350 based modchip for the Nintendo GameCube")
-pico_set_program_version(picoboot-dx "0.7")
+pico_set_program_version(picoboot-dx "0.8")
 pico_set_program_url(picoboot-dx "https://github.com/r3mko/PicoBoot-DX")
 
 if(NOT PICO_CYW43_SUPPORTED)
