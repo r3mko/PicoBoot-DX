@@ -175,8 +175,9 @@ def main():
     # 32 pipeline flush bytes = 0x20
     hdr_img = bytearray(0x720) + img
 
-    # Align: image size to the next 4-byte boundary if needed
-    align_size = 4 # bytes
+    # Align: image size to the next 1K boundary if needed
+    size += 0x20
+    align_size = 1024 # bytes
     if size % align_size != 0:
         chunks = math.ceil(size / align_size)
         new_size = chunks * align_size
