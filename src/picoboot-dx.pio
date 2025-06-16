@@ -34,8 +34,7 @@ wait_bit:
     jmp x-- wait_bit            ; Skip past address bytes
     mov x, y                    ; Copy y value to x, it represents number of bits in the transfer
     set pindirs 1               ; Set data line as output
-    out pins, 1                 ; Output single IPL bit
-    jmp x-- on_rising_edge      ; Jump back to next clock pulse wait routine
+    jmp write_bit               ; Output first IPL bit from OSR
 
 on_rising_edge:
     wait 0 gpio CLK_PIN         ; Wait until rising edge on CLK line
