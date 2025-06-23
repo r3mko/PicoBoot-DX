@@ -109,7 +109,7 @@ def bytes_to_c_array(data):
             signed=False
         )
         # Format as hex digits
-        hex_literal = f"0x{word_int:08x}"
+        hex_literal = f"0x{word_int:08X}"
         hex_values.append(hex_literal)
 
     return hex_values
@@ -167,7 +167,7 @@ def main():
 
     # Validate against expected entry and base addresses
     if entry != 0x81300000 or load != 0x01300000:
-        print(f"Invalid entry point and base address ({hex(entry)}:{hex(load)})")
+        print(f"Invalid entry point and base address (0x{entry:08X}:0x{load:08X})")
         return -1
 
     # Create: 0x720-byte header + image
