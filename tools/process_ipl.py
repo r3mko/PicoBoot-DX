@@ -199,6 +199,8 @@ def main():
     with open(output, "w") as f:
         f.write(h_file)
 
+    print(f"Successfully converted DOL file to C header file at '{output}'")
+
 def parse_args():
     p = argparse.ArgumentParser(
         description = "Convert a .dol executable into a scrambled C header file."
