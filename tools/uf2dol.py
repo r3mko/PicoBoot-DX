@@ -119,13 +119,13 @@ def extract_dol_from_uf2(input_uf2, output_dol):
     print("UF2 File Information:")
     print(f"  Block count:          {len(block_addresses)}")
     print(f"  Address range:        0x{min(block_addresses):08X} - 0x{max(block_addresses) + block_sizes[-1]:08X}")
-    print(f"  Extracted firmware:   {len(binary_data)} bytes ({len(binary_data) // 1024}K)")
-    print(f"  Image size:           {len(scrambled_data)} bytes ({len(scrambled_data) // 1024}K)\n")
+    print(f"  Extracted firmware:   {len(binary_data)} bytes ({len(binary_data) / 1024:.1f}K)")
+    print(f"  Image size:           {len(scrambled_data)} bytes ({len(scrambled_data) / 1024:.1f}K)\n")
 
     print("DOL Output Information:")
     print(f"  Entry point:          0x{DOL_ENTRY_ADDRESS:08X}")
     print(f"  Load address:         0x{DOL_LOAD_ADDRESS:08X}")
-    print(f"  Image size:           {len(descrambled_data)} bytes ({len(descrambled_data) // 1024}K)\n")
+    print(f"  Image size:           {len(descrambled_data)} bytes ({len(descrambled_data) / 1024:.1f}K)\n")
 
     print(f"Successfully converted UF2 file to DOL format at '{output_dol}'")
 
