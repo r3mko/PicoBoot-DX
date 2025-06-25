@@ -160,7 +160,7 @@ def main():
 
         print(f"Entry point:   0x{entry:08X}")
         print(f"Load address:  0x{load:08X}")
-        print(f"Image size:    {size} bytes ({size // 1024}K)\n")
+        print(f"Image size:    {size} bytes ({size / 1024:.1f}K)\n")
     else:
         print("Unknown input format")
         return -1
@@ -187,7 +187,7 @@ def main():
     # Scramble: remove the first 0x700 bytes (224 CS) after, but keep 0x20 bytes (pipeline flush)
     scrambled_img = scramble(hdr_img)[0x700:]
 
-    print(f"Output (scrambled) binary size: {len(scrambled_img)} bytes ({len(scrambled_img) // 1024}K)")
+    print(f"Output (scrambled) binary size: {len(scrambled_img)} bytes ({len(scrambled_img) / 1024:.1f}K)")
 
     # Convert scrambled bytes into C array literals
     byte_groups = bytes_to_c_array(scrambled_img)
