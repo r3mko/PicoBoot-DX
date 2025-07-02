@@ -16,6 +16,12 @@
 #include "picoboot-dx.pio.h"
 #include "ipl.h"
 #include "led.h"
+#include "endian.h"
+
+#define PAYLOAD_INVALID SIZE_MAX
+
+extern const uint32_t flash_payload[];
+extern const uint32_t flash_payload_end[];
 
 const uint PIN_CS = 4;             // U10 chip select
 const uint PIN_CLK = 5;            // EXI bus clock line
@@ -28,6 +34,42 @@ int chan;
 bool dma_busy(void) {
     // Wrap the Pico SDK call so we can pass it to led_blink_while()
     return dma_channel_is_busy(chan);
+}
+
+// Validate payload stored in flash.
+// The payload must contain a (big-endian) header and footer with the following layout:
+//   [0] = magic 0 ("IPLB")
+//   [1] = magic 1 ("OOT ")
+//   [2] = size of payload in bytes
+//   ...payload data...
+//   [word_count - 1] = magic 2 ("PICO")
+size_t validate_payload(void) {
+    const uint32_t *p = flash_payload;
+
+    if (BigEndian32(p[0]) != 0x49504C42 ||   // "IPLB"
+        BigEndian32(p[1]) != 0x4F4F5420) {   // "OOT "
+        return PAYLOAD_INVALID;
+    }
+
+    uint32_t raw_size_bytes = BigEndian32(p[2]);
+
+    if (raw_size_bytes == 0) {
+        return PAYLOAD_INVALID;
+    }
+
+    size_t word_count = raw_size_bytes / sizeof(p[0]);
+    const size_t alignment = 1024 / sizeof(p[0]);
+    const size_t word_count_aligned = (word_count + alignment - 1) / alignment * alignment;
+
+    if (&p[word_count_aligned] > flash_payload_end) {
+        return PAYLOAD_INVALID;
+    }
+
+    if (BigEndian32(p[word_count - 1]) != 0x5049434F) {   // "PICO"
+        return PAYLOAD_INVALID;
+    }
+
+    return word_count_aligned;
 }
 
 void main() {
@@ -92,12 +134,26 @@ void main() {
     // Use PIO TX FIFO as DMA trigger
     channel_config_set_dreq(&c, pio_get_dreq(pio, clocked_output_sm, true));
 
+    // Determine which payload to use: flash or default IPL.
+    // If valid flash payload is found, use it and enable byte-swap for big-endian format.
+    // Otherwise, default to built-in IPL array (already in correct byte order).
+    size_t payload_word_count = validate_payload();
+    const uint32_t *payload;
+
+    if (payload_word_count != PAYLOAD_INVALID) {
+        payload = flash_payload;
+        channel_config_set_bswap(&c, true);
+    } else {
+        payload = ipl;
+        payload_word_count = count_of(ipl);
+    }
+
     dma_channel_configure(
         chan,                           // DMA channel
         &c,                             // Config
         &pio->txf[clocked_output_sm],   // Dest: PIO TX FIFO
-        ipl,                            // Source: IPL array
-        count_of(ipl),                  // Number of words
+        payload,                        // Source: IPL array or flash_payload
+        payload_word_count,             // Number of words
         true                            // Start immediately
     );
 

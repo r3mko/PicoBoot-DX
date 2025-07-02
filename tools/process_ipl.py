@@ -125,7 +125,7 @@ def generate_header_file(byte_groups, executable, size):
     output += f"// File: {executable}, size: {size} bytes\n"
     output += "//\n\n"
 
-    output += "uint32_t __in_flash(\"ipl_data\") ipl[] = {\n\t"
+    output += "const uint32_t __in_flash(\"ipl_data\") ipl[] = {\n\t"
     # Write array elements, 4 per line
     for num, elem in enumerate(byte_groups):
         if num > 0 and num % 4 == 0:
