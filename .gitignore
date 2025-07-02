@@ -41,3 +41,4 @@ pico_flash_region.ld
 !/src/pio.h
 !/src/led.c
 !/src/led.h
+!/src/endian.h
