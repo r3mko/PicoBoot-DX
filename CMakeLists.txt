@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 include(pico_sdk_2_import.cmake)
 
 project(picoboot-dx 
-    C CXX ASM
+    LANGUAGES C CXX ASM
 )
 
 # Initialise the Raspberry Pi Pico SDK
@@ -33,6 +33,8 @@ if(NOT PICO_CYW43_SUPPORTED)
         copy_to_ram
     )
 endif()
+
+target_link_options(pico_standard_link INTERFACE "LINKER:--script=${CMAKE_CURRENT_LIST_DIR}/flash.ld")
 
 pico_enable_stdio_uart(picoboot-dx 0)
 pico_enable_stdio_usb(picoboot-dx 1)
