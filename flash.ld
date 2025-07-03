@@ -7,8 +7,5 @@ MEMORY
     PAYLOAD(r) : ORIGIN = ORIGIN(FLASH) + LENGTH(FLASH), LENGTH = FLASH_SIZE - APP_SIZE
 }
 
-SECTIONS
-{
-    PROVIDE(flash_payload     = ORIGIN(PAYLOAD));
-    PROVIDE(flash_payload_end = ORIGIN(PAYLOAD) + LENGTH(PAYLOAD));
-}
+flash_payload     = ORIGIN(PAYLOAD);
+flash_payload_end = ORIGIN(PAYLOAD) + LENGTH(PAYLOAD);

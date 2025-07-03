@@ -3,9 +3,6 @@ cmake_minimum_required(VERSION 3.13...3.31)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
-# Use custom memory layout file with default SDK linker script
-set(PICO_CUSTOM_LINKER_SCRIPT_MEMMAP ${CMAKE_CURRENT_LIST_DIR}/flash.ld)
-
 # Pull in Raspberry Pi Pico SDK 2 (must be before project)
 include(pico_sdk_2_import.cmake)
 
@@ -57,5 +54,9 @@ if(PICO_CYW43_SUPPORTED)
         pico_cyw43_arch_none
     )
 endif()
+
+target_link_options(pico_standard_link INTERFACE
+    "LINKER:--script=${CMAKE_CURRENT_LIST_DIR}/flash.ld"
+)
 
 pico_add_extra_outputs(picoboot-dx)
