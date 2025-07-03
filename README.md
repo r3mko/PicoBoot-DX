@@ -2,10 +2,14 @@
 
 # PicoBoot-DX
 
+PicoBoot-DX is a drop-in replacement for the original PicoBoot.
+It’s open source, lightweight, and now compatible with all Raspberry Pi Pico variants
+and compatible with the original PicoBoot payloads.
+
 * Supports all Pico boards: Pico, Pico W, Pico 2, and Pico 2 W
-* It includes the latest gekkoboot
-* Supports PicoBoot payloads: gekkoboot_pico.uf2, swiss_rXXXX.uf2, ...
-* Smaller UF2 file (~140K) for Pico and Pico 2
+* Bundled with the latest [gekkoboot](https://github.com/redolution/gekkoboot)
+* Compatible with PicoBoot payloads: gekkoboot_pico.uf2, swiss_rXXXX.uf2, ...
+* Compact UF2 size (~140K) for Pico and Pico 2
 
 # 
 # Original README:
