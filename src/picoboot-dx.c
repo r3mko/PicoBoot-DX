@@ -23,17 +23,17 @@
 extern const uint32_t flash_payload[];
 extern const uint32_t flash_payload_end[];
 
-const uint PIN_CS = 4;             // U10 chip select
-const uint PIN_CLK = 5;            // EXI bus clock line
-const uint PIN_DATA = 6;           // Data pin used for output 
+static const uint PIN_CS = 4;             // U10 chip select
+static const uint PIN_CLK = 5;            // EXI bus clock line
+static const uint PIN_DATA = 6;           // Data pin used for output 
 
-const uint BOOST_CLOCK = 250000;   // Set 250MHz clock to get more cycles. 
+static const uint BOOST_CLOCK = 250000;   // Set 250MHz clock to get more cycles. 
 
-int chan;
+static int dma_chan;
 
-bool dma_busy(void) {
+static bool dma_busy(void) {
     // Wrap the Pico SDK call so we can pass it to led_blink_while()
-    return dma_channel_is_busy(chan);
+    return dma_channel_is_busy(dma_chan);
 }
 
 // Validate payload stored in flash.
@@ -43,7 +43,7 @@ bool dma_busy(void) {
 //   [2] = size of payload in bytes
 //   ...payload data...
 //   [word_count - 1] = magic 2 ("PICO")
-size_t validate_payload(void) {
+static size_t validate_payload(void) {
     const uint32_t *p = flash_payload;
 
     if (BigEndian32(p[0]) != 0x49504C42 ||   // "IPLB"
@@ -57,8 +57,8 @@ size_t validate_payload(void) {
         return PAYLOAD_INVALID;
     }
 
-    size_t word_count = raw_size_bytes / sizeof(p[0]);
-    const size_t alignment = 1024 / sizeof(p[0]);
+    const size_t word_count = raw_size_bytes / sizeof(*p);
+    const size_t alignment = 1024 / sizeof(*p);
     const size_t word_count_aligned = (word_count + alignment - 1) / alignment * alignment;
 
     if (&p[word_count_aligned] > flash_payload_end) {
@@ -84,7 +84,7 @@ void main() {
     gpio_set_slew_rate(PIN_DATA, GPIO_SLEW_RATE_FAST);
     gpio_set_drive_strength(PIN_DATA, GPIO_DRIVE_STRENGTH_8MA);
 
-    PIO pio = pio0;
+    const PIO pio = pio0;
 
     //
     // State Machine: Transfer Start
@@ -122,9 +122,9 @@ void main() {
     // Set up DMA for reading IPL to PIO TX FIFO
     //
 
-    chan = dma_claim_unused_channel(true);
+    dma_chan = dma_claim_unused_channel(true);
 
-    dma_channel_config c = dma_channel_get_default_config(chan);
+    dma_channel_config c = dma_channel_get_default_config(dma_chan);
     // Set transfer size to 32 bits
     channel_config_set_transfer_data_size(&c, DMA_SIZE_32);
     // Read address increments (for IPL array)
@@ -149,7 +149,7 @@ void main() {
     }
 
     dma_channel_configure(
-        chan,                           // DMA channel
+        dma_chan,                       // DMA channel
         &c,                             // Config
         &pio->txf[clocked_output_sm],   // Dest: PIO TX FIFO
         payload,                        // Source: IPL array or flash_payload

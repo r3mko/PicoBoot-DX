@@ -3,9 +3,9 @@
 # PicoBoot-DX
 
 * Supports all Pico boards: Pico, Pico W, Pico 2, and Pico 2 W
-* CI now automatically builds on push, prerelease, and full release events
+* It includes the latest gekkoboot
+* Supports PicoBoot payloads: gekkoboot_pico.uf2, swiss_rXXXX.uf2, ...
 * Smaller UF2 file (~140K) for Pico and Pico 2
-* Support PicoBoot payloads (gekkoboot_pico.uf2, swiss_rXXXX.uf2, ...)
 
 # 
 # Original README:
