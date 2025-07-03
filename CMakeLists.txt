@@ -23,7 +23,7 @@ pico_generate_pio_header(picoboot-dx
     ${CMAKE_CURRENT_LIST_DIR}/src/picoboot-dx.pio
 )
 
-target_link_options(picoboot-dx PRIVATE
+target_link_options(pico_standard_link INTERFACE
     "LINKER:--script=${CMAKE_CURRENT_LIST_DIR}/flash.ld"
 )
 
