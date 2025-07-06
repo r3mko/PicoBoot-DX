@@ -151,23 +151,27 @@ def main():
         with open(executable, "rb") as f:
             dol = bytearray(f.read())
 
-        entry, load, img = flatten_dol(dol)
-        # Mask and set proper bits for entry and load addresses
+        entry, base, img = flatten_dol(dol)
+
+        load = base
+        # Mask and set proper bits for entry and base addresses
         entry &= 0x017FFFFF
         entry |= 0x80000000
-        load &= 0x017FFFFF
+        base &= 0x017FFFFF
+
         size = len(img)
 
-        print(f"Entry point:   0x{entry:08X}")
         print(f"Load address:  0x{load:08X}")
+        print(f"Entry point:   0x{entry:08X}")
+        print(f"Base address:  0x{base:08X}")
         print(f"Image size:    {size} bytes ({size / 1024:.1f}K)\n")
     else:
         print("Unknown input format")
         return -1
 
     # Validate against expected entry and base addresses
-    if entry != 0x81300000 or load != 0x01300000:
-        print(f"Invalid entry point and base address (0x{entry:08X}:0x{load:08X})")
+    if entry != 0x81300000 or base != 0x01300000:
+        print(f"Invalid entry point and base address (0x{entry:08X}:0x{base:08X})")
         return -1
 
     # Create: 0x720-byte header + image
@@ -181,13 +185,13 @@ def main():
     if size % align_size != 0:
         chunks = math.ceil(size / align_size)
         new_size = chunks * align_size
-        print(f"Image needs to be aligned to {new_size} bytes ({chunks}x{align_size}B)")
+        print(f"Image needs to be aligned to:   {new_size} bytes ({chunks}x{align_size}B)")
         hdr_img += bytearray(new_size - size)
 
     # Scramble: remove the first 0x700 bytes (224 CS) after, but keep 0x20 bytes (pipeline flush)
     scrambled_img = scramble(hdr_img)[0x700:]
 
-    print(f"Output (scrambled) binary size: {len(scrambled_img)} bytes ({len(scrambled_img) / 1024:.1f}K)")
+    print(f"Output (scrambled) binary size: {len(scrambled_img)} bytes ({len(scrambled_img) / 1024:.1f}K)\n")
 
     # Convert scrambled bytes into C array literals
     byte_groups = bytes_to_c_array(scrambled_img)

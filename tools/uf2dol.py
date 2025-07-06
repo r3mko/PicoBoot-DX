@@ -12,7 +12,7 @@ UF2_MAGIC_END = 0x0AB16F30
 
 # Default memory addresses and offsets for DOL files
 DOL_FILE_OFFSET = 0x100
-DOL_LOAD_ADDRESS = 0x01300000
+DOL_LOAD_ADDRESS = 0x81300000
 DOL_ENTRY_ADDRESS = 0x81300000
 
 # Header marker for validation
@@ -123,8 +123,8 @@ def extract_dol_from_uf2(input_uf2, output_dol):
     print(f"  Image size:           {len(scrambled_data)} bytes ({len(scrambled_data) / 1024:.1f}K)\n")
 
     print("DOL Output Information:")
-    print(f"  Entry point:          0x{DOL_ENTRY_ADDRESS:08X}")
     print(f"  Load address:         0x{DOL_LOAD_ADDRESS:08X}")
+    print(f"  Entry point:          0x{DOL_ENTRY_ADDRESS:08X}")
     print(f"  Image size:           {len(descrambled_data)} bytes ({len(descrambled_data) / 1024:.1f}K)\n")
 
     print(f"Successfully converted UF2 file to DOL format at '{output_dol}'")
