@@ -151,12 +151,12 @@ def main():
         with open(executable, "rb") as f:
             dol = bytearray(f.read())
 
-        entry, base, img = flatten_dol(dol)
+        entry, load, img = flatten_dol(dol)
 
-        load = base
         # Mask and set proper bits for entry and base addresses
         entry &= 0x017FFFFF
         entry |= 0x80000000
+        base = load
         base &= 0x017FFFFF
 
         size = len(img)
