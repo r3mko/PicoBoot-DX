@@ -64,7 +64,7 @@ def scramble(data):
 def flatten_dol(data):
     """
     Parse a .dol executable image and flatten it into a single contiguous memory image.
-    Returns (entry_point, base_load_address, flattened_image_bytes).
+    Returns (base_load_address, entry_point, flattened_image_bytes).
     """
     # DOL header consists of 64 big-endian 32-bit words
     header = struct.unpack(">64I", data[:256])
@@ -89,8 +89,8 @@ def flatten_dol(data):
             start = address - dol_min
             img[start:start + size] = data[offset:offset + size]
 
-    # Return entry, base address, and flattened image
-    return entry, dol_min, img
+    # Return base address, entry point, and flattened image
+    return dol_min, entry, img
 
 def bytes_to_c_array(data):
     """
@@ -151,13 +151,13 @@ def main():
         with open(executable, "rb") as f:
             dol = bytearray(f.read())
 
-        entry, load, img = flatten_dol(dol)
+        load, entry, img = flatten_dol(dol)
 
         # Mask and set proper bits for entry and base addresses
-        entry &= 0x017FFFFF
-        entry |= 0x80000000
         base = load
         base &= 0x017FFFFF
+        entry &= 0x017FFFFF
+        entry |= 0x80000000
 
         size = len(img)
 
