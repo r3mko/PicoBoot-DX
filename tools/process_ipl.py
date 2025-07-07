@@ -171,7 +171,7 @@ def main():
 
     # Validate against expected entry and base addresses
     if entry != 0x81300000 or base != 0x01300000:
-        print(f"Invalid entry point and base address (0x{entry:08X}:0x{base:08X})")
+        print(f"Invalid entry point or base address: expected 0x81300000 / 0x01300000")
         return -1
 
     # Create: 0x720-byte header + image
