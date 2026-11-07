@@ -94,6 +94,8 @@ def flatten_dol(data):
     # Determine the address range that contains actual data
     dol_min = min(addr for addr in addresses if addr)
     dol_max = max(addr + size for addr, size in zip(addresses, sizes))
+    if dol_max - dol_min > 0x01800000:
+        raise ValueError(f"DOL sections span 0x{dol_max - dol_min:X} bytes, more than the 24 MB of GameCube main memory")
 
     # Allocate a bytearray for the in-memory image
     img = bytearray(dol_max - dol_min)
@@ -134,10 +136,10 @@ def generate_header_file(byte_groups, executable, size):
     Build a C header file string containing the scrambled payload as a uint32_t array.
     Includes metadata comments (file, size).
     """
-    output = "#include <stdio.h>\n\n"
+    output = "#include <stdint.h>\n#include \"pico.h\"\n\n"
     
     output += "//\n"
-    output += f"// File: {executable}, size: {size} bytes\n"
+    output += f"// File: {executable}, image size: {size} bytes, scrambled size: {len(byte_groups) * 4} bytes\n"
     output += "//\n\n"
 
     output += "const uint32_t __in_flash(\"ipl_data\") ipl[] = {\n\t"
@@ -216,7 +218,7 @@ def main():
     byte_groups = bytes_to_c_array(scrambled_img)
 
     # Generate full header file content
-    h_file = generate_header_file(byte_groups, executable, size)
+    h_file = generate_header_file(byte_groups, executable, len(img))
 
     # Write generated header to the output path
     with open(output, "w") as f:
