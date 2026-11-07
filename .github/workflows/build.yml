@@ -3,6 +3,16 @@ name: Build PicoBoot-DX
 on: [push]
 
 jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Run tests
+        run: python3 -m unittest discover -s tests -v
+
   build:
     runs-on: ubuntu-latest
 

@@ -9,6 +9,9 @@ Thumbs.db
 *~
 *.swp
 
+# ==== Python ====
+__pycache__/
+
 # ==== Dependencies ====
 /_deps/
 
