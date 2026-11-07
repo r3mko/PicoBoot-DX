@@ -6,6 +6,10 @@
 import argparse, math, struct, sys
 from typing import List
 
+# Expected entry point and base address of an IPL payload
+EXPECTED_ENTRY = 0x81300000
+EXPECTED_BASE = 0x01300000
+
 def scramble(data):
     """
     Apply GameCube bootrom scrambling algorithm to the payload data.
@@ -67,6 +71,8 @@ def flatten_dol(data):
     Returns (base_load_address, entry_point, flattened_image_bytes).
     """
     # DOL header consists of 64 big-endian 32-bit words
+    if len(data) < 256:
+        raise ValueError(f"File is {len(data)} bytes, smaller than a DOL header (256 bytes)")
     header = struct.unpack(">64I", data[:256])
 
     offsets = header[:18]        # file offsets for each section
@@ -75,6 +81,15 @@ def flatten_dol(data):
     bss_address = header[54]     # start of BSS segment (uninitialized)
     bss_size = header[55]        # size of BSS segment
     entry = header[56]           # program entry point
+
+    # Check that every section with data has a load address and lies within the file
+    if not any(sizes):
+        raise ValueError("DOL contains no sections")
+    for num, (offset, address, size) in enumerate(zip(offsets, addresses, sizes)):
+        if size > 0 and address == 0:
+            raise ValueError(f"Section {num} has data but no load address")
+        if size > 0 and offset + size > len(data):
+            raise ValueError(f"Section {num} ends at 0x{offset + size:X}, past the end of the file (0x{len(data):X} bytes), file truncated?")
 
     # Determine the address range that contains actual data
     dol_min = min(addr for addr in addresses if addr)
@@ -148,10 +163,14 @@ def main():
 
     if executable.endswith(".dol"):
         # Read the input executable into memory
-        with open(executable, "rb") as f:
-            dol = bytearray(f.read())
+        try:
+            with open(executable, "rb") as f:
+                dol = bytearray(f.read())
 
-        load, entry, img = flatten_dol(dol)
+            load, entry, img = flatten_dol(dol)
+        except (ValueError, OSError) as e:
+            print(f"Error: {e}", file=sys.stderr)
+            return -1
 
         # Mask and set proper bits for entry and base addresses
         base = load
@@ -166,12 +185,12 @@ def main():
         print(f"Base address:  0x{base:08X}")
         print(f"Image size:    {size} bytes ({size / 1024:.1f}K)\n")
     else:
-        print("Unknown input format")
+        print("Error: Unknown input format, expected a .dol file", file=sys.stderr)
         return -1
 
     # Validate against expected entry and base addresses
-    if entry != 0x81300000 or base != 0x01300000:
-        print(f"Invalid entry point or base address: expected 0x81300000 / 0x01300000")
+    if entry != EXPECTED_ENTRY or base != EXPECTED_BASE:
+        print(f"Error: Invalid entry point or base address: 0x{entry:08X} / 0x{base:08X}, expected 0x{EXPECTED_ENTRY:08X} / 0x{EXPECTED_BASE:08X}", file=sys.stderr)
         return -1
 
     # Create: 0x720-byte header + image
