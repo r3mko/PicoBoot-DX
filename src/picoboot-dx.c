@@ -53,7 +53,9 @@ static size_t validate_payload(void) {
 
     uint32_t raw_size_bytes = BigEndian32(p[2]);
 
-    if (raw_size_bytes == 0) {
+    // Size includes the 32-byte header and 4-byte footer, and must fit in the payload region
+    if (raw_size_bytes < 36 ||
+        raw_size_bytes > (uintptr_t)flash_payload_end - (uintptr_t)flash_payload) {
         return PAYLOAD_INVALID;
     }
 
