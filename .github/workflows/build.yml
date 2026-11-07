@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Run tests
         run: python3 -m unittest discover -s tests -v
@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install deps
         run: |
@@ -81,7 +81,7 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_pio_programs.py' -v
 
       - name: Upload UF2 for ${{ matrix.board }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: picoboot-dx-uf2-${{ matrix.board }}
           path: build-${{ matrix.board }}/picoboot-dx.uf2

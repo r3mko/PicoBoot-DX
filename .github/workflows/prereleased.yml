@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install deps
         run: |
@@ -65,7 +65,7 @@ jobs:
         run: cmake --build build-${{ matrix.board }} --parallel
 
       - name: Upload UF2 for ${{ matrix.board }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: picoboot-dx-uf2-${{ matrix.board }}
           path: build-${{ matrix.board }}/picoboot-dx.uf2
@@ -76,6 +76,6 @@ jobs:
 
       - name: Release UF2 asset
         if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: build-${{ matrix.board }}/picoboot-dx-${{ matrix.board }}.uf2
