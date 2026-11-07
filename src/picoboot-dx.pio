@@ -46,5 +46,5 @@ write_bit:
     jmp !osre start             ; If there is more data in OSR, go back to start routine and wait for another transfer
     set pindirs 0               ; Leave data line floating so RTC-DOL can take over and load fonts etc.
 
-disable_chip:
+public disable_chip:
     jmp disable_chip            ; Stay in the loop forever until power cycle

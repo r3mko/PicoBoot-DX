@@ -167,6 +167,12 @@ void main() {
     // Blink fast while waiting
     led_blink_while(dma_busy, 20, 20);
 
+    // The DMA is done once the last word is in the PIO FIFO, wait until the PIO
+    // has also shifted it out and released the data line (disable_chip)
+    while (pio_sm_get_pc(pio, clocked_output_sm) != clocked_output_offset + clocked_output_offset_disable_chip) {
+        tight_loop_contents();
+    }
+
     // Reset clock to default
     set_sys_clock_khz((BOOST_CLOCK / 2), true);
     
