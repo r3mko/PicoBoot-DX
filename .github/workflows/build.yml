@@ -72,6 +72,9 @@ jobs:
       - name: Build ${{ matrix.board }}
         run: cmake --build build-${{ matrix.board }} --parallel
 
+      - name: Check memory layout for ${{ matrix.board }}
+        run: python3 tests/check_layout.py build-${{ matrix.board }}/picoboot-dx.elf
+
       - name: Upload UF2 for ${{ matrix.board }}
         uses: actions/upload-artifact@v4
         with:
