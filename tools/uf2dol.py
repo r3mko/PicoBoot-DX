@@ -15,8 +15,9 @@ DOL_FILE_OFFSET = 0x100
 DOL_LOAD_ADDRESS = 0x81300000
 DOL_ENTRY_ADDRESS = 0x81300000
 
-# Header marker for validation
+# Header and footer markers for validation
 IPLBOOT_HEADER = b'IPLBOOT '
+PICO_FOOTER = b'PICO'
 
 def descramble(data):
     """Descrambles data using the GameCube bootrom scrambling algorithm."""
@@ -76,7 +77,11 @@ def parse_uf2(file_path):
                 sizes.append(size)
 
     binary_image = bytearray()
-    for address in sorted(blocks):
+    block_order = sorted(blocks)
+    for address in block_order:
+        # Stop at the first gap, only contiguous data belongs to the payload
+        if address != block_order[0] + len(binary_image):
+            break
         binary_image += blocks[address]
 
     return binary_image, addresses, sizes
@@ -102,10 +107,14 @@ def extract_dol_from_uf2(input_uf2, output_dol):
     """Converts a UF2 file into a DOL file by extracting and reconstructing its content."""
     binary_data, block_addresses, block_sizes = parse_uf2(input_uf2)
 
-    if not binary_data.startswith(IPLBOOT_HEADER):
+    if len(binary_data) < 36 or not binary_data.startswith(IPLBOOT_HEADER):
         raise ValueError("The file does not contain a valid IPLBOOT header.")
 
     total_size = struct.unpack(">I", binary_data[8:12])[0]
+    if total_size <= 36 or total_size % 4 != 0 or total_size > len(binary_data):
+        raise ValueError(f"Invalid payload size {total_size} (UF2 contains {len(binary_data)} contiguous bytes).")
+    if binary_data[total_size - 4:total_size] != PICO_FOOTER:
+        raise ValueError("The payload does not end with a PICO footer.")
     scrambled_data = binary_data[32:total_size - 4]
 
     descrambled_data = descramble(bytearray(0x720) + scrambled_data)[0x720:]
@@ -138,4 +147,8 @@ if __name__ == "__main__":
     parser.add_argument("output", help="Path to the output DOL file")
 
     args = parser.parse_args()    
-    extract_dol_from_uf2(args.input, args.output)
+    try:
+        extract_dol_from_uf2(args.input, args.output)
+    except (ValueError, OSError) as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(-1)
