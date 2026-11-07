@@ -19,7 +19,6 @@ next_transfer:
     wait 1 gpio CS_PIN          ; Wait for CS to go HIGH
     wait 0 gpio CS_PIN          ; Wait for CS to go LOW
     irq set 0                   ; Let other SM inject the payload
-    wait 1 gpio CLK_PIN         ; Hold until CLK goes HIGH
 .wrap
 
 .program clocked_output
