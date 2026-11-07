@@ -25,6 +25,11 @@ add_executable(picoboot-dx
     src/picoboot-dx.pio
 )
 
+# Extra warnings for our own sources only (the SDK sources are compiled into the same target)
+set_source_files_properties(src/picoboot-dx.c src/pio.c src/led.c PROPERTIES
+    COMPILE_OPTIONS "-Wall;-Wextra"
+)
+
 pico_generate_pio_header(picoboot-dx
     ${CMAKE_CURRENT_LIST_DIR}/src/picoboot-dx.pio
 )
