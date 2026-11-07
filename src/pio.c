@@ -13,15 +13,10 @@ void on_transfer_program_init(PIO pio, uint sm, uint offset, uint clk_pin, uint 
     pio_gpio_init(pio, clk_pin);
     pio_gpio_init(pio, cs_pin);
 
-    // Set CS for SM JMP
-    sm_config_set_jmp_pin(&c, cs_pin);
-    // Set CS to feed into SM ISR
-    sm_config_set_in_pins(&c, cs_pin);
-    
     // Set CS as input
     pio_sm_set_consecutive_pindirs(pio, sm, cs_pin, 1, false);
 
-    // Shift to right, autopull with threshold 32
+    // Shift left (MSB first), autopull with threshold 32
     sm_config_set_out_shift(&c, false, true, 32);
 
     // Run at full system clock
@@ -38,11 +33,6 @@ void clocked_output_program_init(PIO pio, uint sm, uint offset, uint clk_pin, ui
     pio_gpio_init(pio, cs_pin);
     pio_gpio_init(pio, data_pin);
 
-    // Set CLK for SM JMP
-    sm_config_set_jmp_pin(&c, clk_pin);
-    // Set CS to feed into SM ISR
-    sm_config_set_in_pins(&c, cs_pin);
-
     // Out and Set pins have to overlap so we can make line floating (Set it as input)
     sm_config_set_out_pins(&c, data_pin, 1);
     sm_config_set_set_pins(&c, data_pin, 1);
@@ -54,7 +44,7 @@ void clocked_output_program_init(PIO pio, uint sm, uint offset, uint clk_pin, ui
     // Set DATA as input
     pio_sm_set_consecutive_pindirs(pio, sm, data_pin, 1, false);
 
-    // Shift to right, autopull with threshold 32
+    // Shift left (MSB first), autopull with threshold 32
     sm_config_set_out_shift(&c, false, true, 32);
     // Join the TX and RX FIFOs into a single 8-word TX FIFO, disabling RX
     sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX);

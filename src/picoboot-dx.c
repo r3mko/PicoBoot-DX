@@ -74,7 +74,7 @@ static size_t validate_payload(void) {
     return word_count_aligned;
 }
 
-void main() {
+int main(void) {
     // Set 250MHz clock to get more cycles in between CLK pulses.
     // This is the lowest value I was able to make the code work.
     // Should be still considered safe for most Pico boards.
@@ -175,7 +175,7 @@ void main() {
         tight_loop_contents();
     }
 
-    // Reset clock to default
+    // Lower the clock to 125MHz (RP2040 default), the boost is no longer needed
     set_sys_clock_khz((BOOST_CLOCK / 2), true);
     
     // Stop PIO state machines

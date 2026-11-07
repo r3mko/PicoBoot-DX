@@ -36,20 +36,20 @@ void led_set(bool state) {
 #endif
 }
 
-void led_blink(uint count, uint on_ms, uint off_ms) {
+void led_blink(uint count, uint off_ms, uint on_ms) {
     for (uint i = 0; i < count; i++) {
         led_set(false);
-        sleep_ms(on_ms);
-        led_set(true);
         sleep_ms(off_ms);
+        led_set(true);
+        sleep_ms(on_ms);
     }
 }
 
-void led_blink_while(bool (*condition)(void), uint on_ms, uint off_ms) {
+void led_blink_while(bool (*condition)(void), uint off_ms, uint on_ms) {
     while (condition()) {
         led_set(false);
-        sleep_ms(on_ms);
-        led_set(true);
         sleep_ms(off_ms);
+        led_set(true);
+        sleep_ms(on_ms);
     }
 }
