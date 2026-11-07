@@ -16,9 +16,6 @@ void on_transfer_program_init(PIO pio, uint sm, uint offset, uint clk_pin, uint 
     // Set CS as input
     pio_sm_set_consecutive_pindirs(pio, sm, cs_pin, 1, false);
 
-    // Shift left (MSB first), autopull with threshold 32
-    sm_config_set_out_shift(&c, false, true, 32);
-
     // Run at full system clock
     sm_config_set_clkdiv(&c, 1.f);
 

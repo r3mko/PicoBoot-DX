@@ -11,10 +11,9 @@
 start:
     wait 1 gpio CS_PIN          ; Wait for CS to go HIGH
     wait 0 gpio CS_PIN          ; Wait for CS to go LOW
-    jmp x-- start               ; Wait for 224 CS pulses
+    jmp x-- start               ; Skip 224 CS pulses (X = 224), continue on the 225th
     irq set 0                   ; Set IRQ flag to start injecting payload
 
-next_transfer:
 .wrap_target
     wait 1 gpio CS_PIN          ; Wait for CS to go HIGH
     wait 0 gpio CS_PIN          ; Wait for CS to go LOW
@@ -28,21 +27,21 @@ start:
     wait 1 irq 0                ; Hold until SM0 tells us to start injecting
 
 wait_bit:
-    wait 0 gpio CLK_PIN         ; Wait until rising edge on CLK line
-    wait 1 gpio CLK_PIN         ; Seems to be slighty faster than "wait 0 pin 1"
+    wait 0 gpio CLK_PIN         ; Wait for a rising edge on CLK: CLK low first...
+    wait 1 gpio CLK_PIN         ; ...then CLK high
     jmp x-- wait_bit            ; Skip past address bytes
     mov x, y                    ; Copy y value to x, it represents number of bits in the transfer
     set pindirs 1               ; Set data line as output
     jmp write_bit               ; Output first IPL bit from OSR
 
 on_rising_edge:
-    wait 0 gpio CLK_PIN         ; Wait until rising edge on CLK line
-    wait 1 gpio CLK_PIN
+    wait 0 gpio CLK_PIN         ; Wait for a rising edge on CLK: CLK low first...
+    wait 1 gpio CLK_PIN         ; ...then CLK high
 
 write_bit:
     out pins, 1                 ; Output single IPL bit
     jmp x-- on_rising_edge      ; Jump back to next clock pulse wait routine if there is more data to inject
-    jmp !osre start             ; If there is more data in OSR, go back to start routine and wait for another transfer
+    jmp !osre start             ; More payload data (autopull refilled OSR from the FIFO)? Then wait for the next transfer
     wait 1 gpio CS_PIN          ; Keep driving the last bit until the console ends the transfer (CS HIGH)
     set pindirs 0               ; Leave data line floating so RTC-DOL can take over and load fonts etc.
 
