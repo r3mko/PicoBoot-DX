@@ -44,6 +44,7 @@ write_bit:
     out pins, 1                 ; Output single IPL bit
     jmp x-- on_rising_edge      ; Jump back to next clock pulse wait routine if there is more data to inject
     jmp !osre start             ; If there is more data in OSR, go back to start routine and wait for another transfer
+    wait 1 gpio CS_PIN          ; Keep driving the last bit until the console ends the transfer (CS HIGH)
     set pindirs 0               ; Leave data line floating so RTC-DOL can take over and load fonts etc.
 
 public disable_chip:
