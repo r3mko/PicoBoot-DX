@@ -75,6 +75,11 @@ jobs:
       - name: Check memory layout for ${{ matrix.board }}
         run: python3 tests/check_layout.py build-${{ matrix.board }}/picoboot-dx.elf
 
+      - name: Simulate PIO programs for ${{ matrix.board }}
+        env:
+          PICOBOOT_BUILD_DIR: build-${{ matrix.board }}
+        run: python3 -m unittest discover -s tests -p 'test_pio_programs.py' -v
+
       - name: Upload UF2 for ${{ matrix.board }}
         uses: actions/upload-artifact@v4
         with:

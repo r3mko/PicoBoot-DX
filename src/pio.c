@@ -7,6 +7,8 @@
 #include "pio.h"
 #include "picoboot-dx.pio.h"
 
+// tests/test_pio_programs.py mirrors this state machine setup for its PIO simulator: keep both in sync
+
 void on_transfer_program_init(PIO pio, uint sm, uint offset, uint clk_pin, uint cs_pin) {
     pio_sm_config c = on_transfer_program_get_default_config(offset);
 
