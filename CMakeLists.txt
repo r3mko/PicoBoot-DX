@@ -53,6 +53,12 @@ if(PICO_CYW43_SUPPORTED)
     target_link_libraries(picoboot-dx PRIVATE
         pico_cyw43_arch_none
     )
+
+    # The CYW43 is initialised at 250MHz, divide by 4 to keep its SPI clock
+    # at 250 / 4 / 2 = 31.25MHz (max 50MHz) instead of the default 62.5MHz
+    target_compile_definitions(picoboot-dx PRIVATE
+        CYW43_PIO_CLOCK_DIV_INT=4
+    )
 endif()
 
 target_link_options(pico_standard_link INTERFACE
