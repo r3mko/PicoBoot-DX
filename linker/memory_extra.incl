@@ -1,7 +1,7 @@
 /*
- * Extra linker script, loaded after the SDK's memmap_*.ld.
- * The SDK already declares the FLASH region, so don't redeclare it here
- * (that causes "redeclaration of memory region `FLASH'").
+ * Replaces the SDK's empty memory_extra.incl (Pico SDK 2.3+), which the SDK's
+ * memmap_*.ld includes right after declaring the FLASH region.
+ * Don't redeclare FLASH here (that causes "redeclaration of memory region `FLASH'").
  * The firmware occupies the first APP_SIZE bytes of flash, the payload follows.
  */
 FLASH_SIZE = 2048K;

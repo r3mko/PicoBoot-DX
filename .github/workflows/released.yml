@@ -26,13 +26,13 @@ jobs:
             python3 \
             git
 
-      - name: Clone Pico SDK (v2.1.1)
+      - name: Clone Pico SDK (v2.3.1)
         run: |
-          git clone --depth 1 --branch 2.1.1 https://github.com/raspberrypi/pico-sdk.git pico-sdk
+          git clone --depth 1 --branch 2.3.1 https://github.com/raspberrypi/pico-sdk.git pico-sdk
           cd pico-sdk && git submodule update --init --depth 1
 
-      - name: Clone PicoTool (v2.1.1)
-        run: git clone --depth 1 --branch 2.1.1 https://github.com/raspberrypi/picotool.git picotool
+      - name: Clone PicoTool (v2.3.1)
+        run: git clone --depth 1 --branch 2.3.1 https://github.com/raspberrypi/picotool.git picotool
 
       - name: Build & install PicoTool
         run: |

@@ -6,6 +6,11 @@ set(CMAKE_CXX_STANDARD 17)
 # Pull in Raspberry Pi Pico SDK 2 (must be before project)
 include(pico_sdk_2_import.cmake)
 
+# linker/memory_extra.incl uses the SDK's linker script overrides (SDK 2.3+)
+if (PICO_SDK_VERSION_STRING VERSION_LESS "2.3.0")
+    message(FATAL_ERROR "PicoBoot-DX needs Pico SDK 2.3.0 or newer (found ${PICO_SDK_VERSION_STRING})")
+endif()
+
 project(picoboot-dx 
     LANGUAGES C CXX ASM
 )
@@ -61,8 +66,7 @@ if(PICO_CYW43_SUPPORTED)
     )
 endif()
 
-target_link_options(pico_standard_link INTERFACE
-    "LINKER:--script=${CMAKE_CURRENT_LIST_DIR}/flash.ld"
-)
+# Payload region and symbols: linker/memory_extra.incl replaces the SDK's empty one
+pico_add_linker_script_override_path(picoboot-dx ${CMAKE_CURRENT_LIST_DIR}/linker FILES memory_extra.incl)
 
 pico_add_extra_outputs(picoboot-dx)
