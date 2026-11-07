@@ -127,7 +127,7 @@ def extract_dol_from_uf2(input_uf2, output_dol):
 
     print("UF2 File Information:")
     print(f"  Block count:          {len(block_addresses)}")
-    print(f"  Address range:        0x{min(block_addresses):08X} - 0x{max(block_addresses) + block_sizes[-1]:08X}")
+    print(f"  Address range:        0x{min(block_addresses):08X} - 0x{max(addr + size for addr, size in zip(block_addresses, block_sizes)):08X}")
     print(f"  Extracted firmware:   {len(binary_data)} bytes ({len(binary_data) / 1024:.1f}K)")
     print(f"  Image size:           {len(scrambled_data)} bytes ({len(scrambled_data) / 1024:.1f}K)\n")
 
