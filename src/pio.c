@@ -14,6 +14,9 @@ void on_transfer_program_init(PIO pio, uint sm, uint offset, uint clk_pin, uint 
 
     pio_gpio_init(pio, clk_pin);
     pio_gpio_init(pio, cs_pin);
+    // Pull CS up: the console leaves CS undriven for ~42 ms after power-on, and the pad's reset
+    // pull-down would hold it low ("selected"), so a brief release by the console reads as a CS pulse
+    gpio_pull_up(cs_pin);
 
     // Set CS as input
     pio_sm_set_consecutive_pindirs(pio, sm, cs_pin, 1, false);
