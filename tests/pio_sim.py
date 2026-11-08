@@ -17,7 +17,7 @@ from collections import deque
 # Decoded instruction kinds
 JMP, WAIT_GPIO, WAIT_IRQ, OUT, PULL, MOV, IRQ_SET, SET = range(8)
 
-JMP_ALWAYS, JMP_X_DEC, JMP_NOT_OSRE = 0b000, 0b010, 0b111
+JMP_ALWAYS, JMP_NOT_X, JMP_X_DEC, JMP_PIN, JMP_NOT_OSRE = 0b000, 0b001, 0b010, 0b110, 0b111
 OUT_PINS, OUT_NULL = 0b000, 0b011
 REG_X, REG_Y, REG_OSR = 0b001, 0b010, 0b111          # MOV destination/source codes
 SET_X, SET_Y, SET_PINDIRS = 0b001, 0b010, 0b100
@@ -37,7 +37,7 @@ def decode(word):
         raise unsupported("delay/side-set bits are not supported")
     if op == 0b000:                                   # JMP, p.322-323
         cond, addr = arg >> 5, arg & 0x1F
-        if cond not in (JMP_ALWAYS, JMP_X_DEC, JMP_NOT_OSRE):
+        if cond not in (JMP_ALWAYS, JMP_NOT_X, JMP_X_DEC, JMP_PIN, JMP_NOT_OSRE):
             raise unsupported(f"JMP condition {cond:03b}")
         return (JMP, cond, addr)
     if op == 0b001:                                   # WAIT, p.324
@@ -98,7 +98,7 @@ def program(words, wrap_target=0, wrap=None, labels=None):
 
 class StateMachine:
     def __init__(self, pio, prog, *, autopull=False, threshold=32, shift_right=True,
-                 out_base=0, out_count=1, set_base=0, set_count=1, fifo_depth=4):
+                 out_base=0, out_count=1, set_base=0, set_count=1, fifo_depth=4, jmp_pin=0):
         self.pio = pio
         self.words = list(prog["instructions"])
         self.instructions = [decode(w) for w in self.words]
@@ -107,6 +107,7 @@ class StateMachine:
         self.out_base, self.out_count = out_base, out_count
         self.set_base, self.set_count = set_base, set_count
         self.fifo_depth = fifo_depth                  # 8 when the TX FIFO is joined, p.335
+        self.jmp_pin = jmp_pin                        # EXECCTRL.JMP_PIN, for 'jmp pin'
         self.fifo = deque()
         self.pc = self.x = self.y = self.osr = 0
         self.osr_count = 32                           # empty after reset/restart, p.338
@@ -168,9 +169,13 @@ class StateMachine:
         if kind == JMP:                               # p.322-323
             if a == JMP_ALWAYS:
                 taken = True
+            elif a == JMP_NOT_X:
+                taken = self.x == 0
             elif a == JMP_X_DEC:
                 taken = self.x != 0                   # "non-zero, prior to decrement"
                 self.x = (self.x - 1) & 0xFFFFFFFF    # X is always decremented
+            elif a == JMP_PIN:
+                taken = pio.synced_input(self.jmp_pin, t) == 1
             else:
                 taken = self.osr_count < self.threshold   # !OSRE
             if taken:
@@ -298,6 +303,15 @@ class Console:
         self._times = {pin: [e[0] for e in ev] for pin, ev in events.items()}
         self._levels = {pin: [e[1] for e in ev] for pin, ev in events.items()}
         self._cursor = {pin: (0, -10**9) for pin in events}
+
+    def add_pulse(self, pin, start, width, level):
+        """Drive `pin` to `level` for `width` cycles from `start` (a CS glitch, a stray clock); call before simulating."""
+        times, levels = self._times[pin], self._levels[pin]
+        k = next((i for i, t in enumerate(times) if t > start), len(times))
+        if levels[k - 1] == level or (k < len(times) and times[k] <= start + width):
+            raise ValueError(f"pulse on GPIO {pin} at {start} doesn't fit between the console's own edges")
+        times[k:k] = [start, start + width]
+        levels[k:k] = [level, 1 - level]
 
     def level(self, gpio, t):
         times = self._times.get(gpio)

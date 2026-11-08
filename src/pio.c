@@ -21,6 +21,9 @@ void on_transfer_program_init(PIO pio, uint sm, uint offset, uint clk_pin, uint 
     // Set CS as input
     pio_sm_set_consecutive_pindirs(pio, sm, cs_pin, 1, false);
 
+    // JMP PIN reads CS: a skipped transfer only counts if CLK rises while CS is still low
+    sm_config_set_jmp_pin(&c, cs_pin);
+
     // Run at full system clock
     sm_config_set_clkdiv(&c, 1.f);
 
