@@ -15,6 +15,9 @@ and with the original PicoBoot payloads.
 ![Current Version](https://img.shields.io/github/v/release/r3mko/picoboot-dx)
 ![GitHub Downloads](https://img.shields.io/github/downloads/r3mko/picoboot-dx/total)
 
+> [!TIP]
+> Got a Pico 2 W in your GameCube? Try [PicoBoot-WiFi](https://github.com/r3mko/PicoBoot-WiFi), PicoBoot-DX with updates over Wi-Fi. Once the console has started, the Pico runs a Wi-Fi access point where a phone or computer can update its payloads and its own firmware, without opening the console. The wiring stays the same, and your current payload keeps booting.
+
 # 
 # Original README:
 
