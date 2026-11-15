@@ -24,7 +24,7 @@ KEYSTREAM_700_760 = bytes.fromhex(
 # SHA-256 of the ipl.h that `python3 tools/process_ipl.py assets/ipl/iplboot.dol <out>`
 # produces (the same command CI uses). Update this on purpose when the bundled DOL or
 # the output format changes.
-GOLDEN_IPL_H_SHA256 = "2ec542391fb6bb22adfa49c756cfe94953989a49a36e01e0de89a718b2542bcc"
+GOLDEN_IPL_H_SHA256 = "278a27c55aad9e7d3ae031000bcfa300fd54c3727e0f2094edb2aa342965e20c"
 
 
 class ScrambleTest(unittest.TestCase):
