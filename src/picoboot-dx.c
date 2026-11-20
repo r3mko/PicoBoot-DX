@@ -99,8 +99,8 @@ int main(void) {
     uint transfer_start_offset = pio_add_program(pio, &on_transfer_program);
 
     on_transfer_program_init(pio, transfer_start_sm, transfer_start_offset, PIN_CLK, PIN_CS);
-    // Wait for 224 CS pulses before firing the IRQ
-    // this marks the boundary where the first 1 kB (1024 bytes) transfer is about to start
+    // Skip the boot ROM's 224 short transfers (it reads the IPL's first 0x700 bytes 8 at a time)
+    // before firing the IRQ: the 225th is the first 1 kB (1024 bytes) transfer
     pio_prepare_transfer(pio, transfer_start_sm, 224, pio_x);
 
     //
