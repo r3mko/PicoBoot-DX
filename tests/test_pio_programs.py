@@ -33,11 +33,12 @@ JMP_PIN = 0x00C0                # jmp pin, <address in the low 5 bits>
 
 # Extra pulses on the console's lines, a few cycles after a CS rise (the next CS fall is 16 later)
 GLITCH_OFFSET, STRAY_CLK_OFFSET, PULSE_WIDTH = 3, 8, 2
+CS_LOW_UNTIL = 4                # With cs_low_until: CS reads low until then (the first CS fall is at 16)
 
 
-def cs_glitch(after=None):
+def cs_glitch(after=None, offset=GLITCH_OFFSET):
     """CS low without clocks, after transfer `after` (None: before the first transfer)."""
-    return ("CS_PIN", after, GLITCH_OFFSET, 0)
+    return ("CS_PIN", after, offset, 0)
 
 
 def stray_clk(after=None):
@@ -57,17 +58,20 @@ def prepare_transfer(sm, count, mov):
         sm.exec_instruction(word)
 
 
-def simulate(words, *, lazy_autopull=False, patch=None, on_transfer_patch=None, pulses=(), extra_transfers=2):
+def simulate(words, *, lazy_autopull=False, patch=None, on_transfer_patch=None, pulses=(), extra_transfers=2,
+             cs_low_until=None):
     """
     Set up both state machines like on_transfer_program_init(), clocked_output_program_init()
     and main() do, then let a simulated console read the IPL: 224 short transfers, one 1K
     transfer per 256 payload words, and a few short transfers afterwards (fonts, RTC).
-    `pulses` adds cs_glitch() / stray_clk() pulses to the console's lines.
+    `pulses` adds cs_glitch() / stray_clk() pulses to the console's lines. `cs_low_until`
+    starts CS low (pio_sim.Console).
     """
     programs, defines = load_programs()
     transfers = len(words) // WORDS_PER_TRANSFER
     console = pio_sim.Console(defines["CS_PIN"], defines["CLK_PIN"],
-                              [64] * SKIPPED_TRANSFERS + [BITS_PER_TRANSFER] * transfers + [64] * extra_transfers)
+                              [64] * SKIPPED_TRANSFERS + [BITS_PER_TRANSFER] * transfers + [64] * extra_transfers,
+                              cs_low_until=cs_low_until)
     for pin, after, offset, level in pulses:
         start = offset if after is None else console.cs_rises[after] + offset
         console.add_pulse(defines[pin], start, PULSE_WIDTH, level)
@@ -160,9 +164,17 @@ class PioProgramsTest(unittest.TestCase):
 class GlitchTest(unittest.TestCase):
     """A CS glitch without clocks (seen as the console powers up) must not count as a skipped transfer."""
 
-    def assert_delivered(self, pulses, words=None):
+    def assert_delivered(self, pulses, words=None, cs_low_until=None):
         words = words or random_words(2, seed=5)
-        self.assertEqual(delivery_problems(words, simulate(words, pulses=pulses)), [])
+        self.assertEqual(delivery_problems(words, simulate(words, pulses=pulses, cs_low_until=cs_low_until)), [])
+
+    def test_cs_low_at_start(self):
+        """Without a pull-up, CS reads low (the pad's reset pull-down) until the console first drives it high."""
+        self.assert_delivered([], cs_low_until=CS_LOW_UNTIL)
+
+    def test_cs_low_at_start_then_a_cs_glitch(self):
+        """The power-on glitch as it comes with the pull-down: CS low, driven high, then a pulse without clocks."""
+        self.assert_delivered([cs_glitch(offset=CS_LOW_UNTIL + 4)], cs_low_until=CS_LOW_UNTIL)
 
     def test_cs_glitch_during_the_skipped_transfers(self):
         for after in (None, 0, 100, SKIPPED_TRANSFERS - 2):
