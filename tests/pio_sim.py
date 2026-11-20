@@ -98,7 +98,7 @@ def program(words, wrap_target=0, wrap=None, labels=None):
 
 class StateMachine:
     def __init__(self, pio, prog, *, autopull=False, threshold=32, shift_right=True,
-                 out_base=0, out_count=1, set_base=0, set_count=1, fifo_depth=4, jmp_pin=0):
+                 out_base=0, out_count=1, set_base=0, set_count=1, fifo_depth=4, jmp_pin=None):
         self.pio = pio
         self.words = list(prog["instructions"])
         self.instructions = [decode(w) for w in self.words]
@@ -107,7 +107,7 @@ class StateMachine:
         self.out_base, self.out_count = out_base, out_count
         self.set_base, self.set_count = set_base, set_count
         self.fifo_depth = fifo_depth                  # 8 when the TX FIFO is joined, p.335
-        self.jmp_pin = jmp_pin                        # EXECCTRL.JMP_PIN, for 'jmp pin'
+        self.jmp_pin = jmp_pin                        # EXECCTRL.JMP_PIN, for 'jmp pin' (None: not set up)
         self.fifo = deque()
         self.pc = self.x = self.y = self.osr = 0
         self.osr_count = 32                           # empty after reset/restart, p.338
@@ -175,6 +175,8 @@ class StateMachine:
                 taken = self.x != 0                   # "non-zero, prior to decrement"
                 self.x = (self.x - 1) & 0xFFFFFFFF    # X is always decremented
             elif a == JMP_PIN:
+                if self.jmp_pin is None:
+                    raise ValueError("jmp pin without a JMP_PIN: pass jmp_pin to add_sm()")
                 taken = pio.synced_input(self.jmp_pin, t) == 1
             else:
                 taken = self.osr_count < self.threshold   # !OSRE

@@ -102,6 +102,11 @@ class InstructionTest(unittest.TestCase):
         pio.step(12)
         self.assertEqual(sm.pc, 2)
 
+    def test_jmp_pin_without_a_jmp_pin_is_an_error(self):
+        pio, sm = machine([JMP_PIN_2, MOV_Y_Y, MOV_Y_Y], autopull=False)
+        with self.assertRaises(ValueError):
+            pio.step(0)
+
     def test_wait_irq_clears_the_flag(self):                 # p.324
         pio, sm = machine([WAIT_1_IRQ_0, JMP_0], autopull=False)
         pio.irq = 1
