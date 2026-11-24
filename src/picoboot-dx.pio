@@ -9,7 +9,8 @@
 .program on_transfer
 
 ; Not covered: a clock while CS is high (another device on EXI0) shifts a payload transfer by one bit
-; when it comes any time after a CS glitch after the 224th transfer or a CS blip within a payload transfer.
+; when it comes right after a CS glitch after the 224th transfer, or any time after a CS blip within a
+; payload transfer.
 
 start:
     wait 1 gpio CS_PIN          ; Wait for CS to go HIGH
@@ -18,13 +19,13 @@ start:
     wait 1 gpio CLK_PIN         ; A skipped transfer only counts once it clocks...
     jmp pin start               ; ...while CS is still low (JMP_PIN = CS): a CS glitch doesn't count
     jmp x-- start               ; Count the skipped transfer (X > 0 here, so this always jumps)
-inject:
-    irq set 0                   ; Set IRQ flag to start injecting payload
 
 .wrap_target
     wait 1 gpio CS_PIN          ; Wait for CS to go HIGH
     wait 0 gpio CS_PIN          ; Wait for CS to go LOW
+inject:
     irq set 0                   ; Let other SM inject the payload
+    wait 1 gpio CLK_PIN         ; Hold until CLK goes HIGH: a CS glitch merges with the next transfer
 .wrap
 
 .program clocked_output

@@ -31,6 +31,7 @@ SET_PINDIRS_0 = 0xE080          # set pindirs, 0
 MOV_Y_Y = 0xA042                # mov y, y (does nothing)
 JMP_PIN = 0x00C0                # jmp pin, <address in the low 5 bits>
 WAIT_0_GPIO, WAIT_1_GPIO = 0x2000, 0x2080   # wait 0 / 1 gpio, <pin in the low 5 bits>
+IRQ_SET_0 = 0xC000              # irq set 0
 
 # Extra pulses on the console's lines, a few cycles after a CS rise (the next CS fall is 16 later)
 GLITCH_OFFSET, STRAY_CLK_OFFSET, PULSE_WIDTH = 3, 8, 2
@@ -232,6 +233,12 @@ class PayloadNoiseTest(unittest.TestCase):
             with self.subTest(after=after):
                 self.assert_delivered([cs_glitch(after)], transfers=3)
 
+    def test_cs_glitch_then_a_clk_pulse_while_cs_is_high(self):
+        """A glitch without clocks as above, then a clock while CS is high one transfer later."""
+        for after in (SKIPPED_TRANSFERS - 1, SKIPPED_TRANSFERS):
+            with self.subTest(after=after):
+                self.assert_delivered([cs_glitch(after), stray_clk(after + 1)], transfers=3)
+
 
 @unittest.skipUnless(BUILD_DIR, "set PICOBOOT_BUILD_DIR to a firmware build directory")
 class NegativeTest(unittest.TestCase):
@@ -314,6 +321,21 @@ class NegativeTest(unittest.TestCase):
                                                      pulses=[cs_blip(SKIPPED_TRANSFERS, second_to_last_clock - 7)],
                                                      half_period=SLOW_HALF_PERIOD))
         self.assertTrue(any(p.startswith("transfer 1:") for p in problems), problems)
+
+    def test_glitch_then_a_clk_pulse_without_the_clk_wait_after_the_irq_is_detected(self):
+        """Without on_transfer's CLK wait after its IRQ (v0.10 to v0.13), a glitch leaves a second IRQ set, and a
+        later clock while CS is high then counts as the next transfer's first address clock."""
+        def without_clk_wait_after_irq(instructions):
+            self.assertEqual(instructions[-2], IRQ_SET_0)
+            self.assertEqual(instructions[-1] & 0xFF80, WAIT_1_GPIO, "wait 1 gpio (CLK) after irq set 0")
+            instructions[-1] = MOV_Y_Y
+            return instructions
+
+        words = random_words(3, seed=11)
+        problems = delivery_problems(words, simulate(words, on_transfer_patch=without_clk_wait_after_irq,
+                                                     pulses=[cs_glitch(SKIPPED_TRANSFERS),
+                                                             stray_clk(SKIPPED_TRANSFERS + 1)]))
+        self.assertTrue(any(p.startswith("transfer 2:") for p in problems), problems)
 
 
 if __name__ == "__main__":
