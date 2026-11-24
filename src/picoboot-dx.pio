@@ -8,8 +8,8 @@
 
 .program on_transfer
 
-; Not covered: a CS glitch right before the 225th transfer (X = 0 doesn't wait for CLK) starts the
-; injection one transfer early, and one between payload transfers shifts a later transfer by one bit.
+; Not covered: a clock while CS is high (another device on EXI0) shifts a payload transfer by one bit
+; when it comes any time after a CS glitch after the 224th transfer or a CS blip within a payload transfer.
 
 start:
     wait 1 gpio CS_PIN          ; Wait for CS to go HIGH
@@ -31,6 +31,9 @@ inject:
 
 start:
     set x, 31                   ; x - 32 bits we need to skip (address)
+    wait 0 gpio CLK_PIN         ; The transfer's last clock (its last bit went out at the clock before)...
+    wait 1 gpio CLK_PIN         ; ...so a CS blip before it can't pass the CS wait. First transfer: a BS1 clock
+    wait 1 gpio CS_PIN          ; The transfer ends when CS goes HIGH: CS noise can set IRQ 0 before then
     wait 1 irq 0                ; Hold until SM0 tells us to start injecting
 
 wait_bit:

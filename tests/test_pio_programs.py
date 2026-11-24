@@ -30,10 +30,14 @@ OUT_NULL_32 = 0x6060
 SET_PINDIRS_0 = 0xE080          # set pindirs, 0
 MOV_Y_Y = 0xA042                # mov y, y (does nothing)
 JMP_PIN = 0x00C0                # jmp pin, <address in the low 5 bits>
+WAIT_0_GPIO, WAIT_1_GPIO = 0x2000, 0x2080   # wait 0 / 1 gpio, <pin in the low 5 bits>
 
 # Extra pulses on the console's lines, a few cycles after a CS rise (the next CS fall is 16 later)
 GLITCH_OFFSET, STRAY_CLK_OFFSET, PULSE_WIDTH = 3, 8, 2
 CS_LOW_UNTIL = 4                # With cs_low_until: CS reads low until then (the first CS fall is at 16)
+CONSOLE_GAP = 16                # pio_sim.Console's gap: the last clock's period ends this long before CS rises
+MID_TRANSFER = 4000 * 8         # cs_blip() in the middle of a 1K transfer: 4000 clocks of 8 cycles before CS rises
+SLOW_HALF_PERIOD = 8            # half_period for a 64 ns EXI clock at 250 MHz (the default 4 is 32 ns)
 
 
 def cs_glitch(after=None, offset=GLITCH_OFFSET):
@@ -44,6 +48,11 @@ def cs_glitch(after=None, offset=GLITCH_OFFSET):
 def stray_clk(after=None):
     """A CLK pulse while CS is high, like another device on EXI0's shared clock."""
     return ("CLK_PIN", after, STRAY_CLK_OFFSET, 1)
+
+
+def cs_blip(transfer, before_cs_rise):
+    """CS high for a moment within transfer `transfer`, `before_cs_rise` cycles before its CS rise."""
+    return ("CS_PIN", transfer, -before_cs_rise, 1)
 
 
 def load_programs():
@@ -59,19 +68,19 @@ def prepare_transfer(sm, count, mov):
 
 
 def simulate(words, *, lazy_autopull=False, patch=None, on_transfer_patch=None, pulses=(), extra_transfers=2,
-             cs_low_until=None):
+             cs_low_until=None, half_period=4):
     """
     Set up both state machines like on_transfer_program_init(), clocked_output_program_init()
     and main() do, then let a simulated console read the IPL: 224 short transfers, one 1K
     transfer per 256 payload words, and a few short transfers afterwards (fonts, RTC).
-    `pulses` adds cs_glitch() / stray_clk() pulses to the console's lines. `cs_low_until`
-    starts CS low (pio_sim.Console).
+    `pulses` adds cs_glitch() / stray_clk() / cs_blip() pulses to the console's lines.
+    `cs_low_until` starts CS low, and `half_period` sets the clock (pio_sim.Console).
     """
     programs, defines = load_programs()
     transfers = len(words) // WORDS_PER_TRANSFER
     console = pio_sim.Console(defines["CS_PIN"], defines["CLK_PIN"],
                               [64] * SKIPPED_TRANSFERS + [BITS_PER_TRANSFER] * transfers + [64] * extra_transfers,
-                              cs_low_until=cs_low_until)
+                              half_period=half_period, cs_low_until=cs_low_until)
     for pin, after, offset, level in pulses:
         start = offset if after is None else console.cs_rises[after] + offset
         console.add_pulse(defines[pin], start, PULSE_WIDTH, level)
@@ -199,6 +208,32 @@ class GlitchTest(unittest.TestCase):
 
 
 @unittest.skipUnless(BUILD_DIR, "set PICOBOOT_BUILD_DIR to a firmware build directory")
+class PayloadNoiseTest(unittest.TestCase):
+    """CS noise around the payload transfers must not shift the transfers after it."""
+
+    def assert_delivered(self, pulses, transfers=2, half_period=4):
+        words = random_words(transfers, seed=8)
+        self.assertEqual(delivery_problems(words, simulate(words, pulses=pulses, half_period=half_period)), [])
+
+    def test_cs_blip_within_a_payload_transfer(self):
+        self.assert_delivered([cs_blip(SKIPPED_TRANSFERS, MID_TRANSFER)])
+
+    def test_cs_blip_at_a_payload_transfers_last_clocks(self):
+        """A blip between the second-to-last and the last clock, which the CS wait alone lets through."""
+        second_to_last_clock = CONSOLE_GAP + 4 * SLOW_HALF_PERIOD     # rises this long before CS does
+        for after_clock in (4, 7, 10):
+            with self.subTest(after_clock=after_clock):
+                self.assert_delivered([cs_blip(SKIPPED_TRANSFERS, second_to_last_clock - after_clock)],
+                                      half_period=SLOW_HALF_PERIOD)
+
+    def test_cs_glitch_between_payload_transfers(self):
+        """A glitch without clocks right before the first payload transfer, and between the first two of three."""
+        for after in (SKIPPED_TRANSFERS - 1, SKIPPED_TRANSFERS):
+            with self.subTest(after=after):
+                self.assert_delivered([cs_glitch(after)], transfers=3)
+
+
+@unittest.skipUnless(BUILD_DIR, "set PICOBOOT_BUILD_DIR to a firmware build directory")
 class NegativeTest(unittest.TestCase):
     """These must fail, to show the tests above can catch the mistakes they are meant for."""
 
@@ -247,6 +282,38 @@ class NegativeTest(unittest.TestCase):
         problems = delivery_problems(words, simulate(words, on_transfer_patch=without_cs_check,
                                                      pulses=[cs_glitch(), stray_clk()]))
         self.assertIn(f"data line driven during skipped transfer {SKIPPED_TRANSFERS - 1}", problems)
+
+    def check_transfer_end_waits(self, instructions):
+        """clocked_output starts with `set x, 31`, then waits for CLK low, CLK high and CS high."""
+        self.assertEqual([word & 0xFF80 for word in instructions[1:4]], [WAIT_0_GPIO, WAIT_1_GPIO, WAIT_1_GPIO])
+
+    def test_taking_the_next_irq_before_a_transfer_ends_is_detected(self):
+        """Without the waits for a transfer's last clock and CS high (v0.13), a CS blip shifts the next transfer."""
+        def without_transfer_end_waits(instructions):
+            self.check_transfer_end_waits(instructions)
+            instructions[1:4] = [MOV_Y_Y] * 3
+            return instructions
+
+        # At the slow clock: at the default one, the three `mov y, y` take long enough to miss the last clock
+        words = random_words(2, seed=9)
+        problems = delivery_problems(words, simulate(words, patch=without_transfer_end_waits,
+                                                     pulses=[cs_blip(SKIPPED_TRANSFERS, 2 * MID_TRANSFER)],
+                                                     half_period=SLOW_HALF_PERIOD))
+        self.assertTrue(any(p.startswith("transfer 1:") for p in problems), problems)
+
+    def test_cs_wait_without_the_last_clock_wait_is_detected(self):
+        """With the CS wait but not the wait for the last clock, a blip right before that clock passes it."""
+        def without_last_clock_wait(instructions):
+            self.check_transfer_end_waits(instructions)
+            instructions[1:3] = [MOV_Y_Y] * 2
+            return instructions
+
+        words = random_words(2, seed=10)
+        second_to_last_clock = CONSOLE_GAP + 4 * SLOW_HALF_PERIOD
+        problems = delivery_problems(words, simulate(words, patch=without_last_clock_wait,
+                                                     pulses=[cs_blip(SKIPPED_TRANSFERS, second_to_last_clock - 7)],
+                                                     half_period=SLOW_HALF_PERIOD))
+        self.assertTrue(any(p.startswith("transfer 1:") for p in problems), problems)
 
 
 if __name__ == "__main__":
