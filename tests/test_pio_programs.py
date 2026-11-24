@@ -232,6 +232,18 @@ class PayloadNoiseTest(unittest.TestCase):
             with self.subTest(after=after):
                 self.assert_delivered([cs_glitch(after)], transfers=3)
 
+    def test_cs_glitch_then_a_clk_pulse_while_cs_is_high(self):
+        """A glitch without clocks as above, then a clock while CS is high one transfer later."""
+        for after in (SKIPPED_TRANSFERS - 1, SKIPPED_TRANSFERS):
+            with self.subTest(after=after):
+                self.assert_delivered([cs_glitch(after), stray_clk(after + 1)], transfers=3)
+
+    def test_cs_blip_then_a_clk_pulse_while_cs_is_high(self):
+        """A blip within the first payload transfer, then a clock while CS is high after it or a transfer later."""
+        for after in (SKIPPED_TRANSFERS, SKIPPED_TRANSFERS + 1):
+            with self.subTest(after=after):
+                self.assert_delivered([cs_blip(SKIPPED_TRANSFERS, MID_TRANSFER), stray_clk(after)], transfers=3)
+
 
 @unittest.skipUnless(BUILD_DIR, "set PICOBOOT_BUILD_DIR to a firmware build directory")
 class NegativeTest(unittest.TestCase):
@@ -284,17 +296,18 @@ class NegativeTest(unittest.TestCase):
         self.assertIn(f"data line driven during skipped transfer {SKIPPED_TRANSFERS - 1}", problems)
 
     def check_transfer_end_waits(self, instructions):
-        """clocked_output starts with `set x, 31`, then waits for CLK low, CLK high and CS high."""
-        self.assertEqual([word & 0xFF80 for word in instructions[1:4]], [WAIT_0_GPIO, WAIT_1_GPIO, WAIT_1_GPIO])
+        """clocked_output starts with `set x, 31`, then waits for CLK low, CLK high, CS high and CS low."""
+        self.assertEqual([word & 0xFF80 for word in instructions[1:5]],
+                         [WAIT_0_GPIO, WAIT_1_GPIO, WAIT_1_GPIO, WAIT_0_GPIO])
 
     def test_taking_the_next_irq_before_a_transfer_ends_is_detected(self):
-        """Without the waits for a transfer's last clock and CS high (v0.13), a CS blip shifts the next transfer."""
+        """Without the waits for a transfer's last clock and the CS edges (v0.13), a CS blip shifts the next transfer."""
         def without_transfer_end_waits(instructions):
             self.check_transfer_end_waits(instructions)
-            instructions[1:4] = [MOV_Y_Y] * 3
+            instructions[1:5] = [MOV_Y_Y] * 4
             return instructions
 
-        # At the slow clock: at the default one, the three `mov y, y` take long enough to miss the last clock
+        # At the slow clock: at the default one, the four `mov y, y` take long enough to miss the last clock
         words = random_words(2, seed=9)
         problems = delivery_problems(words, simulate(words, patch=without_transfer_end_waits,
                                                      pulses=[cs_blip(SKIPPED_TRANSFERS, 2 * MID_TRANSFER)],
@@ -314,6 +327,21 @@ class NegativeTest(unittest.TestCase):
                                                      pulses=[cs_blip(SKIPPED_TRANSFERS, second_to_last_clock - 7)],
                                                      half_period=SLOW_HALF_PERIOD))
         self.assertTrue(any(p.startswith("transfer 1:") for p in problems), problems)
+
+    def test_a_clk_pulse_while_cs_is_high_without_the_cs_low_wait_is_detected(self):
+        """Without the wait for the next transfer's CS fall, CS noise leaves IRQ 0 set early, and a later clock while
+        CS is high counts as the next transfer's first address clock."""
+        def without_cs_low_wait(instructions):
+            self.check_transfer_end_waits(instructions)
+            instructions[4] = MOV_Y_Y
+            return instructions
+
+        words = random_words(3, seed=11)
+        for noise in (cs_blip(SKIPPED_TRANSFERS, MID_TRANSFER), cs_glitch(SKIPPED_TRANSFERS)):
+            with self.subTest(noise=noise):
+                problems = delivery_problems(words, simulate(words, patch=without_cs_low_wait,
+                                                             pulses=[noise, stray_clk(SKIPPED_TRANSFERS + 1)]))
+                self.assertTrue(any(p.startswith("transfer 2:") for p in problems), problems)
 
 
 if __name__ == "__main__":
