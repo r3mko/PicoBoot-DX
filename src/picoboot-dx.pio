@@ -8,8 +8,9 @@
 
 .program on_transfer
 
-; Not covered: a clock while CS is high (another device on EXI0) right after a CS glitch after the
-; 224th transfer shifts the next payload transfer by one bit.
+; Not covered: a clock while CS is high (another device on EXI0) shifts the next payload transfer by one
+; bit when it comes right after a CS glitch after the 224th transfer, or after a CS blip between a
+; payload transfer's last clock and its CS rise.
 
 start:
     wait 1 gpio CS_PIN          ; Wait for CS to go HIGH
@@ -31,8 +32,6 @@ inject:
 
 start:
     set x, 31                   ; x - 32 bits we need to skip (address)
-    wait 0 gpio CLK_PIN         ; The transfer's last clock (its last bit went out at the clock before)...
-    wait 1 gpio CLK_PIN         ; ...so a CS blip before it can't pass the CS wait. First transfer: a BS1 clock
     wait 1 gpio CS_PIN          ; The transfer ends when CS goes HIGH: CS noise can set IRQ 0 before then
     wait 0 gpio CS_PIN          ; Take the IRQ once the next one has begun: an early IRQ merges with its own,
                                 ; and a clock while CS is high can't count
@@ -53,6 +52,8 @@ on_rising_edge:
 write_bit:
     out pins, 1                 ; Output single IPL bit
     jmp x-- on_rising_edge      ; Jump back to next clock pulse wait routine if there is more data to inject
+    wait 0 gpio CLK_PIN         ; The transfer's last clock (its last bit went out at the clock before)...
+    wait 1 gpio CLK_PIN         ; ...so a CS blip before it can't pass the CS waits, next transfer or payload end
     jmp !osre start             ; More payload data (autopull refilled OSR from the FIFO)? Then wait for the next transfer
     wait 1 gpio CS_PIN          ; Keep driving the last bit until the console ends the transfer (CS HIGH)
     set pindirs 0               ; Leave data line floating so RTC-DOL can take over and load fonts etc.
